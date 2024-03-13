@@ -2,7 +2,6 @@
 
 namespace FireFly\FilamentBlog\Models;
 
-use App\Models\User;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
@@ -70,9 +69,9 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function user(): BelongsTo
+    public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(config('filamentblog.author.model'), 'user_id');
     }
 
     public function seoDetail()
@@ -120,7 +119,7 @@ class Post extends Model
         return $this->whereHas('categories', function ($query) {
             $query->whereIn('categories.id', $this->categories->pluck('id'))
                 ->whereNotIn('posts.id', [$this->id]);
-        })->published()->with('user')->take($take)->get();
+        })->published()->with('author')->take($take)->get();
     }
 
     public static function getForm()
@@ -197,7 +196,7 @@ class Post extends Model
                                 ->native(false),
                         ]),
                     Select::make('user_id')
-                        ->relationship('user', 'name')
+                        ->relationship('author', 'name')
                         ->required(),
                 ]),
         ];

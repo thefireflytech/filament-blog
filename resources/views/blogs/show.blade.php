@@ -20,9 +20,9 @@
                                 <div class="flex flex-col gap-2">
                                     <div class="flex flex-col">
                                         <img class="w-10 h-10 rounded-full"
-                                             src="{{ $post->user->avatar() }}"
-                                             alt="{{ $post->user->name }}">
-                                        <span>{{ $post->user->name }}</span></div>
+                                             src="{{ $post->author->avatar() }}"
+                                             alt="{{ $post->author->name }}">
+                                        <span>{{ $post->author->name }}</span></div>
                                     <span class="mb-2 block text-slate-500 text-sm font-medium"> {{ $post->formattedPublishedDate() }}</span>
                                 </div>
                             </div>
@@ -84,8 +84,8 @@
                                             <div class="flex flex-col gap-2">
                                                 <div class="flex flex-col"><img class="w-10 h-10 rounded-full"
                                                                                 src="https://i.pravatar.cc/300"
-                                                                                alt="{{ $post->user->name }}">
-                                                    <span>{{ $post->user->name }}</span></div>
+                                                                                alt="{{ $post->author->name }}">
+                                                    <span>{{ $post->author->name }}</span></div>
                                                 <span class="mb-2 block text-slate-500 text-sm font-medium"> {{ $post->formattedPublishedDate() }}</span>
                                             </div>
                                         </div>
