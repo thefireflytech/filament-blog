@@ -20,6 +20,16 @@ class PostController extends Controller
             'posts' => $posts,
         ]);
     }
+    public function allPosts()
+    {
+        $posts = Post::query()->with(['categories', 'user'])
+            ->published()
+            ->paginate(20);
+
+        return view('filament-blog::blogs.allpost', [
+            'posts' => $posts,
+        ]);
+    }
 
     public function show(Post $post)
     {
@@ -50,6 +60,5 @@ class PostController extends Controller
         ]);
 
         return back()->with('success', 'You have been subscribed successfully');
-
     }
 }

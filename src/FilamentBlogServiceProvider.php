@@ -2,6 +2,7 @@
 
 namespace FireFly\FilamentBlog;
 
+use FireFly\FilamentBlog\Components\Header;
 use FireFly\FilamentBlog\Components\Layout;
 use FireFly\FilamentBlog\Components\RecentPost;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
         $package->name('filament-blog')
             ->hasConfigFile(['filamentblog'])
             ->hasMigration('create_blog_tables')
-            ->hasViewComponents('blog', Layout::class, RecentPost::class)
+            ->hasViewComponents('blog', Layout::class, RecentPost::class, Header::class)
             ->hasViews('filament-blog')
             ->hasRoute('web')
             ->hasInstallCommand(function (InstallCommand $installCommand) {

@@ -1,32 +1,32 @@
 {
-  "name": "firefly/filament-blog",
-  "type": "library",
-  "license": "MIT",
-  "autoload": {
-    "psr-4": {
-      "FireFly\\FilamentBlog\\": "src/"
+    "name": "firefly/filament-blog",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "FireFly\\FilamentBlog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Asmit Nepali"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "filament/support": "^3.2",
+        "awcodes/filament-tiptap-editor": "3.x-dev",
+        "artesaos/seotools": "^0.2.0@beta"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FireFly\\FilamentBlog\\FilamentBlogServiceProvider",
+                "Artesaos\\SEOTools\\Providers\\SEOToolsServiceProvider"
+            ],
+            "aliases": {
+                "SEOMeta": "Artesaos\\SEOTools\\Facades"
+            }
+        }
     }
-  },
-  "authors": [
-    {
-      "name": "Asmit Nepali"
-    }
-  ],
-  "minimum-stability": "dev",
-  "require": {
-    "filament/support": "^3.2",
-    "awcodes/filament-tiptap-editor": "3.x-dev",
-    "artesaos/seotools": "^0.2.0@beta"
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "FireFly\\FilamentBlog\\FilamentBlogServiceProvider",
-        "Artesaos\\SEOTools\\Providers\\SEOToolsServiceProvider"
-      ],
-      "aliases": {
-        "SEOMeta" : "Artesaos\\SEOTools\\Facades"
-      }
-    }
-  }
 }
