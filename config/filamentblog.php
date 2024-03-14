@@ -7,10 +7,6 @@ return [
     ],
     'author' => [
         'model' => \App\Models\User::class,
-        'resource' => [
-            'name' => \App\Filament\UserResource::class,
-            'label' => 'Users',
-        ],
-        'photo_column' => 'profile_photo_path',
+        'photo_column' => false,
     ],
 ];

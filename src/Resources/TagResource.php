@@ -66,7 +66,6 @@ class TagResource extends Resource
     {
         return [
             'index' => \FireFly\FilamentBlog\Resources\TagResource\Pages\ListTags::route('/'),
-            'create' => \FireFly\FilamentBlog\Resources\TagResource\Pages\CreateTag::route('/create'),
             'edit' => \FireFly\FilamentBlog\Resources\TagResource\Pages\EditTag::route('/{record}/edit'),
         ];
     }

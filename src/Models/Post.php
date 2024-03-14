@@ -197,7 +197,8 @@ class Post extends Model
                         ]),
                     Select::make('user_id')
                         ->relationship('author', 'name')
-                        ->required(),
+                        ->default(auth()->id())
+
                 ]),
         ];
     }
