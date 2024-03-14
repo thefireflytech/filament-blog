@@ -5,9 +5,12 @@ return [
         'prefix' => 'blog',
         'middleware' => ['web'],
     ],
-    'user' => [
+    'author' => [
         'model' => \App\Models\User::class,
-        'resource' => \App\Filament\UserResource::class,
+        'resource' => [
+            'name' => \App\Filament\UserResource::class,
+            'label' => 'Users',
+        ],
         'photo_column' => 'profile_photo_path',
     ],
 ];

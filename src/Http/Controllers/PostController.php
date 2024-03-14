@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::query()->with(['categories', 'user'])
+        $posts = Post::query()->with(['categories', 'author'])
             ->published()
             ->paginate(10);
 
@@ -22,7 +22,7 @@ class PostController extends Controller
     }
     public function allPosts()
     {
-        $posts = Post::query()->with(['categories', 'user'])
+        $posts = Post::query()->with(['categories', 'author'])
             ->published()
             ->paginate(20);
 
@@ -40,7 +40,7 @@ class PostController extends Controller
         SEOMeta::addKeyword($post->seoDetail->keywords);
 
         $shareButton = ShareSnippet::query()->active()->first();
-        $post->load(['user', 'categories']);
+        $post->load(['author', 'categories']);
 
         return view('filament-blog::blogs.show', [
             'post' => $post,

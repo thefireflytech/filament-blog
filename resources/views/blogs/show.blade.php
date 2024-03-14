@@ -35,10 +35,10 @@
                                 <div>
                                     <div class="flex items-center gap-4">
                                         <img class="h-14 w-14 overflow-hidden rounded-full border-4 border-white bg-zinc-300 object-cover text-[0] ring-1 ring-slate-300"
-                                            src="{{ $post->user->avatar() }}" alt="{{ $post->user->name }}">
+                                            src="{{ $post->author->avatar() }}" alt="{{ $post->author->name }}">
                                         <div>
-                                            <span title="{{ $post->user->name }}"
-                                                class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{{ $post->user->name }}</span>
+                                            <span title="{{ $post->author->name }}"
+                                                class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{{ $post->author->name }}</span>
                                             <span
                                                 class="block whitespace-nowrap text-sm font-medium font-semibold text-zinc-600">
                                                 {{ $post->formattedPublishedDate() }}</span>
@@ -121,20 +121,20 @@
                             <p>Your email address will not be published. Required fields are marked *</p>
                         </div>
                         <div class="mb-6">
-                            <label class="mb-2 block text-sm font-semibold" for="user-comment">Comment *</label>
-                            <textarea rows="4" placeholder="Write your message here" type="text" id="user-comment"
+                            <label class="mb-2 block text-sm font-semibold" for="author-comment">Comment *</label>
+                            <textarea rows="4" placeholder="Write your message here" type="text" id="author-comment"
                                 class="form-input relative block w-full rounded-md border-0 bg-white px-4 py-4 text-sm text-gray-900 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-black disabled:cursor-not-allowed disabled:opacity-75 dark:bg-gray-900 dark:text-white dark:placeholder-gray-500 dark:ring-gray-700"></textarea>
                         </div>
                         <div class="mb-6 grid gap-8 sm:grid-cols-2">
                             <div>
-                                <label class="mb-2 block text-sm font-semibold" for="user-comment">Name *</label>
+                                <label class="mb-2 block text-sm font-semibold" for="author-comment">Name *</label>
                                 <input placeholder="Your Name"
                                     class="form-input relative block w-full rounded-md border-0 bg-white px-4 py-4 text-sm text-gray-900 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-black disabled:cursor-not-allowed disabled:opacity-75 dark:bg-gray-900 dark:text-white dark:placeholder-gray-500 dark:ring-gray-700"
                                     type="text" />
                             </div>
                             <div>
-                                <label class="mb-2 block text-sm font-semibold" for="user-comment">Email *</label>
-                                <input placeholder="username@domain.com"
+                                <label class="mb-2 block text-sm font-semibold" for="author-comment">Email *</label>
+                                <input placeholder="authorname@domain.com"
                                     class="form-input relative block w-full rounded-md border-0 bg-white px-4 py-4 text-sm text-gray-900 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-black disabled:cursor-not-allowed disabled:opacity-75 dark:bg-gray-900 dark:text-white dark:placeholder-gray-500 dark:ring-gray-700"
                                     type="email" />
                             </div>
@@ -195,8 +195,8 @@
                                             </a>
                                             <div class="flex items-center gap-2 text-slate-500">
                                                 <div class="flex items-center gap-x-2">
-                                                    <span title="{{ $post->user->name }}"
-                                                        class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium">{{ $post->user->name }}</span>
+                                                    <span title="{{ $post->author->name }}"
+                                                        class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium">{{ $post->author->name }}</span>
                                                 </div>
                                                 <samp>/</samp>
                                                 <span class="block text-sm font-medium font-medium">
