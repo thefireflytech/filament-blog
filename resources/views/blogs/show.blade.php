@@ -1,49 +1,83 @@
 <x-blog-layout>
-    <section></section>
-    <section class="pt-8 pb-16">
+    <section class="pb-16">
         <div class="container mx-auto">
             <div class="grid gap-x-20 gap-y-10 sm:grid-cols-3">
-                <div class="sm:col-span-2">
-                    <div class="flex flex-col justify-end">
-                        <div class="rounded-xl h-full overflow-hidden bg-slate-200 w-full">
-                            <img class="h-full object-cover object-top" src="{{ asset($post->cover_photo_path) }}"
-                                 alt="{{ $post->photo_alt_text }}">
+                <div class="space-y-10 sm:col-span-2">
+                    <div>
+                        <div class="mb-10 flex gap-x-2 text-sm font-semibold">
+                            <span class="opacity-60">Home</span>
+                            <span class="opacity-30">/</span>
+                            <a href="{{ route('post.index') }}" class="opacity-60">Blog</a>
+                            <span class="opacity-30">/</span>
+                            <a title="{{ $post->slug }}" href="{{ route('post.show', ['post' => $post->slug]) }}"
+                               class="hover:text-primary-600 max-w-2xl truncate font-medium transition-all duration-300">
+                                {{ $post->title }}
+                            </a>
                         </div>
-                        <div class="mt-4">
-                            @foreach($post->categories as $category)
-                                <span class="px-3 py-1 border text-xs font-semibold rounded-full">{{ $category->name }}</span>
-                            @endforeach
-                        </div>
-                        <div class="py-4 flex items-center justify-between gap-x-3 mb-5">
-                            {!! $shareButton?->html_code !!}
-                            <div>
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex flex-col">
-                                        <img class="w-10 h-10 rounded-full"
-                                             src="{{ $post->author->avatar() }}"
-                                             alt="{{ $post->author->name }}">
-                                        <span>{{ $post->author->name }}</span></div>
-                                    <span class="mb-2 block text-slate-500 text-sm font-medium"> {{ $post->formattedPublishedDate() }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h1 class="text-2xl mb-5 font-semibold">
+
+                        <div class="mb-6">
+                            <h1 class="mb-2 text-3xl font-semibold">
                                 {{ $post->title }}
                             </h1>
+                        </div>
+                        <div class="flex flex-col justify-end">
+                            <div class="h-full w-full overflow-hidden rounded-xl bg-slate-200">
+                                <img class="flex h-full min-h-[400px] items-center justify-center object-cover object-top text-sm"
+                                     src="{{ asset($post->cover_photo_path) }}" alt="{{ $post->photo_alt_text }}">
+                            </div>
+                            <div class="mt-4">
+                                @foreach ($post->categories as $category)
+                                    <span
+                                            class="bg-primary-200 text-primary-800 mr-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold">{{ $category->name }}</span>
+                                @endforeach
+                            </div>
+                            <div class="mb-5 flex items-center justify-between gap-x-3 py-4">
+                                <div>
+                                    <div class="flex items-center gap-4">
+                                        <img class="h-14 w-14 overflow-hidden rounded-full border-4 border-white bg-zinc-300 object-cover text-[0] ring-1 ring-slate-300"
+                                             src="{{ $post->author->avatar() }}" alt="{{ $post->author->name }}">
+                                        <div>
+                                            <span title="{{ $post->author->name }}"
+                                                  class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{{ $post->author->name }}</span>
+                                            <span
+                                                    class="block whitespace-nowrap text-sm font-medium font-semibold text-zinc-600">
+                                                {{ $post->formattedPublishedDate() }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {!! $shareButton?->html_code !!}
+                            </div>
                             <div>
-                                <article class="m-auto mt-12 leading-6">
+                                <article class="m-auto leading-6">
                                     {!! $post->body !!}
                                 </article>
+
+                                @if($post->tags->count())
+                                <div class="pt-10">
+                                    <span class="mb-3 block font-semibold">Tags</span>
+                                    <div class="space-x-2 space-y-1">
+                                        @foreach ($post->tags as $tag)
+                                            <a href=""
+                                               class="rounded-full border border-slate-300 px-3 py-1 text-sm font-medium font-medium text-black text-slate-600 hover:bg-slate-100">
+                                                {{$tag->title}}
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
+                    {{--         Comment           --}}
+{{--                    <x-blog-comment/>--}}
+                    {{--         Comment          --}}
+
                 </div>
                 <div>
                     <div class="mb-10">
-                        <div class="relative items-center flex gap-x-8 mb-2">
-                            <h2 class="whitespace-nowrap text-2xl font-semibold">
-                                Recent Post
+                        <div class="relative mb-2 flex items-center gap-x-8">
+                            <h2 class="whitespace-nowrap text-xl font-semibold">
+                                <span class="text-primary font-bold">#</span> Recent Post
                             </h2>
                             <div class="flex w-full items-center">
                                 <span class="h-0.5 w-full rounded-full bg-slate-200"></span>
@@ -54,45 +88,42 @@
                         </div>
                     </div>
                     <div>
-                        <div class="relative items-center flex gap-x-8 mb-6">
-                            <h2 class="whitespace-nowrap text-2xl font-semibold">
-                                Related Posts
+                        <div class="relative mb-6 flex items-center gap-x-8">
+                            <h2 class="whitespace-nowrap text-xl font-semibold">
+                                <span class="text-primary font-bold">#</span> Related Posts
                             </h2>
                             <div class="flex w-full items-center">
                                 <span class="h-0.5 w-full rounded-full bg-slate-200"></span>
                             </div>
                         </div>
-                        <div class="grid gap-y-14 gap-x-12">
-                            @foreach($post->relatedPosts() as $post)
+                        <div class="grid gap-x-12 gap-y-10">
+                            @foreach ($post->relatedPosts() as $post)
                                 <div>
-                                    <div class="flex flex-col gap-y-5">
-                                        <div class="rounded h-[200px] bg-slate-200 w-full">
-                                            <img class="h-full w-full object-cover object-top"
+                                    <div class="flex flex-col gap-y-2">
+                                        <div class="h-[200px] w-full overflow-hidden rounded-lg bg-slate-200">
+                                            <img class="flex h-full w-full items-center justify-center object-cover object-top text-slate-400"
                                                  src="{{ asset($post->cover_photo_path) }}"
                                                  alt="{{ $post->photo_alt_text }}">
                                         </div>
                                         <div class="space-y-3">
-                                            <a href="{{ route('post.show', ['post' => $post->slug]) }}" class="text-xl mb-2 font-semibold hover:text-blue-600">
+                                            <a title="{{ $post->title }}"
+                                               href="{{ route('post.show', ['post' => $post->slug]) }}"
+                                               class="hover:text-primary-700 mb-2 line-clamp-2 text-lg font-medium">
                                                 {{ $post->title }}
                                             </a>
-                                            <p class="mb-3">
-                                                {{ Str::limit($post->sub_title, 100) }}
-                                            </p>
-                                            @foreach($post->categories as $category)
-                                                <span class="px-3 py-1 border text-xs font-semibold rounded-full">{{ $category->name }}</span>
-                                            @endforeach
-                                            <div class="flex flex-col gap-2">
-                                                <div class="flex flex-col"><img class="w-10 h-10 rounded-full"
-                                                                                src="https://i.pravatar.cc/300"
-                                                                                alt="{{ $post->author->name }}">
-                                                    <span>{{ $post->author->name }}</span></div>
-                                                <span class="mb-2 block text-slate-500 text-sm font-medium"> {{ $post->formattedPublishedDate() }}</span>
+                                            <div class="flex items-center gap-2 text-slate-500">
+                                                <div class="flex items-center gap-x-2">
+                                                    <span title="{{ $post->author->name }}"
+                                                          class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium">{{ $post->author->name }}</span>
+                                                </div>
+                                                <samp>/</samp>
+                                                <span class="block text-sm font-medium font-medium">
+                                                    {{ $post->formattedPublishedDate() }}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>

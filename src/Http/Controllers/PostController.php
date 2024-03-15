@@ -12,12 +12,37 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::query()->with(['categories', 'author'])
+        $posts = Post::query()->with(['categories', 'author', 'tags'])
             ->published()
             ->paginate(10);
 
         return view('filament-blog::blogs.index', [
             'posts' => $posts,
+        ]);
+    }
+    public function allPosts()
+    {
+        $posts = Post::query()->with(['categories', 'author'])
+            ->published()
+            ->paginate(20);
+
+        return view('filament-blog::blogs.allpost', [
+            'posts' => $posts,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $searchedPosts = Post::query()
+            ->with(['categories', 'author'])
+            ->published()
+            ->where('title', 'like', '%' . $request->get('query') . '%')
+            ->orWhere('sub_title', 'like', '%' . $request->get('query') . '%')
+            ->paginate(10)->withQueryString();
+
+        dd($searchedPosts);
+        return view('filament-blog::blogs.search', [
+            'posts' => $searchedPosts,
         ]);
     }
 
@@ -50,6 +75,5 @@ class PostController extends Controller
         ]);
 
         return back()->with('success', 'You have been subscribed successfully');
-
     }
 }

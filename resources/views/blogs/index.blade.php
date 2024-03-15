@@ -1,91 +1,78 @@
 <x-blog-layout>
-    <section></section>
-    <section class="pt-8 pb-16">
+    <section class="py-8">
         <div class="container mx-auto">
             <div class="">
-                {{--      Hero Post      --}}
-                @foreach($posts->take(1) as $post)
-                    <div>
-                        <div class="flex gap-x-5">
-                            <div class="rounded-xl overflow-hidden h-[300px] bg-slate-200 w-full">
-                                <img class="h-full w-full object-cover object-top"
-                                     src="{{ asset($post->cover_photo_path) }}"
-                                     alt="{{ $post->photo_alt_text }}">
-                            </div>
-                            <div class="space-y-3 flex flex-col justify-between py-4">
-                                <div>
-                                    <a href="{{ route('post.show', ['post' => $post->slug]) }}"
-                                       class="text-xl mb-2 font-semibold hover:text-blue-600">
+                {{-- Hero Post      --}}
+                @foreach ($posts->take(1) as $post)
+                <div>
+                    <div class="grid grid-cols-2 gap-x-10">
+                        <div class="h-[400px] w-full overflow-hidden rounded-xl bg-zinc-300">
+                            <img class="flex h-full w-full items-center justify-center object-cover object-top" src="{{ asset($post->cover_photo_path) }}" alt="{{ $post->photo_alt_text }}">
+                        </div>
+                        <div class="flex flex-col justify-center space-y-10 py-4 sm:pl-10">
+                            <div>
+                                <div class="mb-5">
+                                    <a href="{{ route('post.show', ['post' => $post->slug]) }}" class="hover:text-primary-700 mb-4 block text-4xl font-semibold hover:text-blue-600">
                                         {{ $post->title }}
                                     </a>
                                     <div>
-                                        @foreach($post->categories as $category)
-                                            <span class="px-3 py-1 border text-xs font-semibold rounded-full">{{ $category->name }}</span>
+                                        @foreach ($post->categories as $category)
+                                        <span class="bg-primary-200 text-primary-800 mr-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold">{{ $category->name }}</span>
                                         @endforeach
                                     </div>
-                                    <p class="mb-3">
-                                        {!! Str::limit($post->sub_title) !!}
-                                    </p>
                                 </div>
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex flex-col">
-                                        <img class="w-10 h-10 rounded-full"
-                                             src="{{ $post->author->avatar() }}"
-                                             alt="{{ $post->author->name }}">
-                                        <span>{{ $post->author->name }}</span></div>
-                                    <span class="mb-2 block text-slate-500 text-sm font-medium"> {{ $post->formattedPublishedDate() }}</span>
+                                <p class="mb-4">
+                                    {!! Str::limit($post->sub_title) !!}
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <img class="h-14 w-14 overflow-hidden rounded-full bg-zinc-300 object-cover text-[0]" src="{{ $post->author->avatar() }}" alt="{{ $post->author->name }}">
+                                <div>
+                                    <span title="{{ $post->author->name }}" class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{{ $post->author->name }}</span>
+                                    <span class="block whitespace-nowrap text-sm font-medium font-semibold text-zinc-600">
+                                        {{ $post->formattedPublishedDate() }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                </div>
                 @endforeach
-                {{--      Hero Post      --}}
+                {{-- Hero Post      --}}
             </div>
         </div>
     </section>
-    <section class="pt-8 pb-16">
+    <section class="pb-16 pt-8">
         <div class="container mx-auto">
-            <div class="relative items-center flex gap-x-8 mb-6">
-                <h2 class="whitespace-nowrap text-2xl font-semibold">
-                    All Blog Posts
-                </h2>
-                <div class="flex w-full items-center">
-                    <span class="h-0.5 w-full rounded-full bg-slate-200"></span>
-                </div>
-            </div>
-            <div class="grid grid-cols-3 gap-y-14 gap-x-12">
-                @foreach($posts->skip(1) as $post)
-                    <div>
-                        <div class="flex flex-col gap-y-5">
-                            <div class="rounded h-[200px] bg-slate-200 w-full">
-                                <img class="h-full w-full object-cover object-top"
-                                     src="{{ asset($post->cover_photo_path) }}"
-                                     alt="{{ $post->photo_alt_text }}">
-                            </div>
-                            <div class="space-y-3">
-                                <a href="{{ route('post.show', ['post' => $post->slug]) }}"
-                                   class="text-xl mb-2 font-semibold hover:text-blue-600">
+            <div class="grid grid-cols-3 gap-x-14 gap-y-14">
+                @foreach ($posts->skip(1) as $post)
+                <a href="{{ route('post.show', ['post' => $post->slug]) }}">
+                    <div class="group/blog-item flex flex-col gap-y-5">
+                        <div class="h-[250px] w-full rounded-xl bg-zinc-300">
+                            <img class="flex h-full w-full items-center justify-center object-cover object-top" src="{{ asset($post->cover_photo_path) }}" alt="{{ $post->photo_alt_text }}">
+                        </div>
+                        <div class="flex flex-col justify-between space-y-3 px-2">
+                            <div>
+                                <h2 title="{{ $post->title }}" class="group-hover/blog-item:text-primary-700 mb-3 line-clamp-2 text-xl font-semibold hover:text-blue-600">
                                     {{ $post->title }}
-                                </a>
-                                <p class="mb-3">
+                                </h2>
+                                <p class="mb-3 line-clamp-3">
                                     {{ Str::limit($post->sub_title, 100) }}
                                 </p>
-                                <div class="flex flex-col gap-2">
-                                    <div class="flex flex-col">
-                                        <img class="w-10 h-10 rounded-full"
-                                             src="{{ $post->author->avatar() }}"
-                                             alt="{{ $post->author->name }}">
-                                        <span>{{ $post->author->name }}</span></div>
-                                    <span class="mb-2 block text-slate-500 text-sm font-medium"> {{ $post->formattedPublishedDate() }}</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <img class="h-10 w-10 overflow-hidden rounded-full bg-zinc-300 object-cover text-[0]" src="{{ $post->author->avatar() }}" alt="{{ $post->author->name }}">
+                                <div>
+                                    <span title="{{ $post->author->name }}" class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">{{ $post->author->name }}</span>
+                                    <span class="block whitespace-nowrap text-sm font-medium font-semibold text-zinc-600">
+                                        {{ $post->formattedPublishedDate() }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </a>
                 @endforeach
             </div>
         </div>
     </section>
 
 </x-blog-layout>
-

@@ -48,7 +48,7 @@ class PostResource extends Resource
                         return $state->getColor();
                     }),
                 Tables\Columns\ImageColumn::make('cover_photo_path')->label('Cover Page'),
-                Tables\Columns\TextColumn::make('user.name')
+                Tables\Columns\TextColumn::make('author.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
