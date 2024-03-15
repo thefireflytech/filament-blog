@@ -20,6 +20,12 @@
     <script>
         tailwind.config = {
             theme: {
+                container: {
+                    padding: '2rem',
+                    screen: {
+                        '2xl': '1200px'
+                    }
+                },
                 extend: {
                     colors: {
                         'primary': {
@@ -71,46 +77,86 @@
     </style>
     <style>
         /* Blog Posts */
-        article p {
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 2rem;
-        }
-
         article h1 {
-            font-size: 2.5rem;
             line-height: 1.2;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            color: #424242;
+            font-weight: 900;
+            padding-bottom: 20px;
         }
 
         article h2 {
-            font-size: 2rem;
-            line-height: 1.3;
-            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            font-size: 1.5rem;
+            color: #424242;
+            font-weight: 800;
+            padding-bottom: 10px;
         }
 
         article h3 {
-            font-size: 1.75rem;
-            line-height: 1.4;
-            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            font-size: 1.25rem;
+            color: #424242;
+            font-weight: 700;
+            padding-bottom: 10px;
         }
 
         article h4 {
-            font-size: 1.5rem;
-            line-height: 1.5;
-            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            font-size: 1.2rem;
+            color: #424242;
+            font-weight: 600;
+            padding-bottom: 10px;
         }
 
-        article h5 {
-            font-size: 1.25rem;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
-
-        article h6 {
+        article p {
+            line-height: 1.75;
+            letter-spacing: .2px;
             font-size: 1rem;
+            color: #424242;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        article ul {
             line-height: 1.7;
-            margin-bottom: 0.5rem;
+            padding-bottom: 5px;
+        }
+
+        article table {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+        }
+
+        article table,
+        article table td,
+        article table th {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+        }
+
+        /* share this */
+        .sharethis-inline-share-buttons {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
+        .sharethis-inline-share-buttons .st-btn {
+            width: 50px !important;
+            height: 50px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            margin-bottom: 10px !important;
+            border-radius: 50px !important;
+            margin-right: 0 !important
+        }
+
+        .sharethis-inline-share-buttons .st-btn img {
+            top: 0 !important
         }
     </style>
 </head>
@@ -125,7 +171,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="w-full border-t px-5 py-12">
+        <footer class="mt-10 w-full border-t px-5 py-12">
             <div class="container mx-auto">
                 <div class="mb-4">
                     <div class="grid items-start justify-between gap-x-40 gap-y-10 sm:grid-cols-5">
@@ -161,18 +207,29 @@
                                         Subscribe to our mailing list to receives daily updates direct to your inbox!
                                     </p>
                                     <div>
-                                        <form action="" class="w-100 relative">
-                                            <label class="hidden" for="email-address">Email</label>
-                                            <input autocomplete="email"
-                                                class="flex w-full items-center justify-between rounded-xl border bg-white px-6 py-5 font-medium text-black outline-none placeholder:text-black"
-                                                name="email-address" placeholder="Enter your email" type="email">
-                                            <button class="absolute right-4 top-1/2 -translate-y-1/2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-primary-600 h-8 w-8"
-                                                    viewBox="0 0 256 256">
-                                                    <path fill="currentColor"
-                                                        d="m220.24 132.24l-72 72a6 6 0 0 1-8.48-8.48L201.51 134H40a6 6 0 0 1 0-12h161.51l-61.75-61.76a6 6 0 0 1 8.48-8.48l72 72a6 6 0 0 1 0 8.48" />
-                                                </svg>
-                                            </button>
+                                        <form method="post" action="{{ route('post.subscribe') }}">
+                                            @csrf
+                                            <label hidden for="email-address">Email</label>
+                                            @error('email')
+                                                <span class="text-xs text-red-500">{{ $message }}</span>
+                                            @enderror
+                                            <div class="w-100 relative">
+                                                <input autocomplete="email"
+                                                    class="flex w-full items-center justify-between rounded-xl border bg-white px-6 py-5 font-medium text-black outline-none placeholder:text-black"
+                                                    name="email-address" name="email" value="{{ old('email') }}"
+                                                    placeholder="Enter your email" type="email">
+                                                <button type="submit"
+                                                    class="absolute right-4 top-1/2 -translate-y-1/2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="text-primary-600 h-8 w-8" viewBox="0 0 256 256">
+                                                        <path fill="currentColor"
+                                                            d="m220.24 132.24l-72 72a6 6 0 0 1-8.48-8.48L201.51 134H40a6 6 0 0 1 0-12h161.51l-61.75-61.76a6 6 0 0 1 8.48-8.48l72 72a6 6 0 0 1 0 8.48" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            @if (session('success'))
+                                                <span class="text-green-500">{{ session('success') }}</span>
+                                            @endif
                                         </form>
                                     </div>
                                     <i

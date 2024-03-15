@@ -1,5 +1,5 @@
 <header @click.outside="showSearchModal = false" x-data="{ showSearchModal: false }" class="sticky top-0 z-[94035] mb-4">
-    <div class="bg-white py-7">
+    <div class="border-b bg-white py-4">
         <div class="container mx-auto">
             <div class="flex justify-between gap-x-4">
                 <div class="flex items-center gap-x-10">
@@ -10,27 +10,32 @@
                         </span>
                     </a>
                     <div class="flex gap-x-10">
-                        <a href="/" class="text-md font-semibold hover:text-primary-600">
+                        <a href="/" class="text-md hover:text-primary-600 font-semibold">
                             <span>Home</span>
                         </a>
-                        <a href="#" class="text-md flex items-center justify-center gap-x-2 font-semibold hover:text-primary-600">
+                        <button
+                            class="text-md hover:text-primary-600 flex items-center justify-center gap-x-2 font-semibold">
                             <span>Categories</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4" viewBox="0 0 24 24">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19 9l-7 6l-7-6" />
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="1.5" d="m19 9l-7 6l-7-6" />
                             </svg>
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="ml-auto flex items-center gap-x-10">
                     <div class="relative">
                         <div class="relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500"
+                                viewBox="0 0 24 24">
                                 <g fill="none" stroke="currentColor" stroke-width="1.5">
                                     <circle cx="11.5" cy="11.5" r="9.5" />
                                     <path stroke-linecap="round" d="M18.5 18.5L22 22" />
                                 </g>
                             </svg>
-                            <input placeholder="Search query" type="text" class="w-full rounded-full border bg-white/10 px-6 py-3 pl-12 text-sm font-medium text-gray-800 placeholder-gray-400 outline-none placeholder:text-slate-500 focus:ring-0" />
+                            <input placeholder="Search query" type="text"
+                                class="w-full rounded-full border bg-white/10 px-6 py-3 pl-12 text-sm font-medium text-gray-800 placeholder-gray-400 outline-none placeholder:text-slate-500 focus:ring-0" />
                         </div>
                     </div>
                 </div>
