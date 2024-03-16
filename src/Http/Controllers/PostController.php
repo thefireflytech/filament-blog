@@ -57,7 +57,7 @@ class PostController extends Controller
         SEOMeta::addKeyword($post->seoDetail->keywords);
 
         $shareButton = ShareSnippet::query()->active()->first();
-        $post->load(['author', 'categories']);
+        $post->load(['author', 'categories', 'tags', 'comments', 'comments.user']);
 
         return view('filament-blog::blogs.show', [
             'post' => $post,

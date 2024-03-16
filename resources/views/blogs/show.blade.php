@@ -45,8 +45,11 @@
                                     </h1>
                                     <div class="mt-2">
                                         @foreach ($post->categories as $category)
-                                            <span
-                                                class="bg-primary-200 text-primary-800 mr-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold">{{ $category->name }}</span>
+                                            <a href="{{ route('category.post', ['category' => $category->slug]) }}">
+                                                <span
+                                                        class="bg-primary-200 text-primary-800 mr-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold">{{ $category->name }}
+                                                </span>
+                                            </a>
                                         @endforeach
                                     </div>
                                 </div>
@@ -70,110 +73,53 @@
                                         {!! $post->body !!}
                                     </article>
 
+                                    @if($post->tags->count())
                                     <div class="pt-10">
                                         <span class="mb-3 block font-semibold">Tags</span>
                                         <div class="space-x-2 space-y-1">
-                                            @foreach ($post->categories as $category)
-                                                <a href=""
+                                            @foreach ($post->tags as $tag)
+                                                <a href="{{ route('tag.post', ['tag' => $tag->slug]) }}"
                                                     class="rounded-full border border-slate-300 px-3 py-1 text-sm font-medium font-medium text-black text-slate-600 hover:bg-slate-100">
-                                                    Tag 1
+                                                    {{ $tag->name }}
                                                 </a>
                                             @endforeach
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
+                        @if($post->comments->count())
                         <div class="border-t-2 py-10" id="comments">
                             <div class="mb-4">
                                 <h3 class="mb-2 text-2xl font-semibold">Comments</h3>
                             </div>
                             <div class="flex flex-col gap-y-6 divide-y">
+                                @foreach($post->comments as $comment)
                                 <article class="pt-4 text-base">
                                     <div class="mb-4 flex items-center gap-4">
                                         <img class="h-14 w-14 overflow-hidden rounded-full border-4 border-white bg-zinc-300 object-cover text-[0] ring-1 ring-slate-300"
-                                            src="" alt="avatar">
+                                            src="{{ asset($comment->user->{config('filamentblog.author.photo_column')}) }}" alt="avatar">
                                         <div>
+
                                             <span
                                                 class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">
-                                                Michael Gough
+                                               {{ $comment->user->name }}
                                             </span>
                                             <span class="block whitespace-nowrap text-sm font-medium text-zinc-600">
-                                                Feb. 8, 2022
+                                                {{ $comment->created_at->diffForHumans() }}
                                             </span>
                                         </div>
                                     </div>
                                     <p class="text-gray-500">
-                                        Very straight-to-point article. Really worth
-                                        time reading. Thank you! But tools are just the
-                                        instruments for the UX designers. The knowledge of the design tools are as
-                                        important
-                                        as he creation of the design strategy.
+                                       {{ $comment->comment }}
                                     </p>
                                 </article>
-                                <article class="pt-4 text-base">
-                                    <div class="mb-4 flex items-center gap-4">
-                                        <img class="h-14 w-14 overflow-hidden rounded-full border-4 border-white bg-zinc-300 object-cover text-[0] ring-1 ring-slate-300"
-                                            src="" alt="avatar">
-                                        <div>
-                                            <span
-                                                class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">
-                                                Michael Gough
-                                            </span>
-                                            <span class="block whitespace-nowrap text-sm font-medium text-zinc-600">
-                                                Feb. 8, 2022
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-500">
-                                        Very straight-to-point article. Really worth
-                                        time reading. Thank you! But tools are just the
-                                        instruments for the UX designers. The knowledge of the design tools are as
-                                        important
-                                        as he creation of the design strategy.
-                                    </p>
-                                </article>
+                                @endforeach
                             </div>
                         </div>
-                        <div class="border-t-2 py-10">
-                            <div class="mb-7">
-                                <h3 class="mb-2 text-2xl font-semibold">Leave a Reply </h3>
-                                <p>Your email address will not be published. Required fields are marked *</p>
-                            </div>
-                            <div class="mb-6">
-                                <label class="mb-2 block text-sm font-semibold" for="author-comment">Comment *</label>
-                                <textarea rows="4" placeholder="Write your message here" type="text" id="author-comment"
-                                    class="form-input relative block w-full rounded-md border-0 bg-white px-4 py-4 text-sm text-gray-900 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-black disabled:cursor-not-allowed disabled:opacity-75 dark:bg-gray-900 dark:text-white dark:placeholder-gray-500 dark:ring-gray-700"></textarea>
-                            </div>
-                            <div class="mb-6 grid gap-8 sm:grid-cols-2">
-                                <div>
-                                    <label class="mb-2 block text-sm font-semibold" for="author-comment">Name *</label>
-                                    <input placeholder="Your Name"
-                                        class="form-input relative block w-full rounded-md border-0 bg-white px-4 py-4 text-sm text-gray-900 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-black disabled:cursor-not-allowed disabled:opacity-75 dark:bg-gray-900 dark:text-white dark:placeholder-gray-500 dark:ring-gray-700"
-                                        type="text" />
-                                </div>
-                                <div>
-                                    <label class="mb-2 block text-sm font-semibold" for="author-comment">Email *</label>
-                                    <input placeholder="authorname@domain.com"
-                                        class="form-input relative block w-full rounded-md border-0 bg-white px-4 py-4 text-sm text-gray-900 placeholder-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-black disabled:cursor-not-allowed disabled:opacity-75 dark:bg-gray-900 dark:text-white dark:placeholder-gray-500 dark:ring-gray-700"
-                                        type="email" />
-                                </div>
-                            </div>
-                            <div class="mb-8">
-                                <label class="flex cursor-pointer select-none items-center gap-4">
-                                    <input type="checkbox" class="accent-primary h-6 w-6" />
-                                    <span class="text-sm">
-                                        Save my name and email in this browser for the next time I comment.
-                                    </span>
-                                </label>
-                            </div>
-                            <div>
-                                <button
-                                    class="bg-primary-600 hover:bg-primary-700 rounded-lg px-8 py-4 text-sm font-semibold text-white transition-all duration-300">
-                                    <span>Post a comment</span>
-                                </button>
-                            </div>
-                        </div>
+                        @endif
+                        <x-blog-comment :post="$post"/>
                     </div>
                     <div>
                         <div

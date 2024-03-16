@@ -14,7 +14,8 @@ return new class () extends Migration {
     {
        Schema::create('categories', function (Blueprint $table) {
            $table->id();
-           $table->string('name');
+           $table->string('name', 155)->unique();
+           $table->string('slug', 155)->unique();
            $table->timestamps();
        });
 
@@ -54,7 +55,7 @@ return new class () extends Migration {
            $table->foreignIdFor(config('filamentblog.author.model'));
            $table->foreignIdFor(FireFly\FilamentBlog\Models\Post::class);
            $table->text('comment');
-           $table->boolean('approved');
+           $table->boolean('approved')->default(false);
            $table->timestamps();
        });
 
@@ -66,7 +67,8 @@ return new class () extends Migration {
 
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 50)->unique();
+            $table->string('name', 50)->unique();
+            $table->string('slug', 155)->unique();
             $table->timestamps();
         });
 

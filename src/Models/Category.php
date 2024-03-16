@@ -6,25 +6,19 @@ use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Filament\Forms\Set;
+use Illuminate\Support\Str;
+
 
 class Category extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
+        'slug'
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
     ];
@@ -38,8 +32,20 @@ class Category extends Model
     {
         return [
             TextInput::make('name')
+                ->live()->afterStateUpdated(fn (Set $set, ?string $state) => $set(
+                    'slug',
+                    Str::slug($state)
+                ))
+                ->unique('categories', 'name', null, 'id')
                 ->required()
+                ->maxLength(155),
+
+            TextInput::make('slug')
+                ->unique('categories', 'slug', null, 'id')
+                ->readOnly()
                 ->maxLength(255),
         ];
     }
+
+
 }

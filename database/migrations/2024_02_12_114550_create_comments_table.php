@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Post::class);
             $table->text('comment');
-            $table->boolean('approved');
+            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }
