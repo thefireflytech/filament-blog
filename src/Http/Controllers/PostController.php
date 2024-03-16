@@ -33,6 +33,9 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
+        $request->validate([
+            'query' => 'required',
+        ]);
         $searchedPosts = Post::query()
             ->with(['categories', 'author'])
             ->published()
@@ -40,7 +43,6 @@ class PostController extends Controller
             ->orWhere('sub_title', 'like', '%' . $request->get('query') . '%')
             ->paginate(10)->withQueryString();
 
-        dd($searchedPosts);
         return view('filament-blog::blogs.search', [
             'posts' => $searchedPosts,
         ]);

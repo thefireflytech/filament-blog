@@ -1,18 +1,18 @@
 <x-blog-layout>
     <section>
-        <header class="container mx-auto mb-4 max-w-[800px] px-6 pb-4 text-center">
+        <header class="container mx-auto mb-4 max-w-[800px] px-6 pb-4 mt-10 text-center">
             <h3 class="inherits-color text-balance leading-tighter relative z-10 text-5xl font-semibold tracking-tight">
-                Latest News / Blogs
+                Search Results
             </h3>
         </header>
     </section>
     <section class="pb-16 pt-8">
         <div class="container mx-auto">
             <div class="grid grid-cols-3 gap-x-14 gap-y-14">
-                @foreach ($posts as $post)
+                @forelse ($posts as $post)
                     <a href="{{ route('post.show', ['post' => $post->slug]) }}">
                         <div class="group/blog-item flex flex-col gap-y-5">
-                            <div class="h-[250px] w-full rounded-xl bg-zinc-300">
+                            <div class="h-[250px] w-full rounded-xl bg-zinc-300 overflow-hidden">
                                 <img class="flex h-full w-full items-center justify-center object-cover object-top" src="{{ asset($post->cover_photo_path) }}" alt="{{ $post->photo_alt_text }}">
                             </div>
                             <div class="flex flex-col justify-between space-y-3 px-2">
@@ -35,7 +35,11 @@
                             </div>
                         </div>
                     </a>
-                @endforeach
+                    @empty
+                        <div class="flex justify-center w-full">
+                            <h2 class="text-2xl font-semibold">No posts found</h2>
+                        </div>
+                @endforelse
             </div>
             <div class="mt-20">
                 {{ $posts->links() }}
