@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::query()->with(['categories', 'author', 'tags'])
+        $posts = Post::query()->with(['categories', 'user', 'tags'])
             ->published()
             ->paginate(10);
 
@@ -22,7 +22,7 @@ class PostController extends Controller
     }
     public function allPosts()
     {
-        $posts = Post::query()->with(['categories', 'author'])
+        $posts = Post::query()->with(['categories', 'user'])
             ->published()
             ->paginate(20);
 
@@ -37,7 +37,7 @@ class PostController extends Controller
             'query' => 'required',
         ]);
         $searchedPosts = Post::query()
-            ->with(['categories', 'author'])
+            ->with(['categories', 'user'])
             ->published()
             ->where('title', 'like', '%' . $request->get('query') . '%')
             ->orWhere('sub_title', 'like', '%' . $request->get('query') . '%')
@@ -57,7 +57,7 @@ class PostController extends Controller
         SEOMeta::addKeyword($post->seoDetail->keywords);
 
         $shareButton = ShareSnippet::query()->active()->first();
-        $post->load(['author', 'categories', 'tags', 'comments', 'comments.user']);
+        $post->load(['user', 'categories', 'tags', 'comments', 'comments.user']);
 
         return view('filament-blog::blogs.show', [
             'post' => $post,

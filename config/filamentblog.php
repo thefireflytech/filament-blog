@@ -8,8 +8,12 @@ return [
             'name' => 'filament.admin.auth.login',
         ],
     ],
-    'author' => [
+    'user' => [
         'model' => \App\Models\User::class,
-        'photo_column' => false,
+        'foreign_key' => 'user_id',
+        'columns' => [
+            'name' => 'name',
+            'avatar' => 'profile_photo_path',
+        ],
     ],
 ];

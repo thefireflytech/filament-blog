@@ -57,10 +57,10 @@
                                     <div>
                                         <div class="flex items-center gap-4">
                                             <img class="h-14 w-14 overflow-hidden rounded-full border-4 border-white bg-zinc-300 object-cover text-[0] ring-1 ring-slate-300"
-                                                src="{{ $post->author->avatar() }}" alt="{{ $post->author->name }}">
+                                                src="{{ $post->user->avatar }}" alt="{{ $post->user->name() }}">
                                             <div>
-                                                <span title="{{ $post->author->name }}"
-                                                    class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{{ $post->author->name }}</span>
+                                                <span title="{{ $post->user->name() }}"
+                                                    class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{{ $post->user->name() }}</span>
                                                 <span
                                                     class="block whitespace-nowrap text-sm font-medium font-semibold text-zinc-600">
                                                     {{ $post->formattedPublishedDate() }}</span>
@@ -99,12 +99,12 @@
                                 <article class="pt-4 text-base">
                                     <div class="mb-4 flex items-center gap-4">
                                         <img class="h-14 w-14 overflow-hidden rounded-full border-4 border-white bg-zinc-300 object-cover text-[0] ring-1 ring-slate-300"
-                                            src="{{ asset($comment->user->{config('filamentblog.author.photo_column')}) }}" alt="avatar">
+                                            src="{{ asset($comment->user->avatar) }}" alt="avatar">
                                         <div>
 
                                             <span
                                                 class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">
-                                               {{ $comment->user->name }}
+                                               {{ $comment->user->{config('filamentblog.user.columns.name')} }}
                                             </span>
                                             <span class="block whitespace-nowrap text-sm font-medium text-zinc-600">
                                                 {{ $comment->created_at->diffForHumans() }}
@@ -157,8 +157,8 @@
                                         </a>
                                         <div class="flex items-center gap-2 text-slate-500">
                                             <div class="flex items-center gap-x-2">
-                                                <span title="{{ $post->author->name }}"
-                                                    class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium">{{ $post->author->name }}</span>
+                                                <span title="{{ $post->user->name() }}"
+                                                    class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium">{{ $post->user->name() }}</span>
                                             </div>
                                             <samp>/</samp>
                                             <span class="block text-sm font-medium font-medium">

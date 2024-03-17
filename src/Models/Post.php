@@ -59,7 +59,7 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function comments(): HasMany
+    public function comments(): hasmany
     {
         return $this->hasMany(Comment::class)->where('approved', true);
     }
@@ -69,9 +69,9 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function author(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(config('filamentblog.author.model'), 'user_id');
+        return $this->belongsTo(config('filamentblog.user.model'), config('filamentblog.user.foreign_key'));
     }
 
     public function seoDetail()
@@ -119,7 +119,7 @@ class Post extends Model
         return $this->whereHas('categories', function ($query) {
             $query->whereIn('categories.id', $this->categories->pluck('id'))
                 ->whereNotIn('posts.id', [$this->id]);
-        })->published()->with('author')->take($take)->get();
+        })->published()->with('user')->take($take)->get();
     }
 
     public static function getForm()
@@ -158,7 +158,7 @@ class Post extends Model
                                 ->multiple()
                                 ->preload()
                                 ->searchable()
-                                ->relationship('tags', 'title')
+                                ->relationship('tags', 'name')
                                 ->columnSpanFull(),
                         ]),
                     TiptapEditor::make('body')
@@ -195,8 +195,8 @@ class Post extends Model
                                 })
                                 ->native(false),
                         ]),
-                    Select::make('user_id')
-                        ->relationship('author', 'name')
+                    Select::make(config('filamentblog.user.foreign_key'))
+                        ->relationship('user', 'name')
                         ->default(auth()->id())
 
                 ]),

@@ -37,7 +37,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('name')
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title, 40);
                     })
