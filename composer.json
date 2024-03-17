@@ -16,13 +16,11 @@
     "require": {
         "filament/support": "^3.2",
         "awcodes/filament-tiptap-editor": "3.x-dev",
-        "artesaos/seotools": "^0.2.0@beta"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "FireFly\\FilamentBlog\\FilamentBlogServiceProvider",
-                "Artesaos\\SEOTools\\Providers\\SEOToolsServiceProvider"
+                "FireFly\\FilamentBlog\\FilamentBlogServiceProvider"
             ],
             "aliases": {
                 "SEOMeta": "Artesaos\\SEOTools\\Facades"
