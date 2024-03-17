@@ -16,4 +16,11 @@ return [
             'avatar' => 'profile_photo_path',
         ],
     ],
+    'seo' => [
+        'meta' => [
+            'title' => 'Filament Blog',
+            'description' => 'This is filament blog seo meta description',
+            'keywords' => [],
+        ],
+    ],
 ];

@@ -72,7 +72,7 @@ class SeoDetail extends Model
                 ->createOptionForm(Post::getForm())
                 ->editOptionForm(Post::getForm())
                 ->relationship('post', 'title')
-                ->unique()
+                ->unique('seo_details', 'post_id', null, 'id')
                 ->required()
                 ->preload()
                 ->searchable()

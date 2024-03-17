@@ -2,7 +2,7 @@
 
 namespace FireFly\FilamentBlog\Http\Controllers;
 
-use Artesaos\SEOTools\Facades\SEOMeta;
+use FireFly\FilamentBlog\Facades\SEOMeta;
 use FireFly\FilamentBlog\Models\NewsLetter;
 use FireFly\FilamentBlog\Models\Post;
 use FireFly\FilamentBlog\Models\ShareSnippet;
@@ -12,6 +12,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
+
         $posts = Post::query()->with(['categories', 'user', 'tags'])
             ->published()
             ->paginate(10);
@@ -20,6 +21,7 @@ class PostController extends Controller
             'posts' => $posts,
         ]);
     }
+
     public function allPosts()
     {
         $posts = Post::query()->with(['categories', 'user'])
@@ -39,8 +41,8 @@ class PostController extends Controller
         $searchedPosts = Post::query()
             ->with(['categories', 'user'])
             ->published()
-            ->where('title', 'like', '%' . $request->get('query') . '%')
-            ->orWhere('sub_title', 'like', '%' . $request->get('query') . '%')
+            ->where('title', 'like', '%'.$request->get('query').'%')
+            ->orWhere('sub_title', 'like', '%'.$request->get('query').'%')
             ->paginate(10)->withQueryString();
 
         return view('filament-blog::blogs.search', [
@@ -54,7 +56,7 @@ class PostController extends Controller
 
         SEOMeta::setDescription($post->seoDetail->description);
 
-        SEOMeta::addKeyword($post->seoDetail->keywords);
+        SEOMeta::setKeywords($post->seoDetail->keywords);
 
         $shareButton = ShareSnippet::query()->active()->first();
         $post->load(['user', 'categories', 'tags', 'comments', 'comments.user']);
