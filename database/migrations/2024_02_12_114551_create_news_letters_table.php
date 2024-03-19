@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('news_letters', function (Blueprint $table) {
             $table->id();
             $table->string('email', 100)->unique();
+            $table->boolean('subscribed')->default(true);
             $table->timestamps();
         });
     }

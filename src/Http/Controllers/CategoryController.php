@@ -11,8 +11,9 @@ class CategoryController extends Controller
     {
         $posts = $category->load(['posts.user', 'posts.categories'])->posts()->paginate(25);
 
-        return view('filament-blog::blogs.search', [
+        return view('filament-blog::blogs.category-post', [
             'posts' => $posts,
+            'category' => $category,
         ]);
     }
 }

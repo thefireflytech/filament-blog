@@ -45,9 +45,12 @@ class CommentResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('post.title')
                     ->numeric()
+                    ->limit(20)
                     ->sortable(),
-                Tables\Columns\IconColumn::make('approved')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('comment')
+                    ->searchable()
+                    ->limit(20),
+                Tables\Columns\ToggleColumn::make('approved'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -62,6 +65,7 @@ class CommentResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

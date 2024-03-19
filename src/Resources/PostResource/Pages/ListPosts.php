@@ -6,6 +6,7 @@ use Filament\Actions;
 use Filament\Resources\Components\Tab;
 use Filament\Resources\Pages\ListRecords;
 use FireFly\FilamentBlog\Resources\PostResource;
+use FireFly\FilamentBlog\Resources\PostResource\Widgets\BlogPostPublishedChart;
 
 class ListPosts extends ListRecords
 {
@@ -15,6 +16,13 @@ class ListPosts extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+        ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            BlogPostPublishedChart::class,
         ];
     }
 

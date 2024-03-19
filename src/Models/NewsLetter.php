@@ -16,6 +16,7 @@ class NewsLetter extends Model
      */
     protected $fillable = [
         'email',
+        'subscribed',
     ];
 
     /**
@@ -25,5 +26,11 @@ class NewsLetter extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'active' => 'boolean',
     ];
+
+    public function scopeSubscribed()
+    {
+        return $this->where('subscribed', true);
+    }
 }

@@ -37,7 +37,7 @@
                             <div class="flex flex-col justify-end">
                                 <div class="mb-6 h-full w-full overflow-hidden rounded bg-slate-200">
                                     <img class="flex h-full min-h-[400px] items-center justify-center object-cover object-top text-sm text-xl font-semibold text-slate-400"
-                                        src="{{ asset($post->cover_photo_path) }}" alt="{{ $post->photo_alt_text }}">
+                                        src="{{ $post->featurePhoto  }}" alt="{{ $post->photo_alt_text }}">
                                 </div>
                                 <div class="mb-6">
                                     <h1 class="mb-6 text-4xl font-semibold">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         @if($post->comments->count())
-                        <div class="border-t-2 py-10" id="comments">
+                        <div class="border-t-2 py-10">
                             <div class="mb-4">
                                 <h3 class="mb-2 text-2xl font-semibold">Comments</h3>
                             </div>
@@ -142,31 +142,7 @@
                     </div>
                     <div class="grid grid-cols-3 gap-x-12 gap-y-10">
                         @foreach ($post->relatedPosts() as $post)
-                            <div>
-                                <div class="flex flex-col gap-y-2">
-                                    <div class="h-[200px] w-full overflow-hidden rounded-lg bg-slate-200">
-                                        <img class="flex h-full w-full items-center justify-center object-cover object-top text-slate-400"
-                                            src="{{ asset($post->cover_photo_path) }}"
-                                            alt="{{ $post->photo_alt_text }}">
-                                    </div>
-                                    <div class="space-y-3">
-                                        <a title="{{ $post->title }}"
-                                            href="{{ route('post.show', ['post' => $post->slug]) }}"
-                                            class="hover:text-primary-700 mb-2 line-clamp-2 text-lg font-medium">
-                                            {{ $post->title }}
-                                        </a>
-                                        <div class="flex items-center gap-2 text-slate-500">
-                                            <div class="flex items-center gap-x-2">
-                                                <span title="{{ $post->user->name() }}"
-                                                    class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium">{{ $post->user->name() }}</span>
-                                            </div>
-                                            <samp>/</samp>
-                                            <span class="block text-sm font-medium font-medium">
-                                                {{ $post->formattedPublishedDate() }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                         <x-blog-card :post="$post"/>
                         @endforeach
                     </div>
                     <div class="flex justify-center pt-20">

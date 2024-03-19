@@ -122,6 +122,11 @@ class Post extends Model
         })->published()->with('user')->take($take)->get();
     }
 
+    protected function getFeaturePhotoAttribute()
+    {
+        return asset('storage/'.$this->cover_photo_path);
+    }
+
     public static function getForm()
     {
         return [
@@ -132,6 +137,7 @@ class Post extends Model
                             Select::make('category_id')
                                 ->multiple()
                                 ->preload()
+                                ->createOptionForm(Category::getForm())
                                 ->searchable()
                                 ->relationship('categories', 'name')
                                 ->columnSpanFull(),
@@ -157,6 +163,7 @@ class Post extends Model
                             Select::make('tag_id')
                                 ->multiple()
                                 ->preload()
+                                ->createOptionForm(Tag::getForm())
                                 ->searchable()
                                 ->relationship('tags', 'name')
                                 ->columnSpanFull(),
@@ -177,7 +184,7 @@ class Post extends Model
                                 ->maxSize(1024 * 1024 * 3)
                                 ->required(),
                             TextInput::make('photo_alt_text')->required(),
-                        ]),
+                        ])->columns(1),
 
                     Fieldset::make('Status')
                         ->schema([
@@ -197,7 +204,7 @@ class Post extends Model
                         ]),
                     Select::make(config('filamentblog.user.foreign_key'))
                         ->relationship('user', 'name')
-                        ->default(auth()->id())
+                        ->default(auth()->id()),
 
                 ]),
         ];

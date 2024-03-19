@@ -4,6 +4,7 @@ namespace FireFly\FilamentBlog\Resources\PostResource\Pages;
 
 use Carbon\Carbon;
 use Filament\Resources\Pages\CreateRecord;
+use FireFly\FilamentBlog\Events\BlogPublished;
 use FireFly\FilamentBlog\Jobs\PostScheduleJob;
 use FireFly\FilamentBlog\Resources\PostResource;
 use FireFly\FilamentBlog\Resources\SeoDetailResource;
@@ -23,6 +24,7 @@ class CreatePost extends CreateRecord
         if ($this->record->isStatusPublished()) {
             $this->record->published_at = date('Y-m-d H:i:s');
             $this->record->save();
+            event(new BlogPublished($this->record));
         }
     }
 

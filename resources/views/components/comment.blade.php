@@ -1,5 +1,5 @@
 @props(['post'])
-<form action="{{ route('comment.store', ['post' => $post->slug]) }}" method="POST">
+<form action="{{ route('comment.store', ['post' => $post->slug]) }}" method="POST" id="comments">
     @csrf
     <div class="border-t-2 py-10">
         <div class="mb-7">
@@ -19,8 +19,13 @@
         </div>
         <div>
             @if(auth()->user()?->canComment())
-                <button
-                        class="bg-primary-600 hover:bg-primary-700 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300">
+                <button type="submit"
+                        class="g-recaptcha bg-primary-600 hover:bg-primary-700 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300"
+                        @if(config('filamentblog.recaptcha.enabled')) data-sitekey="{{ config('filamentblog.recaptcha.site_key') }}"
+                        @endif
+                        data-callback='onSubmit'
+                        data-action='submit'
+                >
                     <span>Post a comment</span>
                 </button>
             @else

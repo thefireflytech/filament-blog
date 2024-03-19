@@ -25,7 +25,10 @@ class NewsletterResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(100),
-            ]);
+                Forms\Components\Toggle::make('subscribed')
+                    ->default(true)
+                    ->required()->columnSpanFull(),
+            ])->columns(2);
     }
 
     public static function table(Table $table): Table
@@ -34,6 +37,8 @@ class NewsletterResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                Tables\Columns\ToggleColumn::make('subscribed')
+                    ->label('Subscribed'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

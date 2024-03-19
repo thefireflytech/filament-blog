@@ -12,7 +12,6 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-
         $posts = Post::query()->with(['categories', 'user', 'tags'])
             ->published()
             ->paginate(10);
@@ -28,7 +27,7 @@ class PostController extends Controller
             ->published()
             ->paginate(20);
 
-        return view('filament-blog::blogs.allpost', [
+        return view('filament-blog::blogs.all-post', [
             'posts' => $posts,
         ]);
     }
@@ -41,17 +40,18 @@ class PostController extends Controller
         $searchedPosts = Post::query()
             ->with(['categories', 'user'])
             ->published()
-            ->where('title', 'like', '%'.$request->get('query').'%')
-            ->orWhere('sub_title', 'like', '%'.$request->get('query').'%')
+            ->whereAny(['title', 'sub_title'], 'like', '%'.$request->get('query').'%')
             ->paginate(10)->withQueryString();
 
         return view('filament-blog::blogs.search', [
             'posts' => $searchedPosts,
+            'searchMessage' => 'Search result for '.$request->get('query'),
         ]);
     }
 
     public function show(Post $post)
     {
+
         SEOMeta::setTitle($post->seoDetail->title);
 
         SEOMeta::setDescription($post->seoDetail->description);

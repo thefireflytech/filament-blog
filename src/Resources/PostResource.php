@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use FireFly\FilamentBlog\Enums\PostStatus;
 use FireFly\FilamentBlog\Models\Post;
+use FireFly\FilamentBlog\Resources\PostResource\Widgets\BlogPostPublishedChart;
 use Illuminate\Support\Str;
 
 class PostResource extends Resource
@@ -37,7 +38,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('title')
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title, 40);
                     })
@@ -48,7 +49,7 @@ class PostResource extends Resource
                         return $state->getColor();
                     }),
                 Tables\Columns\ImageColumn::make('cover_photo_path')->label('Cover Page'),
-                Tables\Columns\TextColumn::make('author.name')
+                Tables\Columns\TextColumn::make('user.'.config('filamentblog.user.columns.name'))->label('Author')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -66,6 +67,7 @@ class PostResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -114,6 +116,13 @@ class PostResource extends Resource
         return [
             \FireFly\FilamentBlog\Resources\PostResource\RelationManagers\SeoDetailRelationManager::class,
             \FireFly\FilamentBlog\Resources\PostResource\RelationManagers\CommentsRelationManager::class,
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            BlogPostPublishedChart::class,
         ];
     }
 

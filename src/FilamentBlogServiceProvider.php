@@ -2,8 +2,11 @@
 
 namespace FireFly\FilamentBlog;
 
+use FireFly\FilamentBlog\Components\Card;
 use FireFly\FilamentBlog\Components\Comment;
+use FireFly\FilamentBlog\Components\FeatureCard;
 use FireFly\FilamentBlog\Components\Header;
+use FireFly\FilamentBlog\Components\HeaderCategory;
 use FireFly\FilamentBlog\Components\Layout;
 use FireFly\FilamentBlog\Components\RecentPost;
 use Illuminate\Config\Repository as Config;
@@ -19,7 +22,12 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
         $package->name('filament-blog')
             ->hasConfigFile(['filamentblog'])
             ->hasMigration('create_blog_tables')
-            ->hasViewComponents('blog', Layout::class, RecentPost::class, Header::class, Comment::class)
+            ->hasViewComponents('blog',
+                Layout::class,
+                RecentPost::class,
+                Header::class,
+                Comment::class,
+                HeaderCategory::class, FeatureCard::class, Card::class)
             ->hasViews('filament-blog')
             ->hasRoute('web')
             ->hasInstallCommand(function (InstallCommand $installCommand) {
@@ -40,6 +48,8 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
         Route::bind('post', function ($value) {
             return \FireFly\FilamentBlog\Models\Post::where('slug', $value)->published()->firstOrFail();
         });
+
+        $this->app->register(EventServiceProvider::class);
 
         $this->app->singleton('seometa', function ($app) {
             return new SEOMeta(new Config($app->config->get('filamentblog.seo.meta')));
