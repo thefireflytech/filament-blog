@@ -11,13 +11,13 @@ class BlogPostPublishedChart extends BaseWidget
     {
         return [
             BaseWidget\Stat::make('Published', Post::published()->count())
-                ->description('Post')
+                ->description('Total published post')
                 ->descriptionIcon('heroicon-o-check-badge'),
             BaseWidget\Stat::make('Scheduled Post', Post::scheduled()->count())
-                ->description('Post')
+                ->description('Total scheduled post')
                 ->descriptionIcon('heroicon-o-rocket-launch'),
             BaseWidget\Stat::make('Pending Post', Post::pending()->count())
-                ->description('Post')
+                ->description('Total pending post')
                 ->descriptionIcon('heroicon-o-calendar-days'),
         ];
     }

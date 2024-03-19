@@ -21,6 +21,12 @@ class ViewPost extends ViewRecord
                 ->icon('heroicon-o-bell')->action(function (Post $record) {
                     event(new BlogPublished($record));
                 }),
+            Action::make('preview')
+                ->label('Preview')
+                ->requiresConfirmation()
+                ->icon('heroicon-o-eye')->url(function (Post $record) {
+                    return route('post.show', $record->slug);
+                }),
         ];
     }
 }
