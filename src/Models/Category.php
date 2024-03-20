@@ -3,12 +3,11 @@
 namespace FireFly\FilamentBlog\Models;
 
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Filament\Forms\Set;
 use Illuminate\Support\Str;
-
 
 class Category extends Model
 {
@@ -16,7 +15,7 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
     ];
 
     protected $casts = [
@@ -46,6 +45,4 @@ class Category extends Model
                 ->maxLength(255),
         ];
     }
-
-
 }

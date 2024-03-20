@@ -2,12 +2,12 @@
 
 namespace FireFly\FilamentBlog\Models;
 
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Set;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Filament\Forms\Set;
 use Illuminate\Support\Str;
-use Filament\Forms\Components\TextInput;
 
 class Tag extends Model
 {
@@ -15,7 +15,7 @@ class Tag extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
     ];
 
     protected $casts = [
@@ -31,7 +31,7 @@ class Tag extends Model
     {
         return [
             TextInput::make('name')
-                ->live()->afterStateUpdated(fn(Set $set, ?string $state) => $set(
+                ->live()->afterStateUpdated(fn (Set $set, ?string $state) => $set(
                     'slug',
                     Str::slug($state)
                 ))

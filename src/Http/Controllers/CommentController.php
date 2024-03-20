@@ -2,8 +2,6 @@
 
 namespace FireFly\FilamentBlog\Http\Controllers;
 
-use Artesaos\SEOTools\Facades\SEOMeta;
-use FireFly\FilamentBlog\Models\Category;
 use FireFly\FilamentBlog\Models\Post;
 use Illuminate\Http\Request;
 
@@ -18,7 +16,7 @@ class CommentController extends Controller
         $post->comments()->create([
             'comment' => $request->comment,
             'user_id' => $request->user()->id,
-            'approved' => false
+            'approved' => false,
         ]);
 
         return back()->with('success', 'Comment added successfully');
