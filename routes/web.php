@@ -22,4 +22,8 @@ Route::middleware(config('filamentblog.route.middleware'))
         Route::get('/tags/{tag:slug}', [TagController::class, 'posts'])->name('tag.post');
 
         Route::post('/posts/{post:slug}/comment', [CommentController::class, 'store'])->name('comment.store');
+
     });
+Route::get('test', function () {
+    return 'test';
+})->name('test');

@@ -2,6 +2,7 @@
 
 namespace FireFly\FilamentBlog\Models;
 
+use FireFly\FilamentBlog\Database\Factories\CategoryPostFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,4 +30,9 @@ class CategoryPost extends Model
         'post_id' => 'integer',
         'category_id' => 'integer',
     ];
+
+    protected static function newFactory()
+    {
+        return new CategoryPostFactory();
+    }
 }

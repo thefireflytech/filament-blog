@@ -17,17 +17,40 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentBlogServiceProvider extends PackageServiceProvider
 {
+    //    public function register()
+    //    {
+    //        $this->mergeConfigFrom(__DIR__.'/../config/filamentblog.php', 'filamentblog');
+    //    }
+    //
+    //    public function boot()
+    //    {
+    //        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+    //
+    //        if ($this->app->runningInConsole()) {
+    //            $this->publishes([
+    //                __DIR__.'/../config/filamentblog.php' => config_path('filamentblog.php'),
+    //            ], 'filamentblog-config');
+    //        }
+    //
+    //    }
     public function configurePackage(Package $package): void
     {
-        $package->name('filament-blog')
+
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        $package->name('fire-fly/filament-blog')
             ->hasConfigFile(['filamentblog'])
             ->hasMigration('create_blog_tables')
-            ->hasViewComponents('blog',
+            ->hasViewComponents(
+                'blog',
                 Layout::class,
                 RecentPost::class,
                 Header::class,
                 Comment::class,
-                HeaderCategory::class, FeatureCard::class, Card::class)
+                HeaderCategory::class,
+                FeatureCard::class,
+                Card::class
+            )
             ->hasViews('filament-blog')
             ->hasRoute('web')
             ->hasInstallCommand(function (InstallCommand $installCommand) {

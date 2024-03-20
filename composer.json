@@ -1,10 +1,16 @@
 {
-    "name": "firefly/filament-blog",
+    "name": "fire-fly/filament-blog",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "FireFly\\FilamentBlog\\": "src/"
+            "FireFly\\FilamentBlog\\": "src/",
+            "FireFly\\FilamentBlog\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FireFly\\FilamentBlog\\Tests\\": "tests"
         }
     },
     "authors": [
@@ -12,7 +18,6 @@
             "name": "Asmit Nepali"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "filament/support": "^3.2",
         "awcodes/filament-tiptap-editor": "3.x-dev"
@@ -21,10 +26,13 @@
         "laravel": {
             "providers": [
                 "FireFly\\FilamentBlog\\FilamentBlogServiceProvider"
-            ],
-            "aliases": {
-                "SEOMeta": "Artesaos\\SEOTools\\Facades"
-            }
+            ]
         }
-    }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.21",
+        "phpunit/phpunit": "^10.5"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

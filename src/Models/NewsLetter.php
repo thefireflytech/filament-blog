@@ -2,6 +2,7 @@
 
 namespace FireFly\FilamentBlog\Models;
 
+use FireFly\FilamentBlog\Database\Factories\NewsLetterFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,5 +33,10 @@ class NewsLetter extends Model
     public function scopeSubscribed()
     {
         return $this->where('subscribed', true);
+    }
+
+    protected static function newFactory()
+    {
+        return new NewsLetterFactory();
     }
 }
