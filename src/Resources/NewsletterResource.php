@@ -7,11 +7,11 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Models\Newsletter;
+use FireFly\FilamentBlog\Models\NewsLetter;
 
 class NewsletterResource extends Resource
 {
-    protected static ?string $model = Newsletter::class;
+    protected static ?string $model = NewsLetter::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 

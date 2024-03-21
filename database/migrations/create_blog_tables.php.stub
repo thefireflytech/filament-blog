@@ -52,7 +52,7 @@ return new class () extends Migration {
 
        Schema::create('comments', function (Blueprint $table) {
            $table->id();
-           $table->foreignIdFor(config('filamentblog.author.model'));
+           $table->foreignIdFor(config('filamentblog.user.model'));
            $table->foreignIdFor(FireFly\FilamentBlog\Models\Post::class);
            $table->text('comment');
            $table->boolean('approved')->default(false);
