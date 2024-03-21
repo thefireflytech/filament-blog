@@ -13,8 +13,7 @@ class SendBlogPublishedNotification
         $subscribers = NewsLetter::subscribed()->get();
 
         foreach ($subscribers as $subscriber) {
-            Mail::to($subscriber->email)
-                ->queue(new BlogPublished($event->post));
+            Mail::queue(new BlogPublished($event->post, $subscriber->email));
         }
     }
 }

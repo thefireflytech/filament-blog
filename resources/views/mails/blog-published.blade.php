@@ -81,7 +81,7 @@
     <div class="content">
         <h2>{{ $post->title }}</h2>
         <p>{!! Str::limit($post->body, 500) !!} </p>
-        <a href="{{route('post.show', ['post' => $post->slug])}}" class="btn">Read More</a>
+        <a href="{{route('filamentblog.post.show', ['post' => $post->slug])}}" class="btn">Read More</a>
     </div>
     <div class="footer">
         <p>Thank you for subscribing to our blog updates!</p>
