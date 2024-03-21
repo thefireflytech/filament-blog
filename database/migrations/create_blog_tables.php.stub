@@ -12,15 +12,6 @@ return new class () extends Migration {
      */
     public function up()
     {
-     Schema::create('users', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');
-                $table->string('email')->unique();
-                $table->timestamp('email_verified_at')->nullable();
-                $table->string('password');
-                $table->rememberToken();
-                $table->timestamps();
-            });
        Schema::create('categories', function (Blueprint $table) {
            $table->id();
            $table->string('name', 155)->unique();
@@ -39,7 +30,7 @@ return new class () extends Migration {
            $table->dateTime('scheduled_for')->nullable();
            $table->string('cover_photo_path');
            $table->string('photo_alt_text');
-           $table->foreignIdFor(config('filamentblog.author.model'));
+           $table->foreignIdFor(config('filamentblog.user.model'));
            $table->timestamps();
        });
 
@@ -90,7 +81,7 @@ return new class () extends Migration {
         });
 
         if (!!config('filamentblog.user.columns.avatar')) {
-            Schema::table(resolve('filamentblog.user.model')->getTable()), function (Blueprint $table) {
+            Schema::table(resolve(config('filamentblog.user.model'))->getTable(), function (Blueprint $table) {
                 $table->string(config('filamentblog.user.columns.avatar'))->nullable();
             });
         }
@@ -112,7 +103,7 @@ return new class () extends Migration {
     public function down()
     {
         Schema::dropIfExists('categories');
-        Schema::dropIfExists(config('filamentblog.author.model');
+        Schema::dropIfExists(config('filamentblog.user.model'));
         Schema::dropIfExists('posts');
         Schema::dropIfExists('category_post');
         Schema::dropIfExists('seo_details');
