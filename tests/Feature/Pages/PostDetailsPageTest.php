@@ -46,7 +46,8 @@ it('show published post details', function () {
             $post->user->name,
             $post->categories->first()->name,
             $post->comments->first()->comment,
-
+            'Related Posts',
+            'Leave a reply',
         ])->assertSee([
             $post->seoDetail->description,
         ]);
