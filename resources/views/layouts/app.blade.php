@@ -207,7 +207,7 @@
                                     Subscribe to our mailing list to receives daily updates direct to your inbox!
                                 </p>
                                 <div>
-                                    <form method="post" action="{{ route('post.subscribe') }}">
+                                    <form method="post" action="{{ route('filamentblog.post.subscribe') }}">
                                         @csrf
                                         <label hidden for="email-address">Email</label>
                                         @error('email')

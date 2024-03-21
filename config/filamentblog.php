@@ -9,7 +9,7 @@ return [
         ],
     ],
     'user' => [
-        'model' => \App\Models\User::class,
+        'model' => \FireFly\FilamentBlog\Models\User::class,
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',

@@ -30,9 +30,15 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "^8.21",
-        "phpunit/phpunit": "^10.5"
+        "orchestra/testbench": "^9",
+        "pestphp/pest": "^2",
+        "pestphp/pest-plugin-laravel": "^2.3"
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
 }

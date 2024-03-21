@@ -3,8 +3,9 @@
 namespace FireFly\FilamentBlog\Tests;
 
 use FireFly\FilamentBlog\FilamentBlogServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+abstract class TestCase extends Orchestra
 {
     protected function getPackageProviders($app)
     {

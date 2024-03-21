@@ -12,6 +12,15 @@ return new class () extends Migration {
      */
     public function up()
     {
+     Schema::create('users', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
+            });
        Schema::create('categories', function (Blueprint $table) {
            $table->id();
            $table->string('name', 155)->unique();
@@ -62,6 +71,7 @@ return new class () extends Migration {
         Schema::create('news_letters', function (Blueprint $table) {
             $table->id();
             $table->string('email', 100)->unique();
+            $table->boolean('subscribed')->default(true);
             $table->timestamps();
         });
 
@@ -86,12 +96,12 @@ return new class () extends Migration {
         }
 
         Schema::create('share_snippets', function (Blueprint $table) {
-                $table->id();
-                $table->longText('script_code');
-                $table->text('html_code');
-                $table->boolean('active')->default(true);
-                $table->timestamps();
-            });
+            $table->id();
+            $table->longText('script_code');
+            $table->text('html_code');
+            $table->boolean('active')->default(true);
+            $table->timestamps();
+        });
     }
 
     /**

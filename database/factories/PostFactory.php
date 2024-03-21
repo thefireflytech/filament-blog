@@ -2,8 +2,10 @@
 
 namespace FireFly\FilamentBlog\Database\Factories;
 
-use App\Models\User;
+use Carbon\Carbon;
+use FireFly\FilamentBlog\Enums\PostStatus;
 use Firefly\FilamentBlog\Models\Post;
+use FireFly\FilamentBlog\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,6 +23,7 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
             'title' => $title = $this->faker->sentence(4),
             'slug' => Str::slug($title),
@@ -33,5 +36,28 @@ class PostFactory extends Factory
             'photo_alt_text' => $this->faker->word,
             'user_id' => User::factory(),
         ];
+    }
+
+    public function published(?Carbon $date = null): PostFactory
+    {
+        return $this->state(fn ($attribute) => [
+            'status' => PostStatus::PUBLISHED,
+            'published_at' => $date ?? Carbon::now(),
+        ]);
+    }
+
+    public function pending(): PostFactory
+    {
+        return $this->state(fn ($attribute) => [
+            'status' => PostStatus::PENDING,
+        ]);
+    }
+
+    public function scheduled(?Carbon $date = null): PostFactory
+    {
+        return $this->state(fn ($attribute) => [
+            'status' => PostStatus::SCHEDULED,
+            'scheduled_for' => $date ?? Carbon::now(),
+        ]);
     }
 }

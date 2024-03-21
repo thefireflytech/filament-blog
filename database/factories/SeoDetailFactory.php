@@ -2,7 +2,6 @@
 
 namespace FireFly\FilamentBlog\Database\Factories;
 
-use App\Models\User;
 use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Models\SeoDetail;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -28,7 +27,6 @@ class SeoDetailFactory extends Factory
             'title' => $this->faker->sentence(4),
             'keywords' => $keywords,
             'description' => $this->faker->paragraph,
-            'user_id' => User::factory(),
         ];
     }
 }

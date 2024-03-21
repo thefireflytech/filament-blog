@@ -1,5 +1,5 @@
 @props(['post'])
-<a href="{{ route('post.show', ['post' => $post->slug]) }}">
+<a href="{{ route('filamentblog.post.show', ['post' => $post->slug]) }}">
     <div class="group/blog-item flex flex-col gap-y-5">
         <div class="h-[250px] w-full rounded-xl bg-zinc-300 overflow-hidden">
             <img class="flex h-full w-full items-center justify-center object-cover object-top"

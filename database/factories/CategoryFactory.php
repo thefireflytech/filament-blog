@@ -4,6 +4,7 @@ namespace FireFly\FilamentBlog\Database\Factories;
 
 use Firefly\FilamentBlog\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class CategoryFactory extends Factory
 {
@@ -20,7 +21,8 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
+            'name' => $name = $this->faker->word(),
+            'slug' => Str::slug($name),
         ];
     }
 }

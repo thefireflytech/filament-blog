@@ -4,9 +4,9 @@
             <div class="mb-10 flex gap-x-2 text-sm font-semibold">
                 <span class="opacity-60">Home</span>
                 <span class="opacity-30">/</span>
-                <a href="{{ route('post.index') }}" class="opacity-60">Blog</a>
+                <a href="{{ route('filamentblog.post.index') }}" class="opacity-60">Blog</a>
                 <span class="opacity-30">/</span>
-                <a title="{{ $post->slug }}" href="{{ route('post.show', ['post' => $post->slug]) }}"
+                <a title="{{ $post->slug }}" href="{{ route('filamentblog.post.show', ['post' => $post->slug]) }}"
                     class="hover:text-primary-600 max-w-2xl truncate font-medium transition-all duration-300">
                     {{ $post->title }}
                 </a>
@@ -45,7 +45,7 @@
                                     </h1>
                                     <div class="mt-2">
                                         @foreach ($post->categories as $category)
-                                            <a href="{{ route('category.post', ['category' => $category->slug]) }}">
+                                            <a href="{{ route('filamentblog.category.post', ['category' => $category->slug]) }}">
                                                 <span
                                                         class="bg-primary-200 text-primary-800 mr-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold">{{ $category->name }}
                                                 </span>
@@ -78,7 +78,7 @@
                                         <span class="mb-3 block font-semibold">Tags</span>
                                         <div class="space-x-2 space-y-1">
                                             @foreach ($post->tags as $tag)
-                                                <a href="{{ route('tag.post', ['tag' => $tag->slug]) }}"
+                                                <a href="{{ route('filamentblog.tag.post', ['tag' => $tag->slug]) }}"
                                                     class="rounded-full border border-slate-300 px-3 py-1 text-sm font-medium font-medium text-black text-slate-600 hover:bg-slate-100">
                                                     {{ $tag->name }}
                                                 </a>
@@ -146,7 +146,7 @@
                         @endforeach
                     </div>
                     <div class="flex justify-center pt-20">
-                        <a href="{{ route('post.all') }}"
+                        <a href="{{ route('filamentblog.post.all') }}"
                             class="flex items-center justify-center gap-x-5 rounded-full bg-slate-100 px-20 py-4 text-sm font-semibold transition-all duration-300 hover:bg-slate-200">
                             <span>Show all blogs</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24">

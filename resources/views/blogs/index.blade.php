@@ -20,7 +20,7 @@
                 @endforeach
             </div>
             <div class="flex justify-center pt-20">
-                <a href="{{ route('post.all') }}"
+                <a href="{{ route('filamentblog.post.all') }}"
                    class="flex items-center justify-center gap-x-5 rounded-full bg-slate-100 px-20 py-4 text-sm font-semibold transition-all duration-300 hover:bg-slate-200">
                     <span>Show all blogs</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24">

@@ -4,7 +4,7 @@
         <div class="container mx-auto">
             <div class="flex justify-between gap-x-4">
                 <div class="flex items-center gap-x-10">
-                    <a href="{{ route('post.index') }}">
+                    <a href="{{ route('filamentblog.post.index') }}">
                         <span class="text-2xl font-semibold text-black">
                             {{ config('app.name', 'FireFly Blog') }}
                             <strong class="text-primary-600">Blog</strong>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="ml-auto flex items-center gap-x-10">
-                    <form action="{{ route('post.search') }}" method="GET">
+                    <form action="{{ route('filamentblog.post.search') }}" method="GET">
                         <div class="relative">
                             <div class="relative">
                                 <svg xmlns="http://www.w3.org/2000/svg"
