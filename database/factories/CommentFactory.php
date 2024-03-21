@@ -2,9 +2,8 @@
 
 namespace FireFly\FilamentBlog\Database\Factories;
 
-use App\Models\User;
-use Firefly\FilamentBlog\Models\Comment;
-use Firefly\FilamentBlog\Models\Post;
+use FireFly\FilamentBlog\Models\Comment;
+use FireFly\FilamentBlog\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommentFactory extends Factory
@@ -23,9 +22,8 @@ class CommentFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'post_id' => Post::factory(),
-            'comment' => $this->faker->text(),
-            'approved' => $this->faker->boolean(),
+            'comment' => $this->faker->word,
+            'approved' => false,
         ];
     }
 }

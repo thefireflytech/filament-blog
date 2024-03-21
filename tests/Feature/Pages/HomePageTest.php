@@ -13,7 +13,11 @@ it('show published post cards', function () {
         ->create();
 
     $secondPost = Post::factory()->published()->create();
-    $thirdPost = Post::factory()->create();
+    $thirdPost = Post::factory()->pending()->create([
+        'title' => 'Pending Post',
+        'sub_title' => 'This is a pending post',
+    ]);
+
     // Act & Assert
     get(route('filamentblog.post.index'))
         ->assertSeeText([
@@ -21,17 +25,15 @@ it('show published post cards', function () {
             $firstPost->sub_title,
             $firstPost->formattedPublishedDate(),
             $firstPost->user->name,
+            $firstPost->categories->first()->name,
 
             $secondPost->title,
             $secondPost->sub_title,
             $secondPost->formattedPublishedDate(),
             $secondPost->user->name,
-
         ])
         ->assertDontSeeText([
             $thirdPost->title,
             $thirdPost->sub_title,
-            $thirdPost->formattedPublishedDate(),
-            $thirdPost->user->name,
         ]);
 });

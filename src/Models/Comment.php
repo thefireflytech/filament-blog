@@ -2,7 +2,6 @@
 
 namespace FireFly\FilamentBlog\Models;
 
-use App\Models\User;
 use FireFly\FilamentBlog\Database\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,7 +37,7 @@ class Comment extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(config('filamentblog.user.model'), 'user_id');
     }
 
     public function post(): BelongsTo

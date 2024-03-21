@@ -78,6 +78,6 @@ class PostController extends Controller
             'email' => $request->email,
         ]);
 
-        return back()->with('success', 'You have been subscribed successfully');
+        return back()->with('success', 'You have successfully subscribed to our news letter');
     }
 }

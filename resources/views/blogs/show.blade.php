@@ -43,6 +43,7 @@
                                     <h1 class="mb-6 text-4xl font-semibold">
                                         {{ $post->title }}
                                     </h1>
+                                    <p>{{ $post->sub_title }}</p>
                                     <div class="mt-2">
                                         @foreach ($post->categories as $category)
                                             <a href="{{ route('filamentblog.category.post', ['category' => $category->slug]) }}">

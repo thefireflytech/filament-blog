@@ -26,7 +26,7 @@ class SeoDetailFactory extends Factory
             'post_id' => Post::factory(),
             'title' => $this->faker->sentence(4),
             'keywords' => $keywords,
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->sentence(1),
         ];
     }
 }

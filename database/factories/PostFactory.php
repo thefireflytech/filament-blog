@@ -23,13 +23,12 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-
         return [
             'title' => $title = $this->faker->sentence(4),
             'slug' => Str::slug($title),
             'sub_title' => $this->faker->word(),
             'body' => $this->faker->text(),
-            'status' => $this->faker->randomElement(['pending', 'published', 'scheduled']),
+            'status' => PostStatus::PENDING,
             'published_at' => $this->faker->dateTime(),
             'scheduled_for' => $this->faker->dateTime(),
             'cover_photo_path' => $this->faker->imageUrl(),
