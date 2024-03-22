@@ -158,11 +158,9 @@ class Post extends Model
                                 ->maxLength(255),
 
                             TextInput::make('slug')
-                                ->readOnly()
                                 ->maxLength(255),
 
                             Textarea::make('sub_title')
-                                ->required()
                                 ->maxLength(255)
                                 ->columnSpanFull(),
 
