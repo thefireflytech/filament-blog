@@ -155,3 +155,14 @@ class User extends Authenticatable
 Now you can start using the Filament Blog Plugin to manage your blog posts effectively.
 ```yourdomain.com/blogs```
 You can change the route prefix in the `filamentblog.php` config file.
+
+### Social Media Share
+For social media share, please visiti [Sharethis](https://platform.sharethis.com) and generate the JS Script and HTML code and save from our share snippet section.
+
+### Recaptcha
+To add the recaptcha to the blog comment form, you can add environment variables in your `.env` file.
+And make sure enabled is set to `true` in the `filamentblog.php` config file.
+```
+RECAPTCHA_SITE_KEY
+RECAPTCHA_SECRET_KEY
+```

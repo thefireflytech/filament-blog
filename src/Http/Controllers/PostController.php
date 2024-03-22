@@ -52,11 +52,11 @@ class PostController extends Controller
     public function show(Post $post)
     {
 
-        SEOMeta::setTitle($post->seoDetail->title);
+        SEOMeta::setTitle($post->seoDetail?->title);
 
-        SEOMeta::setDescription($post->seoDetail->description);
+        SEOMeta::setDescription($post->seoDetail?->description);
 
-        SEOMeta::setKeywords($post->seoDetail->keywords);
+        SEOMeta::setKeywords($post->seoDetail->keywords ?? []);
 
         $shareButton = ShareSnippet::query()->active()->first();
         $post->load(['user', 'categories', 'tags', 'comments', 'comments.user']);
