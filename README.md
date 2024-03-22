@@ -82,6 +82,20 @@ return [
 ````
 Before running the migration, you can modify the `filamentblog.php` config file to suit your needs.
 
+ If you want to publish config, views, components, and migrations individually you can run the following command:
+```bash
+php artisan vendor:publish --provider="Firefly\FilamentBlog\FilamentBlogServiceProvider" --tag=filament-blog-views
+```
+```bash
+php artisan vendor:publish --provider="Firefly\FilamentBlog\FilamentBlogServiceProvider" --tag=filament-blog-config
+```
+```bash
+php artisan vendor:publish --provider="Firefly\FilamentBlog\FilamentBlogServiceProvider" --tag=filament-blog-components
+```
+```bash
+php artisan vendor:publish --provider="Firefly\FilamentBlog\FilamentBlogServiceProvider" --tag=filament-blog-migrations
+```
+
 ## What if you have already a User model?
 - If you already have a User model, you can modify the `filamentblog.php` config file to use your User model.
 - Make sure the name column is the user's name column.
