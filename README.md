@@ -180,3 +180,4 @@ And make sure enabled is set to `true` in the `filamentblog.php` config file.
 RECAPTCHA_SITE_KEY
 RECAPTCHA_SECRET_KEY
 ```
+<i>Made with love by Firefly IT Solutions, Nepal - [thefireflytech.com](https://thefireflytech.com)</i>
