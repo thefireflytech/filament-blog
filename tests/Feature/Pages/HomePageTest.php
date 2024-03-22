@@ -1,7 +1,7 @@
 <?php
 
-use FireFly\FilamentBlog\Models\Category;
-use FireFly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\Category;
+use Firefly\FilamentBlog\Models\Post;
 
 use function Pest\Laravel\get;
 

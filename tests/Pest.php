@@ -11,7 +11,7 @@
 |
 */
 
-use FireFly\FilamentBlog\Tests\TestCase;
+use Firefly\FilamentBlog\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(TestCase::class, RefreshDatabase::class)->in('Feature');

@@ -1,10 +1,10 @@
 <?php
 
-namespace FireFly\FilamentBlog\Models;
+namespace Firefly\FilamentBlog\Models;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Set;
-use FireFly\FilamentBlog\Database\Factories\CategoryFactory;
+use Firefly\FilamentBlog\Database\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

@@ -1,8 +1,8 @@
 <?php
 
-namespace FireFly\FilamentBlog\Models;
+namespace Firefly\FilamentBlog\Models;
 
-use FireFly\FilamentBlog\Database\Factories\PostTagFactory;
+use Firefly\FilamentBlog\Database\Factories\PostTagFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

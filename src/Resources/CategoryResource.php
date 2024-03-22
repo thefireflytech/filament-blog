@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources;
+namespace Firefly\FilamentBlog\Resources;
 
 use Filament\Forms\Form;
 use Filament\Infolists\Components\Section;
@@ -9,8 +9,8 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Models\Category;
-use FireFly\FilamentBlog\Resources\CategoryResource\RelationManagers\PostsRelationManager;
+use Firefly\FilamentBlog\Models\Category;
+use Firefly\FilamentBlog\Resources\CategoryResource\RelationManagers\PostsRelationManager;
 
 class CategoryResource extends Resource
 {
@@ -81,9 +81,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \FireFly\FilamentBlog\Resources\CategoryResource\Pages\ListCategories::route('/'),
-            'edit' => \FireFly\FilamentBlog\Resources\CategoryResource\Pages\EditCategory::route('/{record}/edit'),
-            'view' => \FireFly\FilamentBlog\Resources\CategoryResource\Pages\ViewCategory::route('/{record}'),
+            'index' => \Firefly\FilamentBlog\Resources\CategoryResource\Pages\ListCategories::route('/'),
+            'edit' => \Firefly\FilamentBlog\Resources\CategoryResource\Pages\EditCategory::route('/{record}/edit'),
+            'view' => \Firefly\FilamentBlog\Resources\CategoryResource\Pages\ViewCategory::route('/{record}'),
         ];
     }
 }

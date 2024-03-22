@@ -1,8 +1,8 @@
 <?php
 
-namespace FireFly\FilamentBlog\Components;
+namespace Firefly\FilamentBlog\Components;
 
-use FireFly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\Post;
 use Illuminate\View\Component;
 
 class RecentPost extends Component

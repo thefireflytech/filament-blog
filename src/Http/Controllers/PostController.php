@@ -1,11 +1,11 @@
 <?php
 
-namespace FireFly\FilamentBlog\Http\Controllers;
+namespace Firefly\FilamentBlog\Http\Controllers;
 
-use FireFly\FilamentBlog\Facades\SEOMeta;
-use FireFly\FilamentBlog\Models\NewsLetter;
-use FireFly\FilamentBlog\Models\Post;
-use FireFly\FilamentBlog\Models\ShareSnippet;
+use Firefly\FilamentBlog\Facades\SEOMeta;
+use Firefly\FilamentBlog\Models\NewsLetter;
+use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\ShareSnippet;
 use Illuminate\Http\Request;
 
 class PostController extends Controller

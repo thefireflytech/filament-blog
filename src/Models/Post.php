@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Models;
+namespace Firefly\FilamentBlog\Models;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Fieldset;
@@ -11,8 +11,8 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Set;
 use FilamentTiptapEditor\TiptapEditor;
-use FireFly\FilamentBlog\Database\Factories\PostFactory;
-use FireFly\FilamentBlog\Enums\PostStatus;
+use Firefly\FilamentBlog\Database\Factories\PostFactory;
+use Firefly\FilamentBlog\Enums\PostStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

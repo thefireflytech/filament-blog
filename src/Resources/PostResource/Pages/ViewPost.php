@@ -1,12 +1,12 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\PostResource\Pages;
+namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
 
 use Filament\Actions\Action;
 use Filament\Resources\Pages\ViewRecord;
-use FireFly\FilamentBlog\Events\BlogPublished;
-use FireFly\FilamentBlog\Models\Post;
-use FireFly\FilamentBlog\Resources\PostResource;
+use Firefly\FilamentBlog\Events\BlogPublished;
+use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Resources\PostResource;
 
 class ViewPost extends ViewRecord
 {

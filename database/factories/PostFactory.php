@@ -1,11 +1,11 @@
 <?php
 
-namespace FireFly\FilamentBlog\Database\Factories;
+namespace Firefly\FilamentBlog\Database\Factories;
 
 use Carbon\Carbon;
-use FireFly\FilamentBlog\Enums\PostStatus;
+use Firefly\FilamentBlog\Enums\PostStatus;
 use Firefly\FilamentBlog\Models\Post;
-use FireFly\FilamentBlog\Models\User;
+use Firefly\FilamentBlog\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

@@ -36,14 +36,14 @@ return new class () extends Migration {
 
        Schema::create('category_post', function (Blueprint $table) {
            $table->id();
-           $table->foreignIdFor(FireFly\FilamentBlog\Models\Post::class);
-           $table->foreignIdFor(FireFly\FilamentBlog\Models\Category::class);
+           $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
+           $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class);
            $table->timestamps();
        });
 
        Schema::create('seo_details', function (Blueprint $table) {
            $table->id();
-           $table->foreignIdFor(FireFly\FilamentBlog\Models\Post::class);
+           $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
            $table->string('title');
            $table->json('keywords')->nullable();
            $table->text('description');
@@ -53,7 +53,7 @@ return new class () extends Migration {
        Schema::create('comments', function (Blueprint $table) {
            $table->id();
            $table->foreignId(config('filamentblog.user.foreign_key'));
-           $table->foreignIdFor(FireFly\FilamentBlog\Models\Post::class);
+           $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
            $table->text('comment');
            $table->boolean('approved')->default(false);
            $table->timestamps();
@@ -75,8 +75,8 @@ return new class () extends Migration {
 
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(FireFly\FilamentBlog\Models\Post::class);
-            $table->foreignIdFor(FireFly\FilamentBlog\Models\Tag::class);
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class);
             $table->timestamps();
         });
 

@@ -6,7 +6,7 @@
                 <div class="flex items-center gap-x-10">
                     <a href="{{ route('filamentblog.post.index') }}">
                         <span class="text-2xl font-semibold text-black">
-                            {{ config('app.name', 'FireFly Blog') }}
+                            {{ config('app.name', 'Firefly Blog') }}
                             <strong class="text-primary-600">Blog</strong>
                         </span>
                     </a>

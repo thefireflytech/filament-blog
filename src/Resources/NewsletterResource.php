@@ -1,13 +1,13 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources;
+namespace Firefly\FilamentBlog\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Models\NewsLetter;
+use Firefly\FilamentBlog\Models\NewsLetter;
 
 class NewsletterResource extends Resource
 {
@@ -71,9 +71,9 @@ class NewsletterResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \FireFly\FilamentBlog\Resources\NewsletterResource\Pages\ListNewsletters::route('/'),
-            'create' => \FireFly\FilamentBlog\Resources\NewsletterResource\Pages\CreateNewsletter::route('/create'),
-            'edit' => \FireFly\FilamentBlog\Resources\NewsletterResource\Pages\EditNewsletter::route('/{record}/edit'),
+            'index' => \Firefly\FilamentBlog\Resources\NewsletterResource\Pages\ListNewsletters::route('/'),
+            'create' => \Firefly\FilamentBlog\Resources\NewsletterResource\Pages\CreateNewsletter::route('/create'),
+            'edit' => \Firefly\FilamentBlog\Resources\NewsletterResource\Pages\EditNewsletter::route('/{record}/edit'),
         ];
     }
 }

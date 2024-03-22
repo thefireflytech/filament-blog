@@ -1,7 +1,7 @@
 <?php
 
-use FireFly\FilamentBlog\Models\Post;
-use FireFly\FilamentBlog\Models\User;
+use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\User;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 use function Pest\Laravel\actingAs;

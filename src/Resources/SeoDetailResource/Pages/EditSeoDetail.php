@@ -1,10 +1,10 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\SeoDetailResource\Pages;
+namespace Firefly\FilamentBlog\Resources\SeoDetailResource\Pages;
 
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use FireFly\FilamentBlog\Resources\SeoDetailResource;
+use Firefly\FilamentBlog\Resources\SeoDetailResource;
 
 class EditSeoDetail extends EditRecord
 {

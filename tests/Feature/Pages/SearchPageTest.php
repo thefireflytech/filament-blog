@@ -1,6 +1,6 @@
 <?php
 
-use FireFly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 
 use function Pest\Laravel\get;

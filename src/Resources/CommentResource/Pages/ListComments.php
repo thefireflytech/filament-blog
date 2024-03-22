@@ -1,10 +1,10 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\CommentResource\Pages;
+namespace Firefly\FilamentBlog\Resources\CommentResource\Pages;
 
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use FireFly\FilamentBlog\Resources\CommentResource;
+use Firefly\FilamentBlog\Resources\CommentResource;
 
 class ListComments extends ListRecords
 {

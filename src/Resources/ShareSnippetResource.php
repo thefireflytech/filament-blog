@@ -1,13 +1,13 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources;
+namespace Firefly\FilamentBlog\Resources;
 
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Models\ShareSnippet;
+use Firefly\FilamentBlog\Models\ShareSnippet;
 
 class ShareSnippetResource extends Resource
 {
@@ -69,8 +69,8 @@ class ShareSnippetResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \FireFly\FilamentBlog\Resources\ShareSnippetResource\Pages\ListShareSnippets::route('/'),
-            'edit' => \FireFly\FilamentBlog\Resources\ShareSnippetResource\Pages\EditShareSnippet::route('/{record}/edit'),
+            'index' => \Firefly\FilamentBlog\Resources\ShareSnippetResource\Pages\ListShareSnippets::route('/'),
+            'edit' => \Firefly\FilamentBlog\Resources\ShareSnippetResource\Pages\EditShareSnippet::route('/{record}/edit'),
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\PostResource\RelationManagers;
+namespace Firefly\FilamentBlog\Resources\PostResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;

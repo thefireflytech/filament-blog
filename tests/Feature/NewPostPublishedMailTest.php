@@ -1,10 +1,10 @@
 <?php
 
-use FireFly\FilamentBlog\Exceptions\CannotSendEmail;
-use FireFly\FilamentBlog\Listeners\SendBlogPublishedNotification;
-use FireFly\FilamentBlog\Mails\BlogPublished;
-use FireFly\FilamentBlog\Models\NewsLetter;
-use FireFly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Exceptions\CannotSendEmail;
+use Firefly\FilamentBlog\Listeners\SendBlogPublishedNotification;
+use Firefly\FilamentBlog\Mails\BlogPublished;
+use Firefly\FilamentBlog\Models\NewsLetter;
+use Firefly\FilamentBlog\Models\Post;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 
@@ -17,12 +17,12 @@ it('check event listener is attached to the event', function () {
 
     // Assert
     Event::fake();
-    event(new \FireFly\FilamentBlog\Events\BlogPublished($post));
+    event(new \Firefly\FilamentBlog\Events\BlogPublished($post));
 
-    Event::assertDispatched(\FireFly\FilamentBlog\Events\BlogPublished::class);
+    Event::assertDispatched(\Firefly\FilamentBlog\Events\BlogPublished::class);
 
     Event::assertListening(
-        \FireFly\FilamentBlog\Events\BlogPublished::class,
+        \Firefly\FilamentBlog\Events\BlogPublished::class,
         SendBlogPublishedNotification::class
     );
 

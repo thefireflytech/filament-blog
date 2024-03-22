@@ -1,12 +1,12 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources;
+namespace Firefly\FilamentBlog\Resources;
 
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Models\SeoDetail;
+use Firefly\FilamentBlog\Models\SeoDetail;
 
 class SeoDetailResource extends Resource
 {
@@ -66,9 +66,9 @@ class SeoDetailResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \FireFly\FilamentBlog\Resources\SeoDetailResource\Pages\ListSeoDetails::route('/'),
-            'create' => \FireFly\FilamentBlog\Resources\SeoDetailResource\Pages\CreateSeoDetail::route('/create'),
-            'edit' => \FireFly\FilamentBlog\Resources\SeoDetailResource\Pages\EditSeoDetail::route('/{record}/edit'),
+            'index' => \Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\ListSeoDetails::route('/'),
+            'create' => \Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\CreateSeoDetail::route('/create'),
+            'edit' => \Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\EditSeoDetail::route('/{record}/edit'),
         ];
     }
 }

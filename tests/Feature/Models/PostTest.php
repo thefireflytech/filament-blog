@@ -1,9 +1,9 @@
 <?php
 
-use FireFly\FilamentBlog\Models\Category;
-use FireFly\FilamentBlog\Models\Post;
-use FireFly\FilamentBlog\Models\SeoDetail;
-use FireFly\FilamentBlog\Models\Tag;
+use Firefly\FilamentBlog\Models\Category;
+use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\SeoDetail;
+use Firefly\FilamentBlog\Models\Tag;
 
 it('only returns published post', function () {
     // Arrange

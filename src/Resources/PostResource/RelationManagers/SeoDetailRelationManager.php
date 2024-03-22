@@ -1,12 +1,12 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\PostResource\RelationManagers;
+namespace Firefly\FilamentBlog\Resources\PostResource\RelationManagers;
 
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Models\SeoDetail;
+use Firefly\FilamentBlog\Models\SeoDetail;
 
 class SeoDetailRelationManager extends RelationManager
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Exceptions;
+namespace Firefly\FilamentBlog\Exceptions;
 
 use Exception;
 

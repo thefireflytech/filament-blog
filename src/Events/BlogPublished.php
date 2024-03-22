@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Events;
+namespace Firefly\FilamentBlog\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

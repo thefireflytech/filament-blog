@@ -1,11 +1,11 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\PostResource\Pages;
+namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
 
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use FireFly\FilamentBlog\Enums\PostStatus;
-use FireFly\FilamentBlog\Resources\PostResource;
+use Firefly\FilamentBlog\Enums\PostStatus;
+use Firefly\FilamentBlog\Resources\PostResource;
 
 class EditPost extends EditRecord
 {

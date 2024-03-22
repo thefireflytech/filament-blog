@@ -1,31 +1,42 @@
 {
-    "name": "fire-fly/filament-blog",
+    "name": "firefly/filament-blog",
     "type": "library",
+    "description": "An advance blog package for Filament Admin Panel",
+    "keywords": [
+        "filament",
+        "laravel",
+        "blog",
+        "firefly"
+    ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "FireFly\\FilamentBlog\\": "src/",
-            "FireFly\\FilamentBlog\\Database\\Factories\\": "database/factories/"
+            "Firefly\\FilamentBlog\\": "src/",
+            "Firefly\\FilamentBlog\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "FireFly\\FilamentBlog\\Tests\\": "tests"
+            "Firefly\\FilamentBlog\\Tests\\": "tests"
         }
     },
     "authors": [
         {
-            "name": "Asmit Nepali"
+            "name": "Asmit Nepali",
+            "email": "asmit@thefireflytech.com",
+            "homepage": "https://github.com/asmit-firefly",
+            "role": "Developer"
         }
     ],
     "require": {
+        "php": ">=8.0",
         "filament/support": "^3.2",
         "awcodes/filament-tiptap-editor": "3.x-dev"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "FireFly\\FilamentBlog\\FilamentBlogServiceProvider"
+                "Firefly\\FilamentBlog\\FilamentBlogServiceProvider"
             ]
         }
     },

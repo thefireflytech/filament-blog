@@ -1,8 +1,8 @@
 <?php
 
-namespace FireFly\FilamentBlog\Http\Controllers;
+namespace Firefly\FilamentBlog\Http\Controllers;
 
-use FireFly\FilamentBlog\Models\Tag;
+use Firefly\FilamentBlog\Models\Tag;
 
 class TagController extends Controller
 {

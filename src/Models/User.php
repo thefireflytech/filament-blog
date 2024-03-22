@@ -1,10 +1,10 @@
 <?php
 
-namespace FireFly\FilamentBlog\Models;
+namespace Firefly\FilamentBlog\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use FireFly\FilamentBlog\Database\Factories\UserFactory;
-use FireFly\FilamentBlog\Traits\HasBlog;
+use Firefly\FilamentBlog\Database\Factories\UserFactory;
+use Firefly\FilamentBlog\Traits\HasBlog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;

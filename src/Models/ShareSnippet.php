@@ -1,10 +1,10 @@
 <?php
 
-namespace FireFly\FilamentBlog\Models;
+namespace Firefly\FilamentBlog\Models;
 
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
-use FireFly\FilamentBlog\Database\Factories\ShareSnippetFactory;
+use Firefly\FilamentBlog\Database\Factories\ShareSnippetFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

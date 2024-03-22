@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Database\Factories;
+namespace Firefly\FilamentBlog\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

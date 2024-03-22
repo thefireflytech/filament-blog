@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Enums;
+namespace Firefly\FilamentBlog\Enums;
 
 enum PostStatus: string
 {

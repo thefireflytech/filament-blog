@@ -1,12 +1,12 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources;
+namespace Firefly\FilamentBlog\Resources;
 
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Models\Tag;
+use Firefly\FilamentBlog\Models\Tag;
 
 class TagResource extends Resource
 {
@@ -62,8 +62,8 @@ class TagResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \FireFly\FilamentBlog\Resources\TagResource\Pages\ListTags::route('/'),
-            'edit' => \FireFly\FilamentBlog\Resources\TagResource\Pages\EditTag::route('/{record}/edit'),
+            'index' => \Firefly\FilamentBlog\Resources\TagResource\Pages\ListTags::route('/'),
+            'edit' => \Firefly\FilamentBlog\Resources\TagResource\Pages\EditTag::route('/{record}/edit'),
         ];
     }
 }

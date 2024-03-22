@@ -1,9 +1,9 @@
 <?php
 
-use FireFly\FilamentBlog\Http\Controllers\CategoryController;
-use FireFly\FilamentBlog\Http\Controllers\CommentController;
-use FireFly\FilamentBlog\Http\Controllers\PostController;
-use FireFly\FilamentBlog\Http\Controllers\TagController;
+use Firefly\FilamentBlog\Http\Controllers\CategoryController;
+use Firefly\FilamentBlog\Http\Controllers\CommentController;
+use Firefly\FilamentBlog\Http\Controllers\PostController;
+use Firefly\FilamentBlog\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(config('filamentblog.route.middleware'))

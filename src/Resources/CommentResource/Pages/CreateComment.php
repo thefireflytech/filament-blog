@@ -1,9 +1,9 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\CommentResource\Pages;
+namespace Firefly\FilamentBlog\Resources\CommentResource\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use FireFly\FilamentBlog\Resources\CommentResource;
+use Firefly\FilamentBlog\Resources\CommentResource;
 
 class CreateComment extends CreateRecord
 {

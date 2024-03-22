@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources;
+namespace Firefly\FilamentBlog\Resources;
 
 use Filament\Forms\Form;
 use Filament\Infolists\Components\Fieldset;
@@ -10,9 +10,9 @@ use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Enums\PostStatus;
-use FireFly\FilamentBlog\Models\Post;
-use FireFly\FilamentBlog\Resources\PostResource\Widgets\BlogPostPublishedChart;
+use Firefly\FilamentBlog\Enums\PostStatus;
+use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Resources\PostResource\Widgets\BlogPostPublishedChart;
 use Illuminate\Support\Str;
 
 class PostResource extends Resource
@@ -114,8 +114,8 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            \FireFly\FilamentBlog\Resources\PostResource\RelationManagers\SeoDetailRelationManager::class,
-            \FireFly\FilamentBlog\Resources\PostResource\RelationManagers\CommentsRelationManager::class,
+            \Firefly\FilamentBlog\Resources\PostResource\RelationManagers\SeoDetailRelationManager::class,
+            \Firefly\FilamentBlog\Resources\PostResource\RelationManagers\CommentsRelationManager::class,
         ];
     }
 
@@ -129,10 +129,10 @@ class PostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \FireFly\FilamentBlog\Resources\PostResource\Pages\ListPosts::route('/'),
-            'create' => \FireFly\FilamentBlog\Resources\PostResource\Pages\CreatePost::route('/create'),
-            'edit' => \FireFly\FilamentBlog\Resources\PostResource\Pages\EditPost::route('/{record}/edit'),
-            'view' => \FireFly\FilamentBlog\Resources\PostResource\Pages\ViewPost::route('/{record}'),
+            'index' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ListPosts::route('/'),
+            'create' => \Firefly\FilamentBlog\Resources\PostResource\Pages\CreatePost::route('/create'),
+            'edit' => \Firefly\FilamentBlog\Resources\PostResource\Pages\EditPost::route('/{record}/edit'),
+            'view' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost::route('/{record}'),
         ];
     }
 }

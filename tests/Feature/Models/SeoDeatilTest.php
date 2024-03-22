@@ -1,7 +1,7 @@
 <?php
 
-use FireFly\FilamentBlog\Models\Post;
-use FireFly\FilamentBlog\Models\SeoDetail;
+use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\SeoDetail;
 
 it('belongs to post', function () {
     // Arrange

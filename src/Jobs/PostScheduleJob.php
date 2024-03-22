@@ -1,9 +1,9 @@
 <?php
 
-namespace FireFly\FilamentBlog\Jobs;
+namespace Firefly\FilamentBlog\Jobs;
 
-use FireFly\FilamentBlog\Enums\PostStatus;
-use FireFly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Enums\PostStatus;
+use Firefly\FilamentBlog\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

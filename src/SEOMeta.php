@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog;
+namespace Firefly\FilamentBlog;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Collection;

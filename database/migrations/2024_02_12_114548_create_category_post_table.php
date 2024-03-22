@@ -1,7 +1,7 @@
 <?php
 
-use FireFly\FilamentBlog\Models\Category;
-use FireFly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\Category;
+use Firefly\FilamentBlog\Models\Post;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

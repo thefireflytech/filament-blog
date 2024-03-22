@@ -1,9 +1,9 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\PostResource\Widgets;
+namespace Firefly\FilamentBlog\Resources\PostResource\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use FireFly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\Post;
 
 class BlogPostPublishedChart extends BaseWidget
 {

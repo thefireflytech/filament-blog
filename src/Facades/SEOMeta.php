@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Facades;
+namespace Firefly\FilamentBlog\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

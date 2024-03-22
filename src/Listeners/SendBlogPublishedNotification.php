@@ -1,9 +1,9 @@
 <?php
 
-namespace FireFly\FilamentBlog\Listeners;
+namespace Firefly\FilamentBlog\Listeners;
 
-use FireFly\FilamentBlog\Mails\BlogPublished;
-use FireFly\FilamentBlog\Models\NewsLetter;
+use Firefly\FilamentBlog\Mails\BlogPublished;
+use Firefly\FilamentBlog\Models\NewsLetter;
 use Illuminate\Support\Facades\Mail;
 
 class SendBlogPublishedNotification

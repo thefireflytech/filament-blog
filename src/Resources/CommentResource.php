@@ -1,13 +1,13 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources;
+namespace Firefly\FilamentBlog\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use FireFly\FilamentBlog\Models\Comment;
+use Firefly\FilamentBlog\Models\Comment;
 
 class CommentResource extends Resource
 {
@@ -84,9 +84,9 @@ class CommentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \FireFly\FilamentBlog\Resources\CommentResource\Pages\ListComments::route('/'),
-            'create' => \FireFly\FilamentBlog\Resources\CommentResource\Pages\CreateComment::route('/create'),
-            'edit' => \FireFly\FilamentBlog\Resources\CommentResource\Pages\EditComment::route('/{record}/edit'),
+            'index' => \Firefly\FilamentBlog\Resources\CommentResource\Pages\ListComments::route('/'),
+            'create' => \Firefly\FilamentBlog\Resources\CommentResource\Pages\CreateComment::route('/create'),
+            'edit' => \Firefly\FilamentBlog\Resources\CommentResource\Pages\EditComment::route('/{record}/edit'),
         ];
     }
 }

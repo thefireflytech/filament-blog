@@ -1,7 +1,7 @@
 <?php
 
-use FireFly\FilamentBlog\Models\Post;
-use FireFly\FilamentBlog\Models\Tag;
+use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 
 use function Pest\Laravel\get;

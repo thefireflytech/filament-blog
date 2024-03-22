@@ -1,8 +1,8 @@
 <?php
 
-namespace FireFly\FilamentBlog\Concerns;
+namespace Firefly\FilamentBlog\Concerns;
 
-use FireFly\FilamentBlog\Models\Category;
+use Firefly\FilamentBlog\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 

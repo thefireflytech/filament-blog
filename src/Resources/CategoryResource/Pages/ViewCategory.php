@@ -1,11 +1,11 @@
 <?php
 
-namespace FireFly\FilamentBlog\Resources\CategoryResource\Pages;
+namespace Firefly\FilamentBlog\Resources\CategoryResource\Pages;
 
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
-use FireFly\FilamentBlog\Models\Category;
-use FireFly\FilamentBlog\Resources\CategoryResource;
+use Firefly\FilamentBlog\Models\Category;
+use Firefly\FilamentBlog\Resources\CategoryResource;
 
 class ViewCategory extends ViewRecord
 {

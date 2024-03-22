@@ -1,6 +1,6 @@
 <?php
 
-namespace FireFly\FilamentBlog\Database\Factories;
+namespace Firefly\FilamentBlog\Database\Factories;
 
 use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Models\SeoDetail;
