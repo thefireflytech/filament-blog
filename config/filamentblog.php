@@ -1,4 +1,5 @@
 <?php
+
 /**
  * |--------------------------------------------------------------------------
  * | Set up your blog configuration
@@ -14,6 +15,7 @@
  */
 
 return [
+    'title' => env('APP_NAME', 'Firefly'), // Blog page heading
     'route' => [
         'prefix' => 'blog',
         'middleware' => ['web'],

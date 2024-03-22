@@ -1,22 +1,22 @@
 <header @click.outside="showSearchModal = false" x-data="{ showSearchModal: false }"
         class="sticky top-0 z-[94035] mb-4">
-    <div class="border-b bg-white py-4">
+    <div class="py-4 bg-white border-b">
         <div class="container mx-auto">
             <div class="flex justify-between gap-x-4">
                 <div class="flex items-center gap-x-10">
                     <a href="{{ route('filamentblog.post.index') }}">
                         <span class="text-2xl font-semibold text-black">
-                            {{ config('app.name', 'Firefly Blog') }}
+                            {{ config('filamentblog.title') }}
                             <strong class="text-primary-600">Blog</strong>
                         </span>
                     </a>
                     <div class="flex gap-x-10">
-                        <a href="/" class="text-md hover:text-primary-600 font-semibold">
+                        <a href="/" class="font-semibold text-md hover:text-primary-600">
                             <span>Home</span>
                         </a>
-                        <div class="group relative">
+                        <div class="relative group">
                             <button
-                                    class="text-md hover:text-primary-600 flex items-center justify-center gap-x-2 font-semibold">
+                                    class="flex items-center justify-center font-semibold text-md hover:text-primary-600 gap-x-2">
                                 <span>Categories</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -29,12 +29,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="ml-auto flex items-center gap-x-10">
+                <div class="flex items-center ml-auto gap-x-10">
                     <form action="{{ route('filamentblog.post.search') }}" method="GET">
                         <div class="relative">
                             <div class="relative">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                     class="pointer-events-none absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500"
+                                     class="absolute w-5 h-5 -translate-y-1/2 pointer-events-none left-5 top-1/2 text-slate-500"
                                      viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-width="1.5">
                                         <circle cx="11.5" cy="11.5" r="9.5"/>
@@ -44,7 +44,7 @@
                                 <input placeholder="Search query" type="text"
                                        name="query"
                                        value="{{ request()->get('query') }}"
-                                       class="w-full rounded-full border bg-white/10 px-6 py-3 pl-12 text-sm font-medium text-gray-800 placeholder-gray-400 outline-none placeholder:text-slate-500 focus:ring-0"/>
+                                       class="w-full px-6 py-3 pl-12 text-sm font-medium text-gray-800 placeholder-gray-400 border rounded-full outline-none bg-white/10 placeholder:text-slate-500 focus:ring-0"/>
                             </div>
                             @error('query')
                             <span class="text-xs text-red-500">{{ $message }}</span>

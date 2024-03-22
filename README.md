@@ -12,6 +12,7 @@ The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogg
 - **Newsletter Subscription:** Integrate newsletter subscription forms to grow your email list.
 - **New Post Published Notification:** Notify subscribers when a new blog post is published.
 - **Category Search:** Categorize your blog posts for easy navigation and search.
+- **Support**: [Laravel 11](https://laravel.com) and [Filament 3.x](https://filamentphp.com)
 
 ## Installation
 If your project is not already using Filament, you can install it by running the following commands:
