@@ -4,6 +4,7 @@ namespace FireFly\FilamentBlog\Models;
 
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use FireFly\FilamentBlog\Database\Factories\ShareSnippetFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -34,5 +35,10 @@ class ShareSnippet extends Model
             Textarea::make('html_code'),
             Toggle::make('active'),
         ];
+    }
+
+    protected static function newFactory()
+    {
+        return new ShareSnippetFactory();
     }
 }

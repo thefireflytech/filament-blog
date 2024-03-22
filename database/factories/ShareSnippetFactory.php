@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ShareSnippet>
  */
-class SocialSharingFactory extends Factory
+class ShareSnippetFactory extends Factory
 {
     /**
      * Define the model's default state.

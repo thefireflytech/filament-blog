@@ -68,18 +68,3 @@ it('throws exception if post is not published', function () {
     // Assert
     expect(fn () => $mail->envelope())->toThrow(CannotSendEmail::class);
 });
-
-//it('throws exception if post is not published', function () {
-//
-//    // Arrange
-//    $post = Post::factory()->create();
-//    $subscriber = NewsLetter::factory()->create();
-//
-//    // Assert
-//    $this->expectException(\Exception::class);
-//    $this->expectExceptionMessage('Post is not published');
-//
-//    // Act
-//    new BlogPublished($post, $subscriber->email);
-//
-//});
