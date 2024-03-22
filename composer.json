@@ -5,7 +5,7 @@
     "autoload": {
         "psr-4": {
             "FireFly\\FilamentBlog\\": "src/",
-            "FireFly\\FilamentBlog\\Database\\Factories\\": "database/factories/",
+            "FireFly\\FilamentBlog\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
