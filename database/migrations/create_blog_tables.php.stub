@@ -30,7 +30,7 @@ return new class () extends Migration {
            $table->dateTime('scheduled_for')->nullable();
            $table->string('cover_photo_path');
            $table->string('photo_alt_text');
-           $table->foreignIdFor(config('filamentblog.user.model'));
+           $table->foreignId(config('filamentblog.user.foreign_key'));
            $table->timestamps();
        });
 
@@ -52,7 +52,7 @@ return new class () extends Migration {
 
        Schema::create('comments', function (Blueprint $table) {
            $table->id();
-           $table->foreignIdFor(config('filamentblog.user.model'));
+           $table->foreignId(config('filamentblog.user.foreign_key'));
            $table->foreignIdFor(FireFly\FilamentBlog\Models\Post::class);
            $table->text('comment');
            $table->boolean('approved')->default(false);
