@@ -19,6 +19,8 @@ class CommentController extends Controller
             'approved' => false,
         ]);
 
-        return back()->with('success', 'Comment added successfully');
+        return redirect()
+            ->route('filamentblog.post.show', $post)
+            ->with('success', 'Comment submitted for approval.');
     }
 }

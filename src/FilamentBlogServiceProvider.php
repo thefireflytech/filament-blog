@@ -34,6 +34,7 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
                 Card::class
             )
             ->hasViews('filament-blog')
+
             ->hasRoute('web')
             ->hasInstallCommand(function (InstallCommand $installCommand) {
                 $installCommand
