@@ -2,6 +2,9 @@
 
 namespace Firefly\FilamentBlog\Models;
 
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
 use Firefly\FilamentBlog\Database\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -48,5 +51,24 @@ class Comment extends Model
     protected static function newFactory()
     {
         return new CommentFactory();
+    }
+
+    public static function getForm(): array
+    {
+        return [
+            Select::make('user_id')
+                ->relationship('user', 'name')
+                ->required(),
+            Select::make('post_id')
+                ->relationship('post', 'title')
+                ->required(),
+            Textarea::make('comment')
+                ->required()
+                ->maxLength(65535)
+                ->columnSpanFull(),
+            Toggle::make('approved')
+                ->required(),
+        ];
+
     }
 }

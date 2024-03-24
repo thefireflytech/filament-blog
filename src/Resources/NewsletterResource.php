@@ -17,6 +17,8 @@ class NewsletterResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog Group';
 
+    protected static ?int $navigationSort = 6;
+
     public static function form(Form $form): Form
     {
         return $form

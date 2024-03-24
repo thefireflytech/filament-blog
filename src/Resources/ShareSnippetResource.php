@@ -17,6 +17,8 @@ class ShareSnippetResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog Group';
 
+    protected static ?int $navigationSort = 7;
+
     public static function canCreate(): bool
     {
         return ! (self::$model::all()->count() > 0);

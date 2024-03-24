@@ -7,11 +7,17 @@ use Filament\Infolists\Components\Fieldset;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
+use Filament\Pages\SubNavigationPosition;
+use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Enums\PostStatus;
 use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\EditPost;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\MangePostComments;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\MangePostSeoDetail;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost;
 use Firefly\FilamentBlog\Resources\PostResource\Widgets\BlogPostPublishedChart;
 use Illuminate\Support\Str;
 
@@ -22,6 +28,12 @@ class PostResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-document-minus';
 
     protected static ?string $navigationGroup = 'Blog Group';
+
+    protected static ?string $recordTitleAttribute = 'title';
+
+    protected static ?int $navigationSort = 3;
+
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function getNavigationBadge(): ?string
     {
@@ -111,11 +123,21 @@ class PostResource extends Resource
         ]);
     }
 
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        return $page->generateNavigationItems([
+            ViewPost::class,
+            MangePostComments::class,
+            MangePostSeoDetail::class,
+            EditPost::class,
+        ]);
+    }
+
     public static function getRelations(): array
     {
         return [
-            \Firefly\FilamentBlog\Resources\PostResource\RelationManagers\SeoDetailRelationManager::class,
-            \Firefly\FilamentBlog\Resources\PostResource\RelationManagers\CommentsRelationManager::class,
+            //            \Firefly\FilamentBlog\Resources\PostResource\RelationManagers\SeoDetailRelationManager::class,
+            //            \Firefly\FilamentBlog\Resources\PostResource\RelationManagers\CommentsRelationManager::class,
         ];
     }
 
@@ -133,6 +155,8 @@ class PostResource extends Resource
             'create' => \Firefly\FilamentBlog\Resources\PostResource\Pages\CreatePost::route('/create'),
             'edit' => \Firefly\FilamentBlog\Resources\PostResource\Pages\EditPost::route('/{record}/edit'),
             'view' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost::route('/{record}'),
+            'comments' => \Firefly\FilamentBlog\Resources\PostResource\Pages\MangePostComments::route('/{record}/comments'),
+            'seoDetail' => \Firefly\FilamentBlog\Resources\PostResource\Pages\MangePostSeoDetail::route('/{record}/seo-details'),
         ];
     }
 }

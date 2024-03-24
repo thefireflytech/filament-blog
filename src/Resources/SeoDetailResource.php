@@ -16,6 +16,8 @@ class SeoDetailResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog Group';
 
+    protected static ?int $navigationSort = 4;
+
     public static function form(Form $form): Form
     {
         return $form

@@ -2,7 +2,6 @@
 
 namespace Firefly\FilamentBlog\Resources;
 
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -17,23 +16,12 @@ class CommentResource extends Resource
 
     protected static ?string $navigationGroup = 'Blog Group';
 
+    protected static ?int $navigationSort = 5;
+
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required(),
-                Forms\Components\Select::make('post_id')
-                    ->relationship('post', 'title')
-                    ->required(),
-                Forms\Components\Textarea::make('comment')
-                    ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-                Forms\Components\Toggle::make('approved')
-                    ->required(),
-            ]);
+            ->schema(Comment::getForm());
     }
 
     public static function table(Table $table): Table

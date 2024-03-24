@@ -7,10 +7,18 @@ use Filament\Resources\Pages\ViewRecord;
 use Firefly\FilamentBlog\Events\BlogPublished;
 use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Resources\PostResource;
+use Illuminate\Contracts\Support\Htmlable;
 
 class ViewPost extends ViewRecord
 {
     protected static string $resource = PostResource::class;
+
+    public function getTitle(): string|Htmlable
+    {
+        $record = $this->getRecord();
+
+        return $record->title;
+    }
 
     protected function getHeaderActions(): array
     {
