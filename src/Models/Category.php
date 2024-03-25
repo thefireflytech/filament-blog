@@ -3,6 +3,7 @@
 namespace Firefly\FilamentBlog\Models;
 
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Firefly\FilamentBlog\Database\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,10 +33,11 @@ class Category extends Model
     {
         return [
             TextInput::make('name')
-                ->live()->afterStateUpdated(fn (Set $set, ?string $state) => $set(
-                    'slug',
-                    Str::slug($state)
-                ))
+                ->live(true)
+                ->afterStateUpdated(function (Get $get, Set $set, ?string $operation, ?string $old, ?string $state) {
+
+                    $set('slug', Str::slug($state));
+                })
                 ->unique('categories', 'name', null, 'id')
                 ->required()
                 ->maxLength(155),

@@ -149,7 +149,8 @@ class Post extends Model
                                 ->columnSpanFull(),
 
                             TextInput::make('title')
-                                ->live()->afterStateUpdated(fn (Set $set, ?string $state) => $set(
+                                ->live(true)
+                                ->afterStateUpdated(fn (Set $set, ?string $state) => $set(
                                     'slug',
                                     Str::slug($state)
                                 ))
