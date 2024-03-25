@@ -28,7 +28,7 @@ return [
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',
-            'avatar' => 'profile_photo_path', // or false
+            'avatar' => 'profile_photo_path', // column name or false
         ],
     ],
     'seo' => [
