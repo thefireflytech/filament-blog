@@ -6,6 +6,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Firefly\FilamentBlog\Database\Factories\CommentFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -55,6 +56,11 @@ class Comment extends Model
         return new CommentFactory();
     }
 
+    public function scopeApproved(Builder $query)
+    {
+        return $query->where('approved', true);
+    }
+
     public static function getForm(): array
     {
         return [
@@ -68,8 +74,7 @@ class Comment extends Model
                 ->required()
                 ->maxLength(65535)
                 ->columnSpanFull(),
-            Toggle::make('approved')
-                ->required(),
+            Toggle::make('approved'),
         ];
 
     }

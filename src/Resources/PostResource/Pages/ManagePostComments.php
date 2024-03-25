@@ -53,8 +53,7 @@ class ManagePostComments extends ManageRelatedRecords
                     ->required()
                     ->maxLength(65535)
                     ->columnSpanFull(),
-                Toggle::make('approved')
-                    ->required(),
+                Toggle::make('approved'),
             ])
 
             ->columns(1);
@@ -66,6 +65,17 @@ class ManagePostComments extends ManageRelatedRecords
             ->columns([
                 Tables\Columns\TextColumn::make('comment')
                     ->searchable(),
+
+                Tables\Columns\ToggleColumn::make('approved')
+                    ->beforeStateUpdated(function ($record, $state) {
+                        if ($state) {
+                            $record->approved_at = now();
+                        } else {
+                            $record->approved_at = null;
+                        }
+
+                        return $state;
+                    }),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -101,6 +111,7 @@ class ManagePostComments extends ManageRelatedRecords
                 ->schema([
                     TextEntry::make('comment'),
                     TextEntry::make('created_at'),
+                    TextEntry::make('approved_at')->label('Approved At')->placeholder('Not Approved'),
 
                 ])
                 ->icon('heroicon-o-chat-bubble-left-ellipsis'),

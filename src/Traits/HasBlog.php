@@ -15,7 +15,7 @@ trait HasBlog
     public function getAvatarAttribute()
     {
         return $this->{config('filamentblog.user.columns.avatar')}
-            ?? 'https://ui-avatars.com/api/?&background=random&name='.$this->{config('filamentblog.user.columns.name')};
+            ? asset('storage/'.$this->{config('filamentblog.user.columns.avatar')}) : 'https://ui-avatars.com/api/?&background=random&name='.$this->{config('filamentblog.user.columns.name')};
     }
 
     public function posts()

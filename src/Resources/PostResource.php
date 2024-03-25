@@ -127,8 +127,8 @@ class PostResource extends Resource
     {
         return $page->generateNavigationItems([
             ViewPost::class,
-            ManagePostComments::class,
             ManaePostSeoDetail::class,
+            ManagePostComments::class,
             EditPost::class,
         ]);
     }

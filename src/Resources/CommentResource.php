@@ -7,6 +7,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Models\Comment;
+use Firefly\FilamentBlog\Tables\Columns\UserPhotoName;
 
 class CommentResource extends Resource
 {
@@ -28,9 +29,8 @@ class CommentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable(),
+                UserPhotoName::make('user')
+                    ->label('User'),
                 Tables\Columns\TextColumn::make('post.title')
                     ->numeric()
                     ->limit(20)
@@ -38,7 +38,16 @@ class CommentResource extends Resource
                 Tables\Columns\TextColumn::make('comment')
                     ->searchable()
                     ->limit(20),
-                Tables\Columns\ToggleColumn::make('approved'),
+                Tables\Columns\ToggleColumn::make('approved')
+                    ->beforeStateUpdated(function ($record, $state) {
+                        if ($state) {
+                            $record->approved_at = now();
+                        } else {
+                            $record->approved_at = null;
+                        }
+
+                        return $state;
+                    }),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

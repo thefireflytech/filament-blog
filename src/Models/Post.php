@@ -67,7 +67,7 @@ class Post extends Model
 
     public function comments(): hasmany
     {
-        return $this->hasMany(Comment::class)->where('approved', true);
+        return $this->hasMany(Comment::class);
     }
 
     public function tags(): BelongsToMany
@@ -187,6 +187,7 @@ class Post extends Model
                                 ->preserveFilenames()
                                 ->imageEditor()
                                 ->maxSize(1024 * 1024 * 3)
+                                ->rules('dimensions:max_width=100,min_height=200')
                                 ->required(),
                             TextInput::make('photo_alt_text')->required(),
                         ])->columns(1),

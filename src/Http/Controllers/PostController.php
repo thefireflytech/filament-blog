@@ -59,7 +59,7 @@ class PostController extends Controller
         SEOMeta::setKeywords($post->seoDetail->keywords ?? []);
 
         $shareButton = ShareSnippet::query()->active()->first();
-        $post->load(['user', 'categories', 'tags', 'comments', 'comments.user']);
+        $post->load(['user', 'categories', 'tags', 'comments' => fn ($query) => $query->approved(), 'comments.user']);
 
         return view('filament-blog::blogs.show', [
             'post' => $post,
