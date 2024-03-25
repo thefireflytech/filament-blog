@@ -185,6 +185,10 @@ And make sure enabled is set to `true` in the `filamentblog.php` config file.
 RECAPTCHA_SITE_KEY
 RECAPTCHA_SECRET_KEY
 ```
+## Credits
+
+- [Author Name][link-author]
+- [All Contributors][link-contributors]
 
 ### Security
 
@@ -197,6 +201,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ### 📄 License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+
 <i>Made with love by Firefly IT Solutions, Nepal - [thefireflytech.com](https://thefireflytech.com)</i>
 
 
