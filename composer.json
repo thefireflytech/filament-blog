@@ -9,17 +9,6 @@
         "firefly"
     ],
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Firefly\\FilamentBlog\\": "src/",
-            "Firefly\\FilamentBlog\\Database\\Factories\\": "database/factories/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Firefly\\FilamentBlog\\Tests\\": "tests"
-        }
-    },
     "authors": [
         {
             "name": "Asmit Nepali",
@@ -32,6 +21,17 @@
         "php": ">=8.0",
         "filament/support": "^3.2",
         "awcodes/filament-tiptap-editor": "3.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Firefly\\FilamentBlog\\": "src/",
+            "Firefly\\FilamentBlog\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Firefly\\FilamentBlog\\Tests\\": "tests"
+        }
     },
     "extra": {
         "laravel": {

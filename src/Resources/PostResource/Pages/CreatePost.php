@@ -13,9 +13,15 @@ class CreatePost extends CreateRecord
 {
     protected static string $resource = PostResource::class;
 
+    //    protected function mutateFormDataBeforeCreate(array $data): array
+    //    {
+    //        dd($data);
+    //    }
+
     protected function afterCreate()
     {
         if ($this->record->isScheduled()) {
+
             $now = Carbon::now();
             $scheduledFor = Carbon::parse($this->record->scheduled_for);
             PostScheduleJob::dispatch($this->record)

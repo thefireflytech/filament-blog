@@ -50,6 +50,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+
                 Tables\Columns\TextColumn::make('title')
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title, 40);
@@ -61,9 +62,9 @@ class PostResource extends Resource
                         return $state->getColor();
                     }),
                 Tables\Columns\ImageColumn::make('cover_photo_path')->label('Cover Photo'),
-                Tables\Columns\TextColumn::make('user.'.config('filamentblog.user.columns.name'))->label('Author')
-                    ->numeric()
-                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('user.'.config('filamentblog.user.columns.name'))->label('Author'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -73,13 +74,15 @@ class PostResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])->defaultSort('id', 'desc')
+
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
-
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\ViewAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -106,11 +109,11 @@ class PostResource extends Resource
                                     return $state->getColor();
                                 }),
                             TextEntry::make('published_at')->visible(function (Post $record) {
-                                return $record->status === PostStatus::PUBLISHED->value;
+                                return $record->status === PostStatus::PUBLISHED;
                             }),
 
                             TextEntry::make('scheduled_for')->visible(function (Post $record) {
-                                return $record->status === PostStatus::SCHEDULED->value;
+                                return $record->status === PostStatus::SCHEDULED;
                             }),
                         ]),
                     Fieldset::make('Description')

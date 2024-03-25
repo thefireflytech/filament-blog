@@ -9,6 +9,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Set;
 use FilamentTiptapEditor\TiptapEditor;
 use Firefly\FilamentBlog\Database\Factories\PostFactory;
@@ -187,16 +188,18 @@ class Post extends Model
                                 ->preserveFilenames()
                                 ->imageEditor()
                                 ->maxSize(1024 * 1024 * 3)
-                                ->rules('dimensions:max_width=100,min_height=200')
+                                ->rules('dimensions:max_width=1200,max_height=628')
                                 ->required(),
                             TextInput::make('photo_alt_text')->required(),
                         ])->columns(1),
 
                     Fieldset::make('Status')
                         ->schema([
-                            Select::make('status')
-                                ->options(PostStatus::class)
+
+                            ToggleButtons::make('status')
                                 ->live()
+                                ->inline()
+                                ->options(PostStatus::class)
                                 ->required(),
 
                             DateTimePicker::make('scheduled_for')
