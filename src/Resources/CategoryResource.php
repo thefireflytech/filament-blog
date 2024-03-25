@@ -68,7 +68,8 @@ class CategoryResource extends Resource
             Section::make('Category')
                 ->schema([
                     TextEntry::make('name'),
-                ])
+                    TextEntry::make('slug'),
+                ])->columns(2)
                 ->icon('heroicon-o-square-3-stack-3d'),
         ]);
     }

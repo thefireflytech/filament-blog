@@ -39,6 +39,7 @@ class CommentResource extends Resource
                     ->searchable()
                     ->limit(20),
                 Tables\Columns\ToggleColumn::make('approved'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

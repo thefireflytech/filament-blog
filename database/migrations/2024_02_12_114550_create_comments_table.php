@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Post::class);
             $table->text('comment');
             $table->boolean('approved')->default(false);
+            $table->dateTime('approved_at')->nullable();
             $table->timestamps();
         });
     }

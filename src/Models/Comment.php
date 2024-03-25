@@ -24,6 +24,7 @@ class Comment extends Model
         'post_id',
         'comment',
         'approved',
+        'approved_at',
     ];
 
     /**
@@ -36,6 +37,7 @@ class Comment extends Model
         'user_id' => 'integer',
         'post_id' => 'integer',
         'approved' => 'boolean',
+        'approved_at' => 'datetime',
     ];
 
     public function user(): BelongsTo

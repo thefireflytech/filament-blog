@@ -15,8 +15,8 @@ use Filament\Tables\Table;
 use Firefly\FilamentBlog\Enums\PostStatus;
 use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Resources\PostResource\Pages\EditPost;
-use Firefly\FilamentBlog\Resources\PostResource\Pages\MangePostComments;
-use Firefly\FilamentBlog\Resources\PostResource\Pages\MangePostSeoDetail;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\ManaePostSeoDetail;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\ManagePostComments;
 use Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost;
 use Firefly\FilamentBlog\Resources\PostResource\Widgets\BlogPostPublishedChart;
 use Illuminate\Support\Str;
@@ -127,8 +127,8 @@ class PostResource extends Resource
     {
         return $page->generateNavigationItems([
             ViewPost::class,
-            MangePostComments::class,
-            MangePostSeoDetail::class,
+            ManagePostComments::class,
+            ManaePostSeoDetail::class,
             EditPost::class,
         ]);
     }
@@ -155,8 +155,8 @@ class PostResource extends Resource
             'create' => \Firefly\FilamentBlog\Resources\PostResource\Pages\CreatePost::route('/create'),
             'edit' => \Firefly\FilamentBlog\Resources\PostResource\Pages\EditPost::route('/{record}/edit'),
             'view' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost::route('/{record}'),
-            'comments' => \Firefly\FilamentBlog\Resources\PostResource\Pages\MangePostComments::route('/{record}/comments'),
-            'seoDetail' => \Firefly\FilamentBlog\Resources\PostResource\Pages\MangePostSeoDetail::route('/{record}/seo-details'),
+            'comments' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ManagePostComments::route('/{record}/comments'),
+            'seoDetail' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ManaePostSeoDetail::route('/{record}/seo-details'),
         ];
     }
 }
