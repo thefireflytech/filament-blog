@@ -2,7 +2,7 @@
     "name": "firefly/filament-blog",
     "type": "library",
     "description": "An advance blog package for Filament Admin Panel",
-    "version": "1.0.0",
+    "version": "v1.0.0",
     "keywords": [
         "filament",
         "laravel",

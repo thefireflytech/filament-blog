@@ -10,8 +10,6 @@
  * | The user configuration is for setting up the user model and columns.
  * | The seo configuration is for setting up the default meta tags for the blog.
  * | The recaptcha configuration is for setting up the recaptcha for the blog.
- * |
- * /
  */
 
 return [
