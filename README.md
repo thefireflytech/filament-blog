@@ -1,6 +1,7 @@
 # Firefly Filament Blog
 The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogging experience on your website. It comes with a variety of powerful features to help you manage and customize your blog posts effectively.
 
+[![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 ![Firefly Filament Blog](images/landing.png)
@@ -204,6 +205,10 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 
 <i>Made with love by Firefly IT Solutions, Nepal - [thefireflytech.com](https://thefireflytech.com)</i>
+
+
+[ico-version]: https://img.shields.io/packagist/v/firefly/filament-blog.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/firefly/filament-blog.svg?style=flat-square
 
 
 [link-packagist]: https://packagist.org/packages/firefly/filament-blog
