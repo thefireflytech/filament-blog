@@ -180,7 +180,7 @@ class Post extends Model
                         ->schema([
                             FileUpload::make('cover_photo_path')
                                 ->label('Cover Photo')
-                                ->directory('public/blog-feature-images')
+                                ->directory('/blog-feature-images')
                                 ->hint('This cover image is used in your blog post as a feature image. Recommended image size 1200 X 628')
                                 ->image()
                                 ->preserveFilenames()

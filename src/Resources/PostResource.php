@@ -60,7 +60,7 @@ class PostResource extends Resource
                     ->color(function ($state) {
                         return $state->getColor();
                     }),
-                Tables\Columns\ImageColumn::make('cover_photo_path')->label('Cover Page'),
+                Tables\Columns\ImageColumn::make('cover_photo_path')->label('Cover Photo'),
                 Tables\Columns\TextColumn::make('user.'.config('filamentblog.user.columns.name'))->label('Author')
                     ->numeric()
                     ->sortable(),

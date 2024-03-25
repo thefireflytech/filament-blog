@@ -3,7 +3,7 @@
     <div class="group/blog-item flex flex-col gap-y-5">
         <div class="h-[250px] w-full rounded-xl bg-zinc-300 overflow-hidden">
             <img class="flex h-full w-full items-center justify-center object-cover object-top"
-                 src="{{ asset($post->cover_photo_path) }}" alt="{{ $post->photo_alt_text }}">
+                 src="{{ asset($post->featurePhoto) }}" alt="{{ $post->photo_alt_text }}">
         </div>
         <div class="flex flex-col justify-between space-y-3 px-2">
             <div>
