@@ -1,6 +1,8 @@
 # Firefly Filament Blog
 The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogging experience on your website. It comes with a variety of powerful features to help you manage and customize your blog posts effectively.
 
+![Firefly Filament Blog](images/landing.png)
+
 ## Features
 
 - **Easy Installation:** Simple and straightforward installation process.
