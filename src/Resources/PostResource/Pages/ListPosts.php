@@ -29,19 +29,21 @@ class ListPosts extends ListRecords
     public function getTabs(): array
     {
         return [
-            'all' => Tab::make('All Posts'),
+            'all' => Tab::make('All'),
             'published' => Tab::make('Published')
                 ->modifyQueryUsing(function ($query) {
                     $query->published();
-                }),
+                })->icon('heroicon-o-check-badge'),
             'pending' => Tab::make('Pending')
                 ->modifyQueryUsing(function ($query) {
                     $query->pending();
-                }),
+                })
+                ->icon('heroicon-o-calendar-days'),
             'scheduled' => Tab::make('Scheduled')
                 ->modifyQueryUsing(function ($query) {
                     $query->scheduled();
-                }),
+                })
+                ->icon('heroicon-o-rocket-launch'),
         ];
     }
 }
