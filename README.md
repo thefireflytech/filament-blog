@@ -3,7 +3,11 @@ The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogg
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
-[![Latest Stable Version](https://poser.pugx.org/firefly/filament-blog/v)](//packagist.org/packages/firefly/filament-blog)
+![Packagist License][ico-license]
+![GitHub forks][ico-forks]
+![GitHub Org's stars][ico-stars]
+
+
 
 ![Firefly Filament Blog](images/landing.png)
 
@@ -210,6 +214,10 @@ The MIT License (MIT). Please see [License File](LICENSE.txt) for more informati
 
 [ico-version]: https://img.shields.io/packagist/v/firefly/filament-blog.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/firefly/filament-blog.svg?style=flat-square
+[ico-stable]: https://img.shields.io/packagist/s/firefly/filament-blog.svg?style=flat-square
+[ico-license]: https://img.shields.io/packagist/l/firefly/filament-blog.svg?style=flat-square
+[ico-forks]: https://img.shields.io/github/forks/thefireflytech/filament-blog.svg?style=flat-square
+[ico-stars]: https://img.shields.io/github/stars/thefireflytech?style=flat-square
 
 
 [link-packagist]: https://packagist.org/packages/firefly/filament-blog
