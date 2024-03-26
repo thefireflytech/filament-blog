@@ -6,6 +6,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
@@ -13,6 +14,7 @@ use Filament\Resources\Pages\ManageRelatedRecords;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Resources\PostResource;
+use Firefly\FilamentBlog\Tables\Columns\UserPhotoName;
 use Illuminate\Contracts\Support\Htmlable;
 
 class ManagePostComments extends ManageRelatedRecords
@@ -65,6 +67,9 @@ class ManagePostComments extends ManageRelatedRecords
             ->columns([
                 Tables\Columns\TextColumn::make('comment')
                     ->searchable(),
+                UserPhotoName::make('user')
+                    ->label('Commented By')
+                    ->searchable(),
 
                 Tables\Columns\ToggleColumn::make('approved')
                     ->beforeStateUpdated(function ($record, $state) {
@@ -109,6 +114,8 @@ class ManagePostComments extends ManageRelatedRecords
         return $infolist->schema([
             Section::make('Comment')
                 ->schema([
+                    TextEntry::make('user.name')
+                    ->label('Commented by'),
                     TextEntry::make('comment'),
                     TextEntry::make('created_at'),
                     TextEntry::make('approved_at')->label('Approved At')->placeholder('Not Approved'),
