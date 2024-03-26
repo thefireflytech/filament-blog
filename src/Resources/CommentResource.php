@@ -5,6 +5,7 @@ namespace Firefly\FilamentBlog\Resources;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Models\Comment;
 use Firefly\FilamentBlog\Tables\Columns\UserPhotoName;
@@ -48,6 +49,8 @@ class CommentResource extends Resource
 
                         return $state;
                     }),
+                Tables\Columns\TextColumn::make('approved_at')
+            ->placeholder('Not approved yet'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -59,11 +62,18 @@ class CommentResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('user')
+                ->relationship('user', config('filamentblog.user.columns.name'))
+                ->searchable()
+                ->preload()
+                ->multiple()
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\ViewAction::make()
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

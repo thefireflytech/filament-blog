@@ -19,6 +19,7 @@ use Firefly\FilamentBlog\Resources\PostResource\Pages\ManaePostSeoDetail;
 use Firefly\FilamentBlog\Resources\PostResource\Pages\ManagePostComments;
 use Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost;
 use Firefly\FilamentBlog\Resources\PostResource\Widgets\BlogPostPublishedChart;
+use Firefly\FilamentBlog\Tables\Columns\UserPhotoName;
 use Illuminate\Support\Str;
 
 class PostResource extends Resource
@@ -63,7 +64,8 @@ class PostResource extends Resource
                     }),
                 Tables\Columns\ImageColumn::make('cover_photo_path')->label('Cover Photo'),
 
-                Tables\Columns\TextColumn::make('user.'.config('filamentblog.user.columns.name'))->label('Author'),
+                UserPhotoName::make('user')
+                    ->label('Author'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -76,7 +78,11 @@ class PostResource extends Resource
             ])->defaultSort('id', 'desc')
 
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('user')
+                    ->relationship('user', config('filamentblog.user.columns.name'))
+                    ->searchable()
+                    ->preload()
+                    ->multiple()
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([

@@ -68,9 +68,7 @@ class ManagePostComments extends ManageRelatedRecords
                 Tables\Columns\TextColumn::make('comment')
                     ->searchable(),
                 UserPhotoName::make('user')
-                    ->label('Commented By')
-                    ->searchable(),
-
+                    ->label('Commented By'),
                 Tables\Columns\ToggleColumn::make('approved')
                     ->beforeStateUpdated(function ($record, $state) {
                         if ($state) {
@@ -92,7 +90,11 @@ class ManagePostComments extends ManageRelatedRecords
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('user')
+                    ->relationship('user', config('filamentblog.user.columns.name'))
+                    ->searchable()
+                    ->preload()
+                    ->multiple()
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

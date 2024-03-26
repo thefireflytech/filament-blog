@@ -15,8 +15,8 @@ enum PostStatus: string implements HasColor, HasIcon, HasLabel
     public function getColor(): string
     {
         return match ($this) {
-            self::PENDING => 'warning',
-            self::SCHEDULED => 'primary',
+            self::PENDING => 'info',
+            self::SCHEDULED => 'warning',
             self::PUBLISHED => 'success'
         };
     }
@@ -33,8 +33,8 @@ enum PostStatus: string implements HasColor, HasIcon, HasLabel
     public function getIcon(): ?string
     {
         return match ($this) {
-            self::PENDING => 'heroicon-o-calendar-days',
-            self::SCHEDULED => 'heroicon-o-rocket-launch',
+            self::PENDING => 'heroicon-o-clock',
+            self::SCHEDULED => 'heroicon-o-calendar-days',
             self::PUBLISHED => 'heroicon-o-check-badge',
         };
     }

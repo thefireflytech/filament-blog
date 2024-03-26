@@ -38,12 +38,12 @@ class ListPosts extends ListRecords
                 ->modifyQueryUsing(function ($query) {
                     $query->pending();
                 })
-                ->icon('heroicon-o-calendar-days'),
+                ->icon('heroicon-o-clock'),
             'scheduled' => Tab::make('Scheduled')
                 ->modifyQueryUsing(function ($query) {
                     $query->scheduled();
                 })
-                ->icon('heroicon-o-rocket-launch'),
+                ->icon('heroicon-o-calendar-days'),
         ];
     }
 }

@@ -7,6 +7,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Models\SeoDetail;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost;
 
 class SeoDetailResource extends Resource
 {

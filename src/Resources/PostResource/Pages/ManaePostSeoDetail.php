@@ -63,20 +63,15 @@ class ManaePostSeoDetail extends ManageRelatedRecords
             ->recordTitleAttribute('title')
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->limit(20)
-                    ->searchable(),
+                    ->limit(20),
                 Tables\Columns\TextColumn::make('description')
-                    ->limit(40)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('keywords')->badge()
-                    ->searchable(),
+                    ->limit(40),
+                Tables\Columns\TextColumn::make('keywords')->badge(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
-                    ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
-                    ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
