@@ -31,8 +31,11 @@ class ShareSnippet extends Model
     public static function getForm(): array
     {
         return [
-            Textarea::make('script_code')->label('JS Script'),
-            Textarea::make('html_code'),
+            Textarea::make('script_code')
+                ->label('JS Script')
+                ->required(),
+            Textarea::make('html_code')
+                ->required(),
             Toggle::make('active'),
         ];
     }

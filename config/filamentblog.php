@@ -22,11 +22,11 @@ return [
         ],
     ],
     'user' => [
-        'model' => \Firefly\FilamentBlog\Models\User::class,
+        'model' => App\Models\User::class,
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',
-            'avatar' => 'profile_photo_path', // column name or false
+            'avatar' => 'photo_url', // column name for avatar
         ],
     ],
     'seo' => [

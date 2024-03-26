@@ -76,7 +76,7 @@ return [
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',
-            'avatar' => 'profile_photo_path', // column name or false
+            'avatar' => 'profile_photo_path', // column name of avatar
         ],
     ],
     'seo' => [
@@ -112,9 +112,9 @@ php artisan vendor:publish --provider="Firefly\FilamentBlog\FilamentBlogServiceP
 
 ## What if you have already a User model?
 - If you already have a User model, you can modify the `filamentblog.php` config file to use your User model.
-- Make sure the name column is the user's name column.
-- If you have already `profile_photo_path` column in your User model, you can set it to `false` in the `filamentblog.php` config file.
-- If you want to change foreign_key column name, you can modify the `filamentblog.php` config file.
+- Make sure the name column is the user's `name` column.
+- If you have already `avatar` column in your User model, you can set it in the `filamentblog.php` config file in `user.columns.avatar` key.
+- If you want to change `foreign_key` column name, you can modify the `filamentblog.php` config file.
 
 ### Migrate the database
 After modifying the `filamentblog.php` config file, you can run the migration by running the following command:
@@ -128,7 +128,7 @@ php artisan storage:link
 ```
 ### Attach filament blog panel to the dashboard
 You can attach the Filament Blog panel to the dashboard by adding the following code to your panel provider:
-Add firefly/filament-blog to your panel passing the class to your `plugins()` method.
+Add `Blog::make()` to your panel passing the class to your `plugins()` method.
 
 ```php
 use Firefly\FilamentBlog\Blog;
