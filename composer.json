@@ -21,7 +21,7 @@
     "require": {
         "php": ">=8.0",
         "filament/support": "^3.2",
-        "awcodes/filament-tiptap-editor": "3.x-dev"
+        "awcodes/filament-tiptap-editor": "3"
     },
     "autoload": {
         "psr-4": {
