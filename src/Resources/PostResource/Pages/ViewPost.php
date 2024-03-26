@@ -28,13 +28,16 @@ class ViewPost extends ViewRecord
                 ->requiresConfirmation()
                 ->icon('heroicon-o-bell')->action(function (Post $record) {
                     event(new BlogPublished($record));
-                }),
+                })
+            ->disabled(function (Post $record) {
+                return $record->isNotPublished();
+            })  ,
             Action::make('preview')
                 ->label('Preview')
                 ->requiresConfirmation()
                 ->icon('heroicon-o-eye')->url(function (Post $record) {
                     return route('filamentblog.post.show', $record->slug);
-                })
+                }, true)
                 ->disabled(function (Post $record) {
                     return $record->isNotPublished();
                 }),
