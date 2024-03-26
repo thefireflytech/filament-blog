@@ -3,6 +3,7 @@ The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogg
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Latest Stable Version](https://poser.pugx.org/firefly/filament-blog/v)](//packagist.org/packages/firefly/filament-blog)
 
 ![Firefly Filament Blog](images/landing.png)
 
