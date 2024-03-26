@@ -10,4 +10,10 @@ class ListSeoDetails extends ListRecords
 {
     protected static string $resource = SeoDetailResource::class;
 
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\CreateAction::make(),
+        ];
+    }
 }

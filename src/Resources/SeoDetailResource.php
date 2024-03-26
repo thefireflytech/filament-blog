@@ -31,11 +31,6 @@ class SeoDetailResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->headerActions([
-                Tables\Actions\CreateAction::make('createSeoAction')
-            ])
-            ->heading('Seo Details')
-            ->description('Manage your post seo-meta.')
             ->striped()
             ->columns([
                 Tables\Columns\TextColumn::make('post.title')

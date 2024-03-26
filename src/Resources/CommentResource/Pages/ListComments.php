@@ -5,6 +5,7 @@ namespace Firefly\FilamentBlog\Resources\CommentResource\Pages;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Firefly\FilamentBlog\Resources\CommentResource;
+use Illuminate\Contracts\Support\Htmlable;
 
 class ListComments extends ListRecords
 {
