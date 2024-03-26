@@ -88,7 +88,7 @@ class Post extends Model
 
     public function isNotPublished()
     {
-        return ! $this->isStatusPublished();
+        return !$this->isStatusPublished();
     }
 
     public function scopePublished(Builder $query)
@@ -131,7 +131,7 @@ class Post extends Model
 
     protected function getFeaturePhotoAttribute()
     {
-        return asset('storage/'.$this->cover_photo_path);
+        return asset('storage/' . $this->cover_photo_path);
     }
 
     public static function getForm()
@@ -188,7 +188,7 @@ class Post extends Model
                                 ->preserveFilenames()
                                 ->imageEditor()
                                 ->maxSize(1024 * 1024 * 3)
-                                ->rules('dimensions:max_width=1200,max_height=628')
+                                ->rules('dimensions:min_width=1200,min_height=628')
                                 ->required(),
                             TextInput::make('photo_alt_text')->required(),
                         ])->columns(1),
