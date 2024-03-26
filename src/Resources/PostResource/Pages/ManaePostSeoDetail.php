@@ -20,6 +20,7 @@ class ManaePostSeoDetail extends ManageRelatedRecords
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
 
+
     public function getTitle(): string|Htmlable
     {
 

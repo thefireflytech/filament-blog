@@ -8,6 +8,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Models\SeoDetail;
 use Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost;
+use Illuminate\Database\Eloquent\Model;
 
 class SeoDetailResource extends Resource
 {
@@ -19,18 +20,26 @@ class SeoDetailResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema(SeoDetail::getForm());
     }
 
+
     public static function table(Table $table): Table
     {
         return $table
+            ->headerActions([
+                Tables\Actions\CreateAction::make('createSeoAction')
+            ])
+            ->heading('Seo Details')
+            ->description('Manage your post seo-meta.')
+            ->striped()
             ->columns([
                 Tables\Columns\TextColumn::make('post.title')
-                    ->sortable()->limit(20),
+                    ->limit(20),
                 Tables\Columns\TextColumn::make('title')
                     ->limit(20)
                     ->searchable(),
