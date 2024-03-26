@@ -50,7 +50,8 @@ class CommentResource extends Resource
                         return $state;
                     }),
                 Tables\Columns\TextColumn::make('approved_at')
-            ->placeholder('Not approved yet'),
+                    ->sortable()
+                    ->placeholder('Not approved yet'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -63,10 +64,10 @@ class CommentResource extends Resource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('user')
-                ->relationship('user', config('filamentblog.user.columns.name'))
-                ->searchable()
-                ->preload()
-                ->multiple()
+                    ->relationship('user', config('filamentblog.user.columns.name'))
+                    ->searchable()
+                    ->preload()
+                    ->multiple()
             ])
             ->actions([
                 ActionGroup::make([

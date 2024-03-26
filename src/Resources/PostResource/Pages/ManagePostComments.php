@@ -57,7 +57,6 @@ class ManagePostComments extends ManageRelatedRecords
                     ->columnSpanFull(),
                 Toggle::make('approved'),
             ])
-
             ->columns(1);
     }
 
@@ -79,6 +78,9 @@ class ManagePostComments extends ManageRelatedRecords
 
                         return $state;
                     }),
+                Tables\Columns\TextColumn::make('approved_at')
+                    ->placeholder('Not approved')
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -100,9 +102,11 @@ class ManagePostComments extends ManageRelatedRecords
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -117,7 +121,7 @@ class ManagePostComments extends ManageRelatedRecords
             Section::make('Comment')
                 ->schema([
                     TextEntry::make('user.name')
-                    ->label('Commented by'),
+                        ->label('Commented by'),
                     TextEntry::make('comment'),
                     TextEntry::make('created_at'),
                     TextEntry::make('approved_at')->label('Approved At')->placeholder('Not Approved'),
