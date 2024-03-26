@@ -41,12 +41,12 @@ composer require firefly/filament-blog
 ```
 
 ## Usage
-After composer require, you can start using the Filament Blog Plugin by run the following command:
+After composer require, you can start using the Filament Blog Plugin by runing the following command:
 
 ```bash
 php artisan filament-blog:install
 ```
-This command will publish `filamentblog.php` config file and `create_blog_tables.php.stub` migration file.
+This command will publish `filamentblog.php` config file and `create_blog_tables.php` migration file.
 ````php
 <?php
 /**
@@ -185,7 +185,7 @@ Now you can start using the Filament Blog Plugin to manage your blog posts effec
 You can change the route prefix in the `filamentblog.php` config file.
 
 ### Social Media Share
-For social media share, please visiti [Sharethis](https://platform.sharethis.com) and generate the JS Script and HTML code and save from our share snippet section.
+For social media share, please visit [Sharethis](https://platform.sharethis.com) and generate the JS Script and HTML code and save from our share snippet section.
 
 ### Recaptcha
 To add the recaptcha to the blog comment form, you can add environment variables in your `.env` file.
