@@ -82,11 +82,11 @@ return new class () extends Migration {
         });
 
 
-       Schema::table(resolve(config('filamentblog.user.model'))->getTable(), function (Blueprint $table) {
-           if(!$table->hasColumn(config('filamentblog.user.columns.avatar'))){
-               $table->string(config('filamentblog.user.columns.avatar'))->nullable();
-           }
-       });
+        if(Schema::hasColumn(resolve(config('filamentblog.user.model'))->getTable(), config('filamentblog.user.columns.avatar'))){
+           Schema::table(resolve(config('filamentblog.user.model'))->getTable(), function (Blueprint $table) {
+               $table->dropColumn(config('filamentblog.user.columns.avatar'));
+           });
+       }
 
         Schema::create('share_snippets', function (Blueprint $table) {
             $table->id();
