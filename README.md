@@ -1,9 +1,6 @@
 # Firefly Filament Blog
 The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogging experience on your website. It comes with a variety of powerful features to help you manage and customize your blog posts effectively.
 
-### Demo Video
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8UkcAicQZUc/0.jpg)](https://www.youtube.com/watch?v=8UkcAicQZUc)
-
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 ![Packagist License][ico-license]
@@ -26,6 +23,9 @@ The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogg
 - **New Post Published Notification:** Notify subscribers when a new blog post is published.
 - **Category Search:** Categorize your blog posts for easy navigation and search.
 - **Support**: [Laravel 11](https://laravel.com) and [Filament 3.x](https://filamentphp.com)
+
+### Demo Video
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8UkcAicQZUc/0.jpg)](https://www.youtube.com/watch?v=8UkcAicQZUc)
 
 ## Installation
 If your project is not already using Filament, you can install it by running the following commands:
