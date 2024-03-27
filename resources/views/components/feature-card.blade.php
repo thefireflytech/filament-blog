@@ -2,7 +2,7 @@
 <div class="grid grid-cols-2 gap-x-10">
     <div class="h-[400px] w-full overflow-hidden rounded-xl bg-zinc-300">
         <img class="flex h-full w-full items-center justify-center object-cover object-top"
-             src="{{ asset($post->cover_photo_path) }}" alt="{{ $post->photo_alt_text }}">
+             src="{{ asset($post->featurePhoto) }}" alt="{{ $post->photo_alt_text }}">
     </div>
     <div class="flex flex-col justify-center space-y-10 py-4 sm:pl-10">
         <div>

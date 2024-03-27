@@ -175,7 +175,7 @@ class Post extends Model
                                 ->columnSpanFull(),
                         ]),
                     TiptapEditor::make('body')
-                        ->extraInputAttributes(['style' => 'max-height: 50rem; min-height: 24rem'])
+                        ->extraInputAttributes(['style' => 'max-height: 30rem; min-height: 24rem'])
                         ->required()
                         ->columnSpanFull(),
                     Fieldset::make('Feature Image')
