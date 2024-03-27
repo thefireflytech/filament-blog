@@ -241,7 +241,7 @@
             </div>
             <div class="mt-7 flex flex-wrap items-start justify-between gap-10 border-t border-slate-200 pt-5">
                 <div class="text-hurricane/50 text-sm font-medium">
-                    © 2024 Filament Blog. All rights reserved.
+                    © 2024 {{ config('filamentblog.title') }}. All rights reserved.
                 </div>
                 <div class="flex flex-wrap items-center gap-5">
                     <a target="_blank" href="#"
