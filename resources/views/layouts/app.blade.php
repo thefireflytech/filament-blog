@@ -176,7 +176,7 @@
             <div class="mb-4">
                 <div class="grid items-start justify-between gap-x-40 gap-y-10 sm:grid-cols-5">
                     <div class="col-span-2 flex flex-col items-start gap-3 py-3">
-                        <h4 class="text-xl font-semibold">Filament Blog</h4>
+                        <h4 class="text-xl font-semibold">{{ config('filamentblog.title') }}</h4>
                         <p class="text-base">
                             Your hub for all things Laravel blog plugins. Discover the latest tips, tutorials, and
                             insights to enhance your Laravel blog development.
