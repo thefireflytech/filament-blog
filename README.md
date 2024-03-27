@@ -72,7 +72,7 @@ return [
         ],
     ],
     'user' => [
-        'model' => \Firefly\FilamentBlog\Models\User::class,
+        'model' => App\Models\User::class,
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',
