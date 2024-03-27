@@ -29,7 +29,7 @@
                 </button>
             @else
                 <a
-                        href="{{ route('filamentblog.post.login') }}"
+                        href="{{ route(config('filamentblog.route.login')) }}"
                         class="bg-primary-600 hover:bg-primary-700 rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300">
                     <span>Login</span>
                 </a>
