@@ -5,7 +5,11 @@ use Firefly\FilamentBlog\Models\Post;
 
 use function Pest\Laravel\get;
 
+beforeEach(function () {
+    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+});
 it('show published post cards', function () {
+    \Pest\Laravel\withoutExceptionHandling();
     // Arrange
     $firstPost = Post::factory()
         ->hasAttached(Category::factory()->count(1))

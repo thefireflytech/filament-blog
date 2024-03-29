@@ -11,16 +11,18 @@
  * | The recaptcha configuration is for setting up the recaptcha for the blog.
  */
 
+use Firefly\FilamentBlog\Models\User;
+
 return [
     'route' => [
         'prefix' => 'blogs',
         'middleware' => ['web'],
         'login' => [
-            'name' => 'filament.admin.auth.login',
+            'name' => 'filamentblog.post.login',
         ],
     ],
     'user' => [
-        'model' => App\Models\User::class,
+        'model' => User::class,
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',

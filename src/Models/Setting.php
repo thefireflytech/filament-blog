@@ -27,7 +27,7 @@ class Setting extends Model
 
     protected static function newFactory()
     {
-        return SettingFactory::new();
+        return new SettingFactory();
     }
 
     public static function getForm(): array

@@ -4,7 +4,9 @@ use Firefly\FilamentBlog\Models\Category;
 use Firefly\FilamentBlog\Models\Post;
 
 use function Pest\Laravel\get;
-
+beforeEach(function () {
+    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+});
 it('does not found pending post', function () {
     // Arrange
     $post = Post::factory()->pending()->create();

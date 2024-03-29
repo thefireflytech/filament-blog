@@ -2,6 +2,7 @@
 
 namespace Firefly\FilamentBlog\Database\Factories;
 
+use Firefly\FilamentBlog\Models\Setting;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SettingFactory extends Factory
 {
+
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Setting::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +26,9 @@ class SettingFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'logo' => $this->faker->imageUrl(),
         ];
     }
 }

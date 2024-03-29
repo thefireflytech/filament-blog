@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 
 use function Pest\Laravel\get;
 
+beforeEach(function () {
+    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+});
 it('show success response for category post page', function () {
+    \Pest\Laravel\withoutExceptionHandling();
     $category = Category::factory()
         ->hasAttached(Post::factory()->count(3)->state(new Sequence(
             ['title' => 'First Post', 'slug' => 'first-post'],

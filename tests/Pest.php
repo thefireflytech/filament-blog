@@ -46,3 +46,7 @@ function something()
 {
     // ..
 }
+
+beforeEach(function () {
+    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+});

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 
 use function Pest\Laravel\get;
 
+beforeEach(function () {
+    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+});
 it('show success response for tag post page', function () {
     $category = Tag::factory()
         ->hasAttached(Post::factory()->count(3)->state(new Sequence(

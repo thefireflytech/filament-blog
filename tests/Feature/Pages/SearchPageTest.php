@@ -5,6 +5,9 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 
 use function Pest\Laravel\get;
 
+beforeEach(function () {
+    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+});
 it('show only published search post', function () {
     Post::factory()->published()->count(2)->state(new Sequence([
         'title' => 'First Post',
