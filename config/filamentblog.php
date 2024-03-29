@@ -5,7 +5,6 @@
  * | Set up your blog configuration
  * |--------------------------------------------------------------------------
  * |
- * | This file is for storing the configuration of your blog.
  * | The route configuration is for setting up the route prefix and middleware.
  * | The user configuration is for setting up the user model and columns.
  * | The seo configuration is for setting up the default meta tags for the blog.
@@ -13,7 +12,6 @@
  */
 
 return [
-    'title' => env('APP_NAME', 'Firefly'), // Blog page heading
     'route' => [
         'prefix' => 'blogs',
         'middleware' => ['web'],

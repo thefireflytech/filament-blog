@@ -49,18 +49,16 @@ php artisan filament-blog:install
 This command will publish `filamentblog.php` config file and `create_blog_tables.php` migration file.
 ````php
 <?php
+
 /**
  * |--------------------------------------------------------------------------
  * | Set up your blog configuration
  * |--------------------------------------------------------------------------
  * |
- * | This file is for storing the configuration of your blog.
  * | The route configuration is for setting up the route prefix and middleware.
  * | The user configuration is for setting up the user model and columns.
  * | The seo configuration is for setting up the default meta tags for the blog.
  * | The recaptcha configuration is for setting up the recaptcha for the blog.
- * |
- * /
  */
 
 return [
@@ -76,7 +74,7 @@ return [
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',
-            'avatar' => 'profile_photo_path', // column name of avatar
+            'avatar' => 'profile_photo_path', // column name for avatar
         ],
     ],
     'seo' => [
