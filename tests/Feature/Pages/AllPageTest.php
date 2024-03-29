@@ -3,7 +3,7 @@
 use function Pest\Laravel\get;
 
 beforeEach(function () {
-    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+   setSettingData();
 });
 it('return success for all post page', function () {
     get(route('filamentblog.post.all'))

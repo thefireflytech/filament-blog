@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 use function Pest\Laravel\get;
 
 beforeEach(function () {
-    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+    setSettingData();
 });
 it('show success response for tag post page', function () {
     $category = Tag::factory()

@@ -2,9 +2,8 @@
 
 use Firefly\FilamentBlog\Models\Category;
 use Firefly\FilamentBlog\Models\Post;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(RefreshDatabase::class);
+
 
 it('has posts', function () {
     // Arrange

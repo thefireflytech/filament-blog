@@ -12,9 +12,9 @@
 */
 
 use Firefly\FilamentBlog\Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
-uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+uses(TestCase::class, LazilyRefreshDatabase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -42,11 +42,9 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function setSettingData()
 {
-    // ..
+    \Firefly\FilamentBlog\Models\Setting::factory()->create();
 }
 
-beforeEach(function () {
-    \Firefly\FilamentBlog\Models\Setting::factory()->create();
-});
+
