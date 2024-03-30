@@ -201,7 +201,7 @@
                             </div>
                             <div>
                                 <p class="mb-3 block text-slate-500">
-                                    Subscribe to our mailing list to receives daily updates direct to your inbox!
+                                    Subscribe to our mailing list to receive daily updates direct to your inbox!
                                 </p>
                                 <div>
                                     <form method="post" action="{{ route('filamentblog.post.subscribe') }}">
