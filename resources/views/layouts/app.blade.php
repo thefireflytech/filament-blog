@@ -185,13 +185,13 @@
                     </div>
                     <div class="flex flex-col items-start gap-3 py-3 text-sm font-medium">
                         <h4 class="text-xl font-semibold">Quick Links</h4>
-                        @forelse($setting->quick_links as $title => $link)
+                        @forelse($setting->quick_links ?? [] as $title => $link)
                             <a href="{{$link }}"
                                class="transition duration-300 will-change-transform hover:translate-x-1 hover:text-black motion-reduce:transition-none motion-reduce:hover:transform-none">
                                 {{ $title }}
                             </a>
                         @empty
-                            <p>No links found</p>
+                            <p class="text-gray-300 font-semibold">No links found</p>
                         @endforelse
                     </div>
                     <div class="col-span-2 flex flex-col items-start gap-3 text-sm font-medium">
