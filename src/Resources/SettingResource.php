@@ -40,6 +40,12 @@ class SettingResource extends Resource
                     ->limit(30)
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('logo'),
+                Tables\Columns\TextColumn::make('organization_name'),
+
+                Tables\Columns\TextColumn::make('google_analytic_code')
+                    ->limit(30),
+                Tables\Columns\TextColumn::make('google_adsense_code')
+                    ->limit(30),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

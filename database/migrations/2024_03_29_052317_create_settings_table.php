@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('title', 155)->nullable();
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
+            $table->string('organization_name')->nullable();
+            $table->string('google_analytic_code')->nullable();
+            $table->string('google_adsense_code')->nullable();
+            $table->json('quick_links')->nullable();
             $table->timestamps();
         });
     }

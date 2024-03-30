@@ -29,6 +29,16 @@ class SettingFactory extends Factory
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'logo' => $this->faker->imageUrl(),
+            'organization_name' => $this->faker->company,
+            'google_analytic_code' => '<script></script>',
+            'google_adsense_code' => '<script></script>',
+            'quick_links' => [
+                $this->faker->word => $this->faker->url(),
+
+                $this->faker->word => $this->faker->url(),
+
+                $this->faker->word => $this->faker->url()
+            ],
         ];
     }
 }

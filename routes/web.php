@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(config('filamentblog.route.middleware'))
     ->prefix(config('filamentblog.route.prefix'))
     ->group(function () {
-
         Route::get('/', [PostController::class, 'index'])->name('filamentblog.post.index');
         Route::get('/all', [PostController::class, 'allPosts'])->name('filamentblog.post.all');
         Route::get('/search', [PostController::class, 'search'])->name('filamentblog.post.search');

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {!! \Firefly\FilamentBlog\Facades\SEOMeta::generate() !!}
+{{--    {!! $setting?->google_analytic_code !!}--}}
+{{--    {!! $setting?->google_adsense_code !!}--}}
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +31,7 @@
                 extend: {
                     colors: {
                         'primary': {
-                            DEFAULT: '#FDAE4B',
+                            DEFAULT: '#FDAE4B' ,
                             50: '#fff9f5',
                             100: '#FFF7EC',
                             200: '#FEE4C4',
@@ -164,7 +166,7 @@
 <body class="antialiased">
 <div class="min-h-screen">
     <!-- Page Header -->
-    <x-blog-header title="{{$setting->title}}" logo="{{ $setting->logoImage }}"/>
+    <x-blog-header title="{{$setting?->title}}" logo="{{ $setting?->logoImage }}"/>
     <!-- Page Content -->
     <main>
         {{ $slot }}
@@ -176,21 +178,21 @@
             <div class="mb-4">
                 <div class="grid items-start justify-between gap-x-40 gap-y-10 sm:grid-cols-5">
                     <div class="col-span-2 flex flex-col items-start gap-3 py-3">
-                        <h4 class="text-xl font-semibold">{{ $setting->title }}</h4>
+                        <h4 class="text-xl font-semibold">{{ $setting?->title }}</h4>
                         <p class="text-base">
-                            {{ $setting->description }}
+                            {{ $setting?->description }}
                         </p>
                     </div>
                     <div class="flex flex-col items-start gap-3 py-3 text-sm font-medium">
                         <h4 class="text-xl font-semibold">Quick Links</h4>
-                        <a href="/"
-                           class="transition duration-300 will-change-transform hover:translate-x-1 hover:text-black motion-reduce:transition-none motion-reduce:hover:transform-none">
-                            Home
-                        </a>
-                        <a href="{{ url(config('filamentblog.route.prefix')) }}"
-                           class="transition duration-300 will-change-transform hover:translate-x-1 hover:text-black motion-reduce:transition-none motion-reduce:hover:transform-none">
-                            Blog
-                        </a>
+                        @forelse($setting->quick_links as $title => $link)
+                            <a href="{{$link }}"
+                               class="transition duration-300 will-change-transform hover:translate-x-1 hover:text-black motion-reduce:transition-none motion-reduce:hover:transform-none">
+                                {{ $title }}
+                            </a>
+                        @empty
+                            <p>No links found</p>
+                        @endforelse
                     </div>
                     <div class="col-span-2 flex flex-col items-start gap-3 text-sm font-medium">
                         <div class="relative overflow-hidden rounded-2xl bg-slate-100 px-6 py-4 text-black">
@@ -216,7 +218,7 @@
                                             <button type="submit"
                                                     class="absolute right-4 top-1/2 -translate-y-1/2">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                     class="text-primary-600 h-8 w-8" viewBox="0 0 256 256">
+                                                     class="text-primary h-8 w-8" viewBox="0 0 256 256">
                                                     <path fill="currentColor"
                                                           d="m220.24 132.24l-72 72a6 6 0 0 1-8.48-8.48L201.51 134H40a6 6 0 0 1 0-12h161.51l-61.75-61.76a6 6 0 0 1 8.48-8.48l72 72a6 6 0 0 1 0 8.48"/>
                                                 </svg>
@@ -236,13 +238,13 @@
             </div>
             <div class="mt-7 flex flex-wrap items-start justify-between gap-10 border-t border-slate-200 pt-5">
                 <div class="text-hurricane/50 text-sm font-medium">
-                    © 2024 {{ $setting->title ?? 'Firefly Blog' }}. All rights reserved.
+                    © 2024 {{ $setting->organization_name ?? 'Firefly Blog' }}. All rights reserved.
                 </div>
                 <div class="flex flex-wrap items-center gap-5">
                     <a target="_blank" href="#"
                        class="grid place-items-center rounded-xl hover:text-black motion-reduce:transition-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 16 16"
-                             class="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 scale-0 opacity-0 transition duration-300 group-hover/twitter-link:scale-100 group-hover/twitter-link:opacity-100"
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                             class="absolute w-6 right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 scale-0 opacity-0 transition duration-300 group-hover/twitter-link:scale-100 group-hover/twitter-link:opacity-100"
                              fill="none">
                             <path
                                     d="M12.6182 0.80542H15.0592L9.72628 6.90056L16 15.1947H11.0877L7.24026 10.1643L2.83789 15.1947H0.395405L6.09945 8.67524L0.0810547 0.80542H5.11803L8.5958 5.40334L12.6182 0.80542ZM11.7614 13.7336H13.114L4.38307 2.18974H2.9316L11.7614 13.7336Z"

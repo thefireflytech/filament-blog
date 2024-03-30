@@ -5,18 +5,18 @@
         <div class="container mx-auto">
             <div class="flex justify-between gap-x-4">
                 <div class="flex items-center gap-x-10">
-                    <a href="{{ route('filamentblog.post.index') }}">
+                    <a href="{{ url('/') }}">
                         @if($logo)
                             <img src="{{ $logo }}" alt="{{ $title }}" class="w-10 h-10"/>
                         @else
                         <strong class="text-2xl  text-primary-600">
-                            {{ $title }}
+                            {{ $title ?: 'Firefly Blog' }}
                         </strong>
                             @endif
                     </a>
                     <div class="flex gap-x-10">
-                        <a href="/" class="font-semibold text-md hover:text-primary-600">
-                            <span>Home</span>
+                        <a href="{{ route('filamentblog.post.index') }}" class="font-semibold text-md hover:text-primary-600">
+                            <span>Blogs</span>
                         </a>
                         <div class="relative group">
                             <button
