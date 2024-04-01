@@ -34,7 +34,7 @@
     </section>
     @else
         <div class="container  mx-auto">
-            <div class="flex items>center justify-center">
+            <div class="flex justify-center">
                 <p class="text-2xl font-semibold text-gray-300">No posts found</p>
             </div>
         </div>

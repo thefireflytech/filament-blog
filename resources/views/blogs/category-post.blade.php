@@ -12,9 +12,11 @@
                 @forelse ($posts as $post)
                    <x-blog-card :post="$post"/>
                     @empty
-                        <div class="flex justify-center w-full">
-                            <h2 class="text-2xl font-semibold">No posts found</h2>
+                    <div class="mx-auto col-span-3">
+                        <div class="flex items-center justify-center">
+                            <p class="text-2xl font-semibold text-gray-300">No posts found</p>
                         </div>
+                    </div>
                 @endforelse
             </div>
             <div class="mt-20">

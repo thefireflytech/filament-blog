@@ -52,7 +52,6 @@ class PostResource extends Resource
         return $table
             ->deferLoading()
             ->columns([
-
                 Tables\Columns\TextColumn::make('title')
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title, 40);
@@ -77,7 +76,6 @@ class PostResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])->defaultSort('id', 'desc')
-
             ->filters([
                 Tables\Filters\SelectFilter::make('user')
                     ->relationship('user', config('filamentblog.user.columns.name'))

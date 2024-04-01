@@ -22,6 +22,7 @@ class Setting extends Model
         'title',
         'description',
         'logo',
+        'favicon',
         'organization_name',
         'google_analytic_code',
         'google_adsense_code',
@@ -37,6 +38,11 @@ class Setting extends Model
     protected function getLogoImageAttribute()
     {
         return asset('storage/' . $this->logo);
+    }
+
+    protected function getFavIconImageAttribute()
+    {
+        return asset('storage/' . $this->favicon);
     }
 
     protected static function newFactory()
@@ -66,6 +72,10 @@ class Setting extends Model
                         ->directory('setting/logo')
                         ->maxSize(1024 * 1024 * 2)
                         ->rules('dimensions:max_height=400')
+                        ->nullable()->columnSpanFull(),
+                    FileUpload::make('favicon')
+                        ->directory('setting/favicon')
+                        ->maxSize(50 )
                         ->nullable()->columnSpanFull()
                 ])->columns(2),
 

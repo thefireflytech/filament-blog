@@ -44,10 +44,6 @@ class SettingResource extends Resource
 
                 Tables\Columns\TextColumn::make('organization_name'),
 
-                Tables\Columns\TextColumn::make('google_analytic_code')
-                    ->limit(30),
-                Tables\Columns\TextColumn::make('google_adsense_code')
-                    ->limit(30),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -62,6 +58,7 @@ class SettingResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

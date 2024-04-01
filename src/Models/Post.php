@@ -187,7 +187,7 @@ class Post extends Model
                                 ->image()
                                 ->preserveFilenames()
                                 ->imageEditor()
-                                ->maxSize(1024 * 1024 * 3)
+                                ->maxSize(1024 * 5)
                                 ->rules('dimensions:max_width=1920,max_height=1004')
                                 ->required(),
                             TextInput::make('photo_alt_text')->required(),

@@ -9,9 +9,15 @@
     <section class="pb-16 pt-8">
         <div class="container mx-auto">
             <div class="grid gap-x-14 gap-y-14 sm:grid-cols-3">
-                @foreach ($posts as $post)
+                @forelse ($posts as $post)
                     <x-blog-card :post="$post"/>
-                @endforeach
+                @empty
+                    <div class="mx-auto col-span-3">
+                        <div class="flex items-center justify-center">
+                            <p class="text-2xl font-semibold text-gray-300">No posts found</p>
+                        </div>
+                    </div>
+                @endforelse
             </div>
             <div class="mt-20">
                 {{ $posts->links() }}
