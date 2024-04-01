@@ -33,11 +33,18 @@ class SettingFactory extends Factory
             'google_analytic_code' => '<script></script>',
             'google_adsense_code' => '<script></script>',
             'quick_links' => [
-                $this->faker->word => $this->faker->url(),
-
-                $this->faker->word => $this->faker->url(),
-
-                $this->faker->word => $this->faker->url()
+                [
+                    'label' => 'Home',
+                    'url' => $this->faker->url,
+                ],
+                [
+                    'label' => 'About',
+                    'url' => $this->faker->url,
+                ],
+                [
+                    'label' => 'Contact',
+                    'url' => $this->faker->url,
+                ],
             ],
         ];
     }

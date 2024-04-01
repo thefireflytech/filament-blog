@@ -4,6 +4,7 @@ namespace Firefly\FilamentBlog\Models;
 
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -85,12 +86,20 @@ class Setting extends Model
             Section::make('Quick Links')
                 ->description('Add your quick links here. This will be displayed in the footer of your blog.')
                 ->schema([
-                    KeyValue::make('quick_links')
-                        ->label('Please add full url with http or https.')
-                        ->keyLabel('Title')
-                        ->valueLabel('URL')
-                        ->columnSpanFull(),
-                ])->columns(2),
+                    Repeater::make('quick_links')
+                        ->label('Links')
+                        ->schema([
+                            TextInput::make('label')
+                                ->required()
+                                ->maxLength(155),
+                            TextInput::make('url')
+                                ->label('URL')
+                                ->helperText('URL should start with http:// or https://')
+                                ->required()
+                                ->url()
+                                ->maxLength(255),
+                        ])->columns(2),
+                ])->columnSpanFull(),
         ];
     }
 }
