@@ -61,9 +61,10 @@ class Setting extends Model
                         ->maxLength(1000)
                         ->columnSpanFull(),
                     FileUpload::make('logo')
+                        ->hint('Max height 400')
                         ->directory('setting/logo')
                         ->maxSize(1024 * 1024 * 2)
-                        ->rules('dimensions:max_height=60')
+                        ->rules('dimensions:max_height=400')
                         ->nullable()->columnSpanFull()
                 ])->columns(2),
 
