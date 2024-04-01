@@ -7,7 +7,7 @@
                 <div class="flex items-center gap-x-10">
                     <a href="{{ url('/') }}">
                         @if($logo)
-                            <img src="{{ $logo }}" alt="{{ $title }}" class="w-10 h-10"/>
+                            <img src="{{ $logo }}" alt="{{ $title }}" class="max-h-[60px]"/>
                         @else
                         <strong class="text-2xl  text-primary-600">
                             {{ $title ?: 'Firefly Blog' }}

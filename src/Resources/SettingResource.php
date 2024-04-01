@@ -39,7 +39,9 @@ class SettingResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                     ->limit(30)
                     ->searchable(),
+
                 Tables\Columns\ImageColumn::make('logo'),
+
                 Tables\Columns\TextColumn::make('organization_name'),
 
                 Tables\Columns\TextColumn::make('google_analytic_code')
