@@ -177,14 +177,14 @@
         <footer class="mt-10 w-full border-t px-5 py-12">
             <div class="container mx-auto">
                 <div class="mb-4">
-                    <div class="grid items-start justify-between gap-x-40 gap-y-10 sm:grid-cols-5">
+                    <div class="grid items-start justify-between gap-x-40 gap-y-10 sm:grid-cols-6">
                         <div class="col-span-2 flex flex-col items-start gap-3 py-3">
                             <h4 class="text-xl font-semibold">{{ $setting?->title }}</h4>
                             <p class="text-base">
                                 {{ $setting?->description }}
                             </p>
                         </div>
-                        <div class="flex flex-col items-start gap-3 py-3 text-sm font-medium">
+                        <div class="md:flex md:flex-col col-span-2 items-start grid gap-3 py-3 text-sm font-medium">
                             <h4 class="text-xl font-semibold">Quick Links</h4>
                             @forelse($setting->quick_links ?? [] as $link)
                                 <a href="{{ $link['url'] }}"
