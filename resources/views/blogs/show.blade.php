@@ -130,7 +130,7 @@
                             <span class="h-0.5 w-full rounded-full bg-slate-200"></span>
                         </div>
                     </div>
-                    <div class="grid grid-cols-3 gap-x-12 gap-y-10">
+                    <div class="grid md:grid-cols-3 sm:grid-cols-1 gap-x-12 gap-y-10">
                         @forelse($post->relatedPosts() as $post)
                         <x-blog-card :post="$post" />
                         @empty
