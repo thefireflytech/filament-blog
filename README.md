@@ -50,6 +50,8 @@ This command will publish `filamentblog.php` config file and `create_blog_tables
 ````php
 <?php
 
+<?php
+
 /**
  * |--------------------------------------------------------------------------
  * | Set up your blog configuration
@@ -61,16 +63,22 @@ This command will publish `filamentblog.php` config file and `create_blog_tables
  * | The recaptcha configuration is for setting up the recaptcha for the blog.
  */
 
+use Firefly\FilamentBlog\Models\User;
+
 return [
     'route' => [
         'prefix' => 'blogs',
         'middleware' => ['web'],
+//        'home' => [
+//            'name' => 'filamentblog.home',
+//            'url' => env('APP_URL'),
+//        ],
         'login' => [
-            'name' => 'filament.admin.auth.login',
+            'name' => 'filamentblog.post.login',
         ],
     ],
     'user' => [
-        'model' => App\Models\User::class,
+        'model' => User::class,
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',
@@ -91,7 +99,9 @@ return [
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),
     ],
 ];
+
 ````
+If you have a different url for the home page, you can set it in the `home` key in the `route` configuration.
 Before running the migration, you can modify the `filamentblog.php` config file to suit your needs.
 
  If you want to publish config, views, components, and migrations individually you can run the following command:
