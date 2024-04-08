@@ -12,6 +12,8 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
+        SEOMeta::setTitle('Blog | '.config('app.name')) ;
+
         $posts = Post::query()->with(['categories', 'user', 'tags'])
             ->published()
             ->paginate(10);
@@ -23,6 +25,8 @@ class PostController extends Controller
 
     public function allPosts()
     {
+        SEOMeta::setTitle('All posts | '.config('app.name')) ;
+
         $posts = Post::query()->with(['categories', 'user'])
             ->published()
             ->paginate(20);
@@ -34,6 +38,8 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
+        SEOMeta::setTitle('Search result for '.$request->get('query'));
+
         $request->validate([
             'query' => 'required',
         ]);
