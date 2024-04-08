@@ -31,6 +31,7 @@ class SettingFactory extends Factory
             'logo' => $this->faker->imageUrl(),
             'favicon' => $this->faker->imageUrl(),
             'organization_name' => $this->faker->company,
+            'google_console_code' => '<meat/>',
             'google_analytic_code' => '<script></script>',
             'google_adsense_code' => '<script></script>',
             'quick_links' => [

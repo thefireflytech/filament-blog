@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
             $table->string('organization_name')->nullable();
+            $table->string('google_console_code')->nullable();
             $table->string('google_analytic_code')->nullable();
             $table->string('google_adsense_code')->nullable();
             $table->json('quick_links')->nullable();

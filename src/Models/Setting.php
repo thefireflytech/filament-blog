@@ -24,6 +24,7 @@ class Setting extends Model
         'logo',
         'favicon',
         'organization_name',
+        'google_console_code',
         'google_analytic_code',
         'google_adsense_code',
         'quick_links',
@@ -82,13 +83,17 @@ class Setting extends Model
             Section::make('SEO')
                 ->description('Place your google analytic and adsense code here. This will be added to the head tag of your blog post only.')
                 ->schema([
+                    Textarea::make('google_console_code')
+                        ->startsWith('<meta')
+                        ->nullable()
+                        ->columnSpanFull(),
                     Textarea::make('google_analytic_code')
-                        ->startsWith('<script>')
+                        ->startsWith('<script')
                         ->endsWith('</script>')
                         ->nullable()
                         ->columnSpanFull(),
                     Textarea::make('google_adsense_code')
-                        ->startsWith('<script>')
+                        ->startsWith('<script')
                         ->endsWith('</script>')
                         ->nullable()
                         ->columnSpanFull(),

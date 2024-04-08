@@ -10,8 +10,9 @@ beforeEach(function () {
     setSettingData();
 });
 it('show success response for tag post page', function () {
+    \Pest\Laravel\withoutExceptionHandling();
     $category = Tag::factory()
-        ->hasAttached(Post::factory()->count(3)->state(new Sequence(
+        ->hasAttached(Post::factory()->published()->count(3)->state(new Sequence(
             ['title' => 'First Post', 'slug' => 'first-post'],
             ['title' => 'Second Post', 'slug' => 'second-post'],
             ['title' => 'Third Post', 'slug' => 'third-post'],
