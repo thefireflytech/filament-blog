@@ -51,7 +51,7 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
 
                     });
             });
-        $this->loadTestingMigration();
+//        $this->loadTestingMigration();
     }
 
     public function register()
