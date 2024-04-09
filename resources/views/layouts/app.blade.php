@@ -178,61 +178,63 @@
         <footer class="mt-10 w-full border-t px-5 py-12">
             <div class="container mx-auto">
                 <div class="mb-4">
-                    <div class="grid items-start justify-between gap-x-40 gap-y-10 sm:grid-cols-6">
-                        <div class="col-span-2 flex flex-col items-start gap-3 py-3">
+                    <div class="grid justify-between gap-x-10 gap-y-10 sm:grid-cols-3">
+                        <div class="flex flex-col items-start gap-3 py-3">
                             <h4 class="text-xl font-semibold">{{ $setting?->title }}</h4>
                             <p class="text-base">
                                 {{ $setting?->description }}
                             </p>
                         </div>
-                        <div class="md:flex md:flex-col col-span-2 items-start grid gap-3 py-3 text-sm font-medium">
-                            <h4 class="text-xl font-semibold">Quick Links</h4>
-                            @forelse($setting->quick_links ?? [] as $link)
-                                <a href="{{ $link['url'] }}"
-                                    class="transition duration-300 will-change-transform hover:translate-x-1 hover:text-black motion-reduce:transition-none motion-reduce:hover:transform-none">
-                                    {{ $link['label'] }}
-                                </a>
-                            @empty
-                                <p class="font-semibold text-gray-300">No links found</p>
-                            @endforelse
-                        </div>
-                        <div class="col-span-2 flex flex-col items-start gap-3 text-sm font-medium">
-                            <div class="relative overflow-hidden rounded-2xl bg-slate-100 px-6 py-4 text-black">
-                                <div class="mb-3 pb-2 text-xl font-semibold">
-                                    Subscribe to our Newsletter
-                                </div>
-                                <div>
-                                    <p class="mb-3 block text-slate-500">
-                                        Subscribe to our mailing list to receive daily updates direct to your inbox!
-                                    </p>
-                                    <div>
-                                        <form method="post" action="{{ route('filamentblog.post.subscribe') }}">
-                                            @csrf
-                                            <label hidden for="email-address">Email</label>
-                                            @error('email')
-                                                <span class="text-xs text-red-500">{{ $message }}</span>
-                                            @enderror
-                                            <div class="w-100 relative">
-                                                <input autocomplete="email"
-                                                    class="flex w-full items-center justify-between rounded-xl border bg-white px-6 py-5 font-medium text-black outline-none placeholder:text-black"
-                                                    name="email" value="{{ old('email') }}"
-                                                    placeholder="Enter your email" type="email">
-                                                <button type="submit"
-                                                    class="absolute right-4 top-1/2 -translate-y-1/2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-primary h-8 w-8"
-                                                        viewBox="0 0 256 256">
-                                                        <path fill="currentColor"
-                                                            d="m220.24 132.24l-72 72a6 6 0 0 1-8.48-8.48L201.51 134H40a6 6 0 0 1 0-12h161.51l-61.75-61.76a6 6 0 0 1 8.48-8.48l72 72a6 6 0 0 1 0 8.48" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            @if (session('success'))
-                                                <span class="text-green-500">{{ session('success') }}</span>
-                                            @endif
-                                        </form>
+                        <div class="grid sm:grid-cols-2 col-span-2">
+                            <div class="md:flex md:flex-col grid gap-3 py-3 text-sm font-medium">
+                                <h4 class="text-xl font-semibold">Quick Links</h4>
+                                @forelse($setting->quick_links ?? [] as $link)
+                                    <a href="{{ $link['url'] }}"
+                                        class="transition duration-300 will-change-transform hover:translate-x-1 hover:text-black motion-reduce:transition-none motion-reduce:hover:transform-none">
+                                        {{ $link['label'] }}
+                                    </a>
+                                @empty
+                                    <p class="font-semibold text-gray-300">No links found</p>
+                                @endforelse
+                            </div>
+                            <div class="flex flex-col items-start gap-3 text-sm font-medium">
+                                <div class="relative overflow-hidden rounded-2xl bg-slate-100 px-6 py-4 text-black">
+                                    <div class="mb-3 pb-2 text-xl font-semibold">
+                                        Subscribe to our Newsletter
                                     </div>
-                                    <i
-                                        class="bi bi-envelope pointer-events-none absolute -right-10 -top-20 text-[9rem] opacity-10"></i>
+                                    <div>
+                                        <p class="mb-3 block text-slate-500">
+                                            Subscribe to our mailing list to receive daily updates direct to your inbox!
+                                        </p>
+                                        <div>
+                                            <form method="post" action="{{ route('filamentblog.post.subscribe') }}">
+                                                @csrf
+                                                <label hidden for="email-address">Email</label>
+                                                @error('email')
+                                                    <span class="text-xs text-red-500">{{ $message }}</span>
+                                                @enderror
+                                                <div class="w-100 relative">
+                                                    <input autocomplete="email"
+                                                        class="flex w-full items-center justify-between rounded-xl border bg-white px-6 py-5 font-medium text-black outline-none placeholder:text-black"
+                                                        name="email" value="{{ old('email') }}"
+                                                        placeholder="Enter your email" type="email">
+                                                    <button type="submit"
+                                                        class="absolute right-4 top-1/2 -translate-y-1/2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary h-8 w-8"
+                                                            viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="m220.24 132.24l-72 72a6 6 0 0 1-8.48-8.48L201.51 134H40a6 6 0 0 1 0-12h161.51l-61.75-61.76a6 6 0 0 1 8.48-8.48l72 72a6 6 0 0 1 0 8.48" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                @if (session('success'))
+                                                    <span class="text-green-500">{{ session('success') }}</span>
+                                                @endif
+                                            </form>
+                                        </div>
+                                        <i
+                                            class="bi bi-envelope pointer-events-none absolute -right-10 -top-20 text-[9rem] opacity-10"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -246,7 +248,7 @@
             </div>
         </footer>
         <div class="fixed bottom-0 left-0 z-50 h-20 w-full border-t border-gray-200 bg-white sm:hidden">
-            <div class="mx-auto grid h-full max-w-lg grid-cols-3 font-medium">
+            <div class="mx-auto grid h-full max-w-lg grid-cols-2 justify-center font-medium">
                 <a href="{{ route('filamentblog.post.index') }}"
                     class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50">
                     <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 w-6" viewBox="0 0 256 256">
