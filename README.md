@@ -9,7 +9,7 @@ The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogg
 
 
 
-![Firefly Filament Blog](images/landing.png)
+![Firefly Filament Blog](https://raw.githubusercontent.com/thefireflytech/filament-blog/master/images/landing.png)
 
 ## Features
 
