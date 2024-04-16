@@ -50,8 +50,6 @@ This command will publish `filamentblog.php` config file and `create_blog_tables
 ````php
 <?php
 
-<?php
-
 /**
  * |--------------------------------------------------------------------------
  * | Set up your blog configuration
