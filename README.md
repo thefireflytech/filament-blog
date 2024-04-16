@@ -202,7 +202,8 @@ RECAPTCHA_SECRET_KEY
 ```
 ## Credits
 
-- [Author Name][link-author]
+- [Firefly][link-author]
+- [Asmit Nepali][link-asmit]
 - [All Contributors][link-contributors]
 
 ### Security
@@ -232,4 +233,5 @@ The MIT License (MIT). Please see [License File](LICENSE.txt) for more informati
 [link-packagist]: https://packagist.org/packages/firefly/filament-blog
 [link-downloads]: https://packagist.org/packages/firefly/filament-blog
 [link-author]: https://github.com/thefireflytech
+[link-asmit]: https://github.com/AsmitNepali
 [link-contributors]: ../../contributors
