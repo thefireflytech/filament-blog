@@ -212,6 +212,7 @@ class Post extends Model
                                 ->required(function ($get) {
                                     return $get('status') === PostStatus::SCHEDULED->value;
                                 })
+                                ->minDate(now()->addMinutes(5))
                                 ->native(false),
                         ]),
                     Select::make(config('filamentblog.user.foreign_key'))
