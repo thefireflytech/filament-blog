@@ -38,12 +38,12 @@ class Tag extends Model
                 ))
                 ->unique('tags', 'name', null, 'id')
                 ->required()
-                ->maxLength(155),
+                ->maxLength(50),
 
             TextInput::make('slug')
                 ->unique('tags', 'slug', null, 'id')
                 ->readOnly()
-                ->maxLength(255),
+                ->maxLength(155),
         ];
     }
 
