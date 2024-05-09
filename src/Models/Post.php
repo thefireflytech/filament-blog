@@ -217,6 +217,7 @@ class Post extends Model
                         ]),
                     Select::make(config('filamentblog.user.foreign_key'))
                         ->relationship('user', 'name')
+                        ->nullable(false)
                         ->default(auth()->id()),
 
                 ]),
