@@ -64,7 +64,9 @@ return new class () extends Migration {
 
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(config('filamentblog.user.foreign_key'));
+            $table->foreignId(config('filamentblog.user.foreign_key'))
+                ->constrained()
+                ->cascadeOnDelete();
             $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
                 ->constrained()
                 ->cascadeOnDelete();
