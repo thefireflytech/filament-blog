@@ -34,28 +34,20 @@ return new class () extends Migration {
             $table->dateTime('scheduled_for')->nullable();
             $table->string('cover_photo_path');
             $table->string('photo_alt_text');
-            $table->foreignId(config('filamentblog.user.foreign_key'))
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId(config('filamentblog.user.foreign_key'));
             $table->timestamps();
         });
 
         Schema::create('category_post', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class);
             $table->timestamps();
         });
 
         Schema::create('seo_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
             $table->string('title');
             $table->json('keywords')->nullable();
             $table->text('description');
@@ -64,12 +56,8 @@ return new class () extends Migration {
 
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(config('filamentblog.user.foreign_key'))
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId(config('filamentblog.user.foreign_key'));
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
             $table->text('comment');
             $table->boolean('approved')->default(false);
             $table->dateTime('approved_at')->nullable();
@@ -92,12 +80,8 @@ return new class () extends Migration {
 
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class)
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class);
             $table->timestamps();
         });
 
