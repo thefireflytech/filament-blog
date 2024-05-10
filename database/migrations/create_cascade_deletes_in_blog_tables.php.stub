@@ -1,0 +1,98 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignIdFor(config('filamentblog.user.model'), config('filamentblog.user.foreign_key'))
+                ->change()
+                ->constrained()
+                ->cascadeOnDelete();
+        });
+
+        Schema::table('category_post', function (Blueprint $table) {
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->change()
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class)
+                ->change()
+                ->constrained()
+                ->cascadeOnDelete();
+        });
+
+        Schema::table('seo_details', function (Blueprint $table) {
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->change()
+                ->constrained()
+                ->cascadeOnDelete();
+        });
+
+        Schema::table('comments', function (Blueprint $table) {
+            $table->foreignIdFor(config('filamentblog.user.model'), config('filamentblog.user.foreign_key'))
+                ->change()
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->change()
+                ->constrained()
+                ->cascadeOnDelete();
+        });
+
+        Schema::table('post_tag', function (Blueprint $table) {
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->change()
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class)
+                ->change()
+                ->constrained()
+                ->cascadeOnDelete();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignIdFor(config('filamentblog.user.model'), config('filamentblog.user.foreign_key'))
+                ->change();
+        });
+
+        Schema::table('category_post', function (Blueprint $table) {
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->change();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class)
+                ->change();
+        });
+
+        Schema::table('seo_details', function (Blueprint $table) {
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->change();
+        });
+
+        Schema::table('comments', function (Blueprint $table) {
+            $table->foreignIdFor(config('filamentblog.user.model'), config('filamentblog.user.foreign_key'))
+                ->change();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->change();
+        });
+
+        Schema::table('post_tag', function (Blueprint $table) {
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->change();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class)
+                ->change();
+        });
+    }
+};
