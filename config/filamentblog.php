@@ -14,13 +14,16 @@
 use Firefly\FilamentBlog\Models\User;
 
 return [
+    'tables' => [
+        'prefix' => 'fblog_', // prefix for all blog tables
+    ],
     'route' => [
         'prefix' => 'blogs',
         'middleware' => ['web'],
-//        'home' => [
-//            'name' => 'filamentblog.home',
-//            'url' => env('APP_URL'),
-//        ],
+        //        'home' => [
+        //            'name' => 'filamentblog.home',
+        //            'url' => env('APP_URL'),
+        //        ],
         'login' => [
             'name' => 'filamentblog.post.login',
         ],

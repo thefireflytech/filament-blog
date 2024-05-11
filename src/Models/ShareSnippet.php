@@ -13,6 +13,11 @@ class ShareSnippet extends Model
 {
     use HasFactory;
 
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'share_snippets';
+    }
+
     protected $fillable = [
         'script_code',
         'html_code',

@@ -16,14 +16,14 @@ return new class () extends Migration {
         $tableName = resolve(config('filamentblog.user.model'))->getTable();
         $columnName = config('filamentblog.user.columns.avatar');
 
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'categories', function (Blueprint $table) {
             $table->id();
             $table->string('name', 155)->unique();
             $table->string('slug', 155)->unique();
             $table->timestamps();
         });
 
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug');
@@ -34,54 +34,68 @@ return new class () extends Migration {
             $table->dateTime('scheduled_for')->nullable();
             $table->string('cover_photo_path');
             $table->string('photo_alt_text');
-            $table->foreignId(config('filamentblog.user.foreign_key'));
+            $table->foreignId(config('filamentblog.user.foreign_key'))
+            ->constrained()
+            ->cascadeOnDelete();
             $table->timestamps();
         });
 
-        Schema::create('category_post', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'category_'.config('filamentblog.tables.prefix').'post', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class);
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+            ->constrained()
+            ->cascadeOnDelete();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class)
+            ->constrained()
+            ->cascadeOnDelete();
             $table->timestamps();
         });
 
-        Schema::create('seo_details', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'seo_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('title');
             $table->json('keywords')->nullable();
             $table->text('description');
             $table->timestamps();
         });
 
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId(config('filamentblog.user.foreign_key'));
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+                ->constrained()
+                ->cascadeOnDelete();
             $table->text('comment');
             $table->boolean('approved')->default(false);
             $table->dateTime('approved_at')->nullable();
             $table->timestamps();
         });
 
-        Schema::create('news_letters', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'news_letters', function (Blueprint $table) {
             $table->id();
             $table->string('email', 100)->unique();
             $table->boolean('subscribed')->default(true);
             $table->timestamps();
         });
 
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'tags', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->unique();
             $table->string('slug', 155)->unique();
             $table->timestamps();
         });
 
-        Schema::create('post_tag', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'post_'.config('filamentblog.tables.prefix').'tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class);
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class);
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+            ->constrained()
+            ->cascadeOnDelete();
+            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class)
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
 
@@ -94,7 +108,7 @@ return new class () extends Migration {
             });
         }
 
-        Schema::create('share_snippets', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'share_snippets', function (Blueprint $table) {
             $table->id();
             $table->longText('script_code');
             $table->text('html_code');
@@ -102,7 +116,7 @@ return new class () extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create(config('filamentblog.tables.prefix').'settings', function (Blueprint $table) {
             $table->id();
             $table->string('title', 155)->nullable();
             $table->text('description')->nullable();
@@ -124,16 +138,16 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'categories');
         Schema::dropIfExists(config('filamentblog.user.model'));
-        Schema::dropIfExists('posts');
-        Schema::dropIfExists('category_post');
-        Schema::dropIfExists('seo_details');
-        Schema::dropIfExists('comments');
-        Schema::dropIfExists('news_letters');
-        Schema::dropIfExists('tags');
-        Schema::dropIfExists('post_tag');
-        Schema::dropIfExists('share_snippets');
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'posts');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'category_'.config('filamentblog.tables.prefix').'post');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'seo_details');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'comments');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'news_letters');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'tags');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'post_'.config('filamentblog.tables.prefix').'tag');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'share_snippets');
+        Schema::dropIfExists(config('filamentblog.tables.prefix').'settings');
     }
 };

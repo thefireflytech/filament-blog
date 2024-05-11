@@ -39,4 +39,9 @@ class NewsLetter extends Model
     {
         return new NewsLetterFactory();
     }
+
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'news_letters';
+    }
 }
