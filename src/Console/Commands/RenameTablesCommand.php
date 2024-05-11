@@ -12,7 +12,7 @@ class RenameTablesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'filament-blog:update-tables';
+    protected $signature = 'filament-blog:upgrade-tables';
 
     /**
      * The console command description.
