@@ -75,13 +75,16 @@ This command will publish `filamentblog.php` config file and `create_blog_tables
 use Firefly\FilamentBlog\Models\User;
 
 return [
+    'tables' => [
+        'prefix' => 'fblog_', // prefix for all blog tables
+    ],
     'route' => [
         'prefix' => 'blogs',
         'middleware' => ['web'],
-//        'home' => [
-//            'name' => 'filamentblog.home',
-//            'url' => env('APP_URL'),
-//        ],
+        //        'home' => [
+        //            'name' => 'filamentblog.home',
+        //            'url' => env('APP_URL'),
+        //        ],
         'login' => [
             'name' => 'filamentblog.post.login',
         ],
@@ -108,7 +111,6 @@ return [
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),
     ],
 ];
-
 ````
 If you have a different url for the home page, you can set it in the `home` key in the `route` configuration.
 Before running the migration, you can modify the `filamentblog.php` config file to suit your needs.
