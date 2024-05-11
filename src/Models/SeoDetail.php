@@ -73,7 +73,7 @@ class SeoDetail extends Model
                 ->createOptionForm(Post::getForm())
                 ->editOptionForm(Post::getForm())
                 ->relationship('post', 'title')
-                ->unique('seo_details', 'post_id', null, 'id')
+                ->unique(config('filamentblog.tables.prefix').'seo_details', 'post_id', null, 'id')
                 ->required()
                 ->preload()
                 ->searchable()
@@ -95,5 +95,10 @@ class SeoDetail extends Model
     protected static function newFactory()
     {
         return new SeoDetailFactory();
+    }
+
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'seo_details';
     }
 }

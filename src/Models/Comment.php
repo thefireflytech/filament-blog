@@ -76,6 +76,10 @@ class Comment extends Model
                 ->columnSpanFull(),
             Toggle::make('approved'),
         ];
+    }
 
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'comments';
     }
 }

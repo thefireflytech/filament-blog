@@ -117,4 +117,9 @@ class Setting extends Model
                 ])->columnSpanFull(),
         ];
     }
+
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'settings';
+    }
 }

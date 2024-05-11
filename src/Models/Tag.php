@@ -25,23 +25,24 @@ class Tag extends Model
 
     public function posts(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class);
+
+        return $this->belongsToMany(Post::class, config('filamentblog.tables.prefix').'post_'.config('filamentblog.tables.prefix').'tag');
     }
 
     public static function getForm(): array
     {
         return [
             TextInput::make('name')
-                ->live(true)->afterStateUpdated(fn (Set $set, ?string $state) => $set(
+                ->live(true)->afterStateUpdated(fn(Set $set, ?string $state) => $set(
                     'slug',
                     Str::slug($state)
                 ))
-                ->unique('tags', 'name', null, 'id')
+                ->unique(config('filamentblog.tables.prefix').'tags', 'name', null, 'id')
                 ->required()
                 ->maxLength(50),
 
             TextInput::make('slug')
-                ->unique('tags', 'slug', null, 'id')
+                ->unique(config('filamentblog.tables.prefix').'tags', 'slug', null, 'id')
                 ->readOnly()
                 ->maxLength(155),
         ];
@@ -50,5 +51,10 @@ class Tag extends Model
     protected static function newFactory()
     {
         return new TagFactory();
+    }
+
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'tags';
     }
 }

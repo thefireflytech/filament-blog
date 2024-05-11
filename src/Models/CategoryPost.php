@@ -35,4 +35,9 @@ class CategoryPost extends Model
     {
         return new CategoryPostFactory();
     }
+
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'category_' . config('filamentblog.tables.prefix') . 'post';
+    }
 }

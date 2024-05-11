@@ -10,6 +10,8 @@ class PostTag extends Model
 {
     use HasFactory;
 
+    protected $table = 'fblog_post_tag';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -34,5 +36,10 @@ class PostTag extends Model
     protected static function newFactory()
     {
         return new PostTagFactory();
+    }
+
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'post_' . config('filamentblog.tables.prefix') . 'tag';
     }
 }

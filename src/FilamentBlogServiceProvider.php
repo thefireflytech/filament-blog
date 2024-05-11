@@ -9,6 +9,7 @@ use Firefly\FilamentBlog\Components\Header;
 use Firefly\FilamentBlog\Components\HeaderCategory;
 use Firefly\FilamentBlog\Components\Layout;
 use Firefly\FilamentBlog\Components\RecentPost;
+use Firefly\FilamentBlog\Console\Commands\RenameTablesCommand;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -22,6 +23,7 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
         $package->name('filament-blog')
             ->hasConfigFile(['filamentblog'])
             ->hasMigrations('create_blog_tables')
+            ->hasCommands(RenameTablesCommand::class)
             ->runsMigrations()
             ->hasViewComponents(
                 'blog',
@@ -51,7 +53,7 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
 
                     });
             });
-//        $this->loadTestingMigration();
+        //        $this->loadTestingMigration();
     }
 
     public function register()

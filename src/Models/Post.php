@@ -64,7 +64,7 @@ class Post extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, config('filamentblog.tables.prefix').'category_'.config('filamentblog.tables.prefix').'post');
     }
 
     public function comments(): hasmany
@@ -74,7 +74,7 @@ class Post extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class,config('filamentblog.tables.prefix').'post_'.config('filamentblog.tables.prefix').'tag');
     }
 
     public function user(): BelongsTo
@@ -125,8 +125,8 @@ class Post extends Model
     public function relatedPosts($take = 3)
     {
         return $this->whereHas('categories', function ($query) {
-            $query->whereIn('categories.id', $this->categories->pluck('id'))
-                ->whereNotIn('posts.id', [$this->id]);
+            $query->whereIn(config('filamentblog.tables.prefix').'categories.id', $this->categories->pluck('id'))
+                ->whereNotIn(config('filamentblog.tables.prefix').'posts.id', [$this->id]);
         })->published()->with('user')->take($take)->get();
     }
 
@@ -157,7 +157,7 @@ class Post extends Model
                                     Str::slug($state)
                                 ))
                                 ->required()
-                                ->unique('posts', 'title', null, 'id')
+                                ->unique(config('filamentblog.tables.prefix').'posts', 'title', null, 'id')
                                 ->maxLength(255),
 
                             TextInput::make('slug')
@@ -222,5 +222,10 @@ class Post extends Model
 
                 ]),
         ];
+    }
+
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'posts';
     }
 }

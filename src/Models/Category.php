@@ -26,7 +26,7 @@ class Category extends Model
 
     public function posts(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class, config('filamentblog.tables.prefix').'category_'.config('filamentblog.tables.prefix').'post');
     }
 
     public static function getForm()
@@ -38,12 +38,12 @@ class Category extends Model
 
                     $set('slug', Str::slug($state));
                 })
-                ->unique('categories', 'name', null, 'id')
+                ->unique(config('filamentblog.tables.prefix').'categories', 'name', null, 'id')
                 ->required()
                 ->maxLength(155),
 
             TextInput::make('slug')
-                ->unique('categories', 'slug', null, 'id')
+                ->unique(config('filamentblog.tables.prefix').'categories', 'slug', null, 'id')
                 ->readOnly()
                 ->maxLength(255),
         ];
@@ -52,5 +52,10 @@ class Category extends Model
     protected static function newFactory()
     {
         return new CategoryFactory();
+    }
+
+    public function getTable()
+    {
+        return config('filamentblog.tables.prefix') . 'categories';
     }
 }
