@@ -42,19 +42,19 @@ return new class () extends Migration {
 
         Schema::create(config('filamentblog.tables.prefix').'category_'.config('filamentblog.tables.prefix').'post', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
-            ->constrained()
+            $table->foreignId( "post_id")
+            ->constrained(table: config('filamentblog.tables.prefix').'posts')
             ->cascadeOnDelete();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class)
-            ->constrained()
+            $table->foreignId("category_id")
+            ->constrained(table: config('filamentblog.tables.prefix').'categories')
             ->cascadeOnDelete();
             $table->timestamps();
         });
 
         Schema::create(config('filamentblog.tables.prefix').'seo_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
-                ->constrained()
+            $table->foreignId("post_id")
+                ->constrained(table: config('filamentblog.tables.prefix').'posts')
                 ->cascadeOnDelete();
             $table->string('title');
             $table->json('keywords')->nullable();
@@ -65,8 +65,8 @@ return new class () extends Migration {
         Schema::create(config('filamentblog.tables.prefix').'comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId(config('filamentblog.user.foreign_key'));
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
-                ->constrained()
+            $table->foreignId("post_id")
+                ->constrained(table: config('filamentblog.tables.prefix').'posts')
                 ->cascadeOnDelete();
             $table->text('comment');
             $table->boolean('approved')->default(false);
@@ -90,11 +90,11 @@ return new class () extends Migration {
 
         Schema::create(config('filamentblog.tables.prefix').'post_'.config('filamentblog.tables.prefix').'tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
-            ->constrained()
+            $table->foreignId("post_id")
+            ->constrained(table: config('filamentblog.tables.prefix').'posts')
             ->cascadeOnDelete();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class)
-                ->constrained()
+            $table->foreignId("tag_id")
+                ->constrained(table: config('filamentblog.tables.prefix').'tags')
                 ->cascadeOnDelete();
             $table->timestamps();
         });
