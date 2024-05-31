@@ -217,6 +217,7 @@ RECAPTCHA_SECRET_KEY
 
 - [Firefly][link-author]
 - [Asmit Nepali][link-asmit]
+- [Awcodes](https://github.com/awcodes/filament-tiptap-editor)
 - [All Contributors][link-contributors]
 
 ### Security
