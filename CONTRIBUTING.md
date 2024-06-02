@@ -18,6 +18,7 @@ Issue reports are warmly welcomed, as we know it's important aspect of open sour
 - You can add an issue in the [issues section](https://github.com/thefireflytech/filament-blog/issues)
 - Make sure the same issue is not reported by any other person.
 - Add a decent title and sufficient description of the issue, you may also add some screenshots.
+- Please consider adding label to issue that allows us to understand nature of the issue.
 - Please consider adding fixes via pull requests if you are aware of the root cause of the issue and a possible solution.
 - For enhancement, please provide the necessity of the feature, the problem it solves and what it offers as an improvement in the library.
 - Please consider adding a response if the answer added on the discussion solves the issue.
