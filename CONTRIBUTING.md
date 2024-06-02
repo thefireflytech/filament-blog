@@ -16,7 +16,7 @@ When requesting or submitting new features, first consider whether it might be u
 Issue reports are warmly welcomed, as we know it's important aspect of open source software. Whether it's a bug or a possible enhancement, We are aware that it will improve and build trust among the community. Before filing an issue, please consider the following things.
 
 - You can add an issue in the [issues section](https://github.com/thefireflytech/filament-blog/issues)
-- Make sure the same issue is not opened by any other person.
+- Make sure the same issue is not reported by any other person.
 - Add a decent title and sufficient description of the issue, you may also add some screenshots.
 - Please consider adding fixes via pull requests if you are aware of the root cause of the issue and a possible solution.
 - For enhancement, please provide the necessity of the feature, the problem it solves and what it offers as an improvement in the library.
