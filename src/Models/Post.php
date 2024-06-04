@@ -64,7 +64,7 @@ class Post extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, config('filamentblog.tables.prefix').'category_'.config('filamentblog.tables.prefix').'post');
+        return $this->belongsToMany(Category::class, config('filamentblog.tables.prefix') . 'category_' . config('filamentblog.tables.prefix') . 'post');
     }
 
     public function comments(): hasmany
@@ -74,7 +74,7 @@ class Post extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class,config('filamentblog.tables.prefix').'post_'.config('filamentblog.tables.prefix').'tag');
+        return $this->belongsToMany(Tag::class, config('filamentblog.tables.prefix') . 'post_' . config('filamentblog.tables.prefix') . 'tag');
     }
 
     public function user(): BelongsTo
@@ -89,7 +89,7 @@ class Post extends Model
 
     public function isNotPublished()
     {
-        return ! $this->isStatusPublished();
+        return !$this->isStatusPublished();
     }
 
     public function scopePublished(Builder $query)
@@ -125,14 +125,14 @@ class Post extends Model
     public function relatedPosts($take = 3)
     {
         return $this->whereHas('categories', function ($query) {
-            $query->whereIn(config('filamentblog.tables.prefix').'categories.id', $this->categories->pluck('id'))
-                ->whereNotIn(config('filamentblog.tables.prefix').'posts.id', [$this->id]);
+            $query->whereIn(config('filamentblog.tables.prefix') . 'categories.id', $this->categories->pluck('id'))
+                ->whereNotIn(config('filamentblog.tables.prefix') . 'posts.id', [$this->id]);
         })->published()->with('user')->take($take)->get();
     }
 
     protected function getFeaturePhotoAttribute()
     {
-        return asset('storage/'.$this->cover_photo_path);
+        return asset('storage/' . $this->cover_photo_path);
     }
 
     public static function getForm()
@@ -157,7 +157,7 @@ class Post extends Model
                                     Str::slug($state)
                                 ))
                                 ->required()
-                                ->unique(config('filamentblog.tables.prefix').'posts', 'title', null, 'id')
+                                ->unique(config('filamentblog.tables.prefix') . 'posts', 'title', null, 'id')
                                 ->maxLength(255),
 
                             TextInput::make('slug')
@@ -214,7 +214,22 @@ class Post extends Model
                                 })
                                 ->minDate(now()->addMinutes(5))
                                 ->native(false),
+                            DateTimePicker::make('published_at')
+                                ->visible(function ($get) {
+                                    return $get('status') === PostStatus::PUBLISHED->value;
+                                })
+                                ->required(function ($get) {
+                                    return $get('status') === PostStatus::PUBLISHED->value;
+                                })
+                                ->minDate(now()->addMinutes(5))
+                                ->native(false),
                         ]),
+                    Toggle::make('is_published')
+                        ->label('Published')
+                        ->default(false)
+                        ->required(function ($get) {
+                            return $get('status') === PostStatus::PUBLISHED->value;
+                        }),
                     Select::make(config('filamentblog.user.foreign_key'))
                         ->relationship('user', 'name')
                         ->nullable(false)
