@@ -36,9 +36,9 @@ class PostResource extends Resource
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
-    public static function getNavigationBadge(): ?int
+    public static function getNavigationBadge(): ?string
     {
-        return Post::count();
+        return strval(Post::count());
     }
 
     public static function form(Form $form): Form
