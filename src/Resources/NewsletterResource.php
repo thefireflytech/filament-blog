@@ -26,6 +26,7 @@ class NewsletterResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
+                    ->unique(ignoreRecord: true)
                     ->maxLength(100),
                 Forms\Components\Toggle::make('subscribed')
                     ->default(true)
