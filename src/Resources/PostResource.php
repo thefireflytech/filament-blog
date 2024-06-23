@@ -38,7 +38,7 @@ class PostResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return Post::count();
+        return strval(Post::count());
     }
 
     public static function form(Form $form): Form
