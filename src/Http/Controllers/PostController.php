@@ -76,7 +76,7 @@ class PostController extends Controller
     public function subscribe(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:news_letters,email',
+            'email' => 'required|email|unique:'.config('filamentblog.tables.prefix').'news_letters,email',
         ], [
             'email.unique' => 'You have already subscribed',
         ]);
