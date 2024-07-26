@@ -216,7 +216,7 @@ class Post extends Model
                                 ->native(false),
                         ]),
                     Select::make(config('filamentblog.user.foreign_key'))
-                        ->relationship('user', 'name')
+                        ->relationship('user', config('filamentblog.user.columns.name'))
                         ->nullable(false)
                         ->default(auth()->id()),
 

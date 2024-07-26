@@ -48,7 +48,7 @@ class ManagePostComments extends ManageRelatedRecords
         return $form
             ->schema([
                 Select::make('user_id')
-                    ->relationship('user', 'name')
+                    ->relationship('user', config('filamentblog.user.columns.name'))
                     ->required(),
                 Textarea::make('comment')
                     ->required()

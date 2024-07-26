@@ -65,7 +65,7 @@ class Comment extends Model
     {
         return [
             Select::make('user_id')
-                ->relationship('user', 'name')
+                ->relationship('user', config('filamentblog.user.columns.name'))
                 ->required(),
             Select::make('post_id')
                 ->relationship('post', 'title')
