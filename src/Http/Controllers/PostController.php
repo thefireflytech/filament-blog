@@ -7,6 +7,7 @@ use Firefly\FilamentBlog\Models\NewsLetter;
 use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Models\ShareSnippet;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -57,7 +58,6 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-
         SEOMeta::setTitle($post->seoDetail?->title);
 
         SEOMeta::setDescription($post->seoDetail?->description);
@@ -76,10 +76,15 @@ class PostController extends Controller
     public function subscribe(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:'.config('filamentblog.tables.prefix').'news_letters,email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique(NewsLetter::class, 'email')
+            ],
         ], [
             'email.unique' => 'You have already subscribed',
         ]);
+
         NewsLetter::create([
             'email' => $request->email,
         ]);
