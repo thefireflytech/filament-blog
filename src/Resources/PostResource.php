@@ -28,8 +28,6 @@ class PostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-minus';
 
-    protected static ?string $navigationGroup = 'Blog';
-
     protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?int $navigationSort = 3;
@@ -194,5 +192,10 @@ class PostResource extends Resource
     public static function getPluralLabel() : ?string
     {
         return __('filament-blog::posts.plural_title');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return config('filamentblog.group_navigation_title');
     }
 }

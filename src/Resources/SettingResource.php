@@ -14,8 +14,6 @@ class SettingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static ?string $navigationGroup = 'Blog';
-
     protected static ?int $navigationSort = 8;
 
     public static function getLabel(): string
@@ -98,5 +96,10 @@ class SettingResource extends Resource
             'create' => \Firefly\FilamentBlog\Resources\SettingResource\Pages\CreateSetting::route('/create'),
             'edit' => \Firefly\FilamentBlog\Resources\SettingResource\Pages\EditSetting::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return config('filamentblog.group_navigation_title');
     }
 }

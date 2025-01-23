@@ -18,8 +18,6 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-squares-plus';
 
-    protected static ?string $navigationGroup = 'Blog';
-
     protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
@@ -105,5 +103,10 @@ class CategoryResource extends Resource
     public static function getPluralLabel() : ?string
     {
         return __('filament-blog::categories.plural_title');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return config('filamentblog.group_navigation_title');
     }
 }

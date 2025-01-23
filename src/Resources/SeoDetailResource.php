@@ -14,8 +14,6 @@ class SeoDetailResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-magnifying-glass';
 
-    protected static ?string $navigationGroup = 'Blog';
-
     protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
@@ -89,5 +87,10 @@ class SeoDetailResource extends Resource
     public static function getPluralLabel(): string
     {
         return __('filament-blog::seo_details.plural_title');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return config('filamentblog.group_navigation_title');
     }
 }

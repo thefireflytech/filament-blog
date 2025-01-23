@@ -15,8 +15,6 @@ class NewsletterResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static ?string $navigationGroup = 'Blog';
-
     protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
@@ -91,5 +89,10 @@ class NewsletterResource extends Resource
 
     public static function getPluralLabel(): string {
         return __('filament-blog::news_letters.plural_title');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return config('filamentblog.group_navigation_title');
     }
 }

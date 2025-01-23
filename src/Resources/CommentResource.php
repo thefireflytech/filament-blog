@@ -16,8 +16,6 @@ class CommentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
-    protected static ?string $navigationGroup = 'Blog';
-
     protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
@@ -113,5 +111,10 @@ class CommentResource extends Resource
     public static function getPluralLabel(): string
     {
         return __('filament-blog::comments.plural_title');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return config('filamentblog.group_navigation_title');
     }
 }

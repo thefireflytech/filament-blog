@@ -15,8 +15,6 @@ class ShareSnippetResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-share';
 
-    protected static ?string $navigationGroup = 'Blog';
-
     protected static ?int $navigationSort = 7;
 
     public static function getLabel(): string
@@ -87,5 +85,10 @@ class ShareSnippetResource extends Resource
             'index' => \Firefly\FilamentBlog\Resources\ShareSnippetResource\Pages\ListShareSnippets::route('/'),
             'edit' => \Firefly\FilamentBlog\Resources\ShareSnippetResource\Pages\EditShareSnippet::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return config('filamentblog.group_navigation_title');
     }
 }
