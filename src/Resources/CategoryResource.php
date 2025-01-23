@@ -33,17 +33,22 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('filament-blog::categories.tables.columns.name'))
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label(__('filament-blog::categories.tables.columns.slug')),
                 Tables\Columns\TextColumn::make('posts_count')
+                    ->label(__('filament-blog::categories.tables.columns.posts_count'))
                     ->badge()
                     ->counts('posts'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label(__('filament-blog::general.created_at'))
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label(__('filament-blog::general.updated_at'))
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -65,10 +70,12 @@ class CategoryResource extends Resource
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist->schema([
-            Section::make('Category')
+            Section::make(__('filament-blog::categories.title'))
                 ->schema([
-                    TextEntry::make('name'),
-                    TextEntry::make('slug'),
+                    TextEntry::make('name')
+                        ->label(__('filament-blog::categories.forms.fields.name')),
+                    TextEntry::make('slug')
+                        ->label(__('filament-blog::categories.forms.fields.slug')),
                 ])->columns(2)
                 ->icon('heroicon-o-square-3-stack-3d'),
         ]);
@@ -88,5 +95,15 @@ class CategoryResource extends Resource
             'edit' => \Firefly\FilamentBlog\Resources\CategoryResource\Pages\EditCategory::route('/{record}/edit'),
             'view' => \Firefly\FilamentBlog\Resources\CategoryResource\Pages\ViewCategory::route('/{record}'),
         ];
+    }
+
+    public static function getLabel() : ?string
+    {
+        return __('filament-blog::categories.title');
+    }
+
+    public static function getPluralLabel() : ?string
+    {
+        return __('filament-blog::categories.plural_title');
     }
 }

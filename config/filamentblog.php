@@ -15,7 +15,7 @@ use Firefly\FilamentBlog\Models\User;
 
 return [
     'tables' => [
-        'prefix' => 'fblog_', // prefix for all blog tables
+        'prefix' => 'blog_', // prefix for all blog tables
     ],
     'route' => [
         'prefix' => 'blogs',
@@ -49,4 +49,10 @@ return [
         'site_key' => env('RECAPTCHA_SITE_KEY'),
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),
     ],
+
+    'group_navigation_title' => 'Blog',
+
+    'date_format' => 'Y-m-d',
+
+    'time_format' => 'H:i',
 ];

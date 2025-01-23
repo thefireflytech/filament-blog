@@ -19,6 +19,16 @@ class ShareSnippetResource extends Resource
 
     protected static ?int $navigationSort = 7;
 
+    public static function getLabel(): string
+    {
+        return __('filament-blog::share_snippets.title');
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return __('filament-blog::share_snippets.plural_title');
+    }
+
     public static function canCreate(): bool
     {
         return ! (self::$model::all()->count() > 0);
@@ -41,12 +51,15 @@ class ShareSnippetResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('script_code')
+                    ->label(__('filament-blog::share_snippets.tables.columns.script_code'))
                     ->limit(50)
                     ->searchable(),
                 TextColumn::make('html_code')
+                    ->label(__('filament-blog::share_snippets.tables.columns.html_code'))
                     ->limit(50)
                     ->searchable(),
-                Tables\Columns\ToggleColumn::make('active'),
+                Tables\Columns\ToggleColumn::make('active')
+                    ->label(__('filament-blog::share_snippets.tables.columns.active')),
             ])
             ->filters([
                 //

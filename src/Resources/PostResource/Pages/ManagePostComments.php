@@ -30,17 +30,17 @@ class ManagePostComments extends ManageRelatedRecords
 
         $recordTitle = $recordTitle instanceof Htmlable ? $recordTitle->toHtml() : $recordTitle;
 
-        return 'Manage Comments';
+        return __('filament-blog::posts.forms.tabs.edit_page.manage_comments');
     }
 
     public function getBreadcrumb(): string
     {
-        return 'Comments';
+        return __('filament-blog::posts.forms.tabs.edit_page.manage_comments');
     }
 
     public static function getNavigationLabel(): string
     {
-        return 'Manage Comments';
+        return __('filament-blog::posts.forms.tabs.edit_page.manage_comments');
     }
 
     public function form(Form $form): Form
@@ -48,13 +48,16 @@ class ManagePostComments extends ManageRelatedRecords
         return $form
             ->schema([
                 Select::make('user_id')
+                    ->label(__('filament-blog::comments.forms.fields.user'))
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->required(),
                 Textarea::make('comment')
+                    ->label(__('filament-blog::comments.forms.fields.comment'))
                     ->required()
                     ->maxLength(65535)
                     ->columnSpanFull(),
-                Toggle::make('approved'),
+                Toggle::make('approved')
+                    ->label(__('filament-blog::comments.forms.fields.approved')),
             ])
             ->columns(1);
     }
@@ -64,9 +67,10 @@ class ManagePostComments extends ManageRelatedRecords
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('comment')
+                    ->label(__('filament-blog::posts.tables.columns.comment'))
                     ->searchable(),
                 UserPhotoName::make('user')
-                    ->label('Commented By'),
+                    ->label(__('filament-blog::posts.tables.columns.commented_by')),
                 Tables\Columns\ToggleColumn::make('approved')
                     ->beforeStateUpdated(function ($record, $state) {
                         if ($state) {
@@ -78,38 +82,47 @@ class ManagePostComments extends ManageRelatedRecords
                         return $state;
                     }),
                 Tables\Columns\TextColumn::make('approved_at')
-                    ->placeholder('Not approved')
+                    ->label(__('filament-blog::posts.tables.columns.approved_at.label'))
+                    ->placeholder(__('filament-blog::posts.tables.columns.approved_at.placeholder'))
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
+                    ->label(__('filament-blog::general.created_at'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
+                    ->label(__('filament-blog::general.updated_at'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('user')
+                    ->label(__('filament-blog::posts.tables.filters.user'))
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()
                     ->multiple(),
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                ->label(__('filament-actions::create.single.label', ['label' => __('filament-blog::comments.title')]))
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\ViewAction::make(),
-                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\EditAction::make()
+                        ->modalHeading(__('filament-actions::edit.single.modal.heading', ['label' => __('filament-blog::comments.title')])),
+                    Tables\Actions\ViewAction::make()
+                        ->modalHeading(__('filament-actions::view.single.modal.heading', ['label' => __('filament-blog::comments.title')])),
+                    Tables\Actions\DeleteAction::make()
+                        ->modalHeading(__('filament-actions::delete.single.modal.heading', ['label' => __('filament-blog::comments.title')])),
                 ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->modalHeading(__('filament-actions::delete.multiple.modal.heading', ['label' => __('filament-blog::comments.title')])),
                 ]),
             ]);
     }
@@ -117,13 +130,17 @@ class ManagePostComments extends ManageRelatedRecords
     public function infolist(Infolist $infolist): Infolist
     {
         return $infolist->schema([
-            Section::make('Comment')
+            Section::make(__('filament-blog::posts.forms.sections.comment'))
                 ->schema([
                     TextEntry::make('user.name')
-                        ->label('Commented by'),
-                    TextEntry::make('comment'),
-                    TextEntry::make('created_at'),
-                    TextEntry::make('approved_at')->label('Approved At')->placeholder('Not Approved'),
+                        ->label(__('filament-blog::posts.tables.columns.commented_by')),
+                    TextEntry::make('comment')
+                        ->label(__('filament-blog::posts.tables.columns.comment')),
+                    TextEntry::make('created_at')
+                        ->label(__('filament-blog::general.created_at')),
+                    TextEntry::make('approved_at')
+                        ->label(__('filament-blog::posts.tables.columns.approved_at.label'))
+                        ->placeholder(__('filament-blog::posts.tables.columns.approved_at.placeholder')),
 
                 ])
                 ->icon('heroicon-o-chat-bubble-left-ellipsis'),

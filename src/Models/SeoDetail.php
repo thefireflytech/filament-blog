@@ -70,6 +70,7 @@ class SeoDetail extends Model
     {
         return [
             Select::make('post_id')
+                ->label(__('filament-blog::seo_details.forms.fields.post'))
                 ->createOptionForm(Post::getForm())
                 ->editOptionForm(Post::getForm())
                 ->relationship('post', 'title')
@@ -80,12 +81,15 @@ class SeoDetail extends Model
                 ->default(request('post_id') ?? '')
                 ->columnSpanFull(),
             TextInput::make('title')
+                ->label(__('filament-blog::seo_details.forms.fields.title'))
                 ->required()
                 ->maxLength(255)
                 ->columnSpanFull(),
             TagsInput::make('keywords')
+                ->label(__('filament-blog::seo_details.forms.fields.keywords'))
                 ->columnSpanFull(),
             Textarea::make('description')
+                ->label(__('filament-blog::seo_details.forms.fields.description'))
                 ->required()
                 ->maxLength(65535)
                 ->columnSpanFull(),

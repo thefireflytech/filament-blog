@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'title' => 'Setting',
+    'plural_title' => 'Settings',
     'table' => [
         'columns' => [
             'title' => 'Title',

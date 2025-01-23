@@ -29,16 +29,20 @@ class TagResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('filament-blog::tags.tables.columns.name'))
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label(__('filament-blog::tags.tables.columns.slug')),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label(__('filament-blog::general.created_at'))
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label(__('filament-blog::general.updated_at'))
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -70,5 +74,15 @@ class TagResource extends Resource
             'index' => \Firefly\FilamentBlog\Resources\TagResource\Pages\ListTags::route('/'),
             'edit' => \Firefly\FilamentBlog\Resources\TagResource\Pages\EditTag::route('/{record}/edit'),
         ];
+    }
+
+    public static function getLabel() : ?string
+    {
+        return __('filament-blog::tags.title');
+    }
+
+    public static function getPluralLabel() : ?string
+    {
+        return __('filament-blog::tags.plural_title');
     }
 }

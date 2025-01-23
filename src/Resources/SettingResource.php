@@ -18,6 +18,16 @@ class SettingResource extends Resource
 
     protected static ?int $navigationSort = 8;
 
+    public static function getLabel(): string
+    {
+        return __('filament-blog::settings.title');
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return __('filament-blog::settings.plural_title');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -50,12 +60,13 @@ class SettingResource extends Resource
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('filament-blog::general.created_at'))
-                    ->dateTime()
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label(__('filament-blog::general.updated_at'))
-                    ->dateTime()
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])

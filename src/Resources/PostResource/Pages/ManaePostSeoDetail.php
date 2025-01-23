@@ -27,12 +27,12 @@ class ManaePostSeoDetail extends ManageRelatedRecords
 
         $recordTitle = $recordTitle instanceof Htmlable ? $recordTitle->toHtml() : $recordTitle;
 
-        return 'Manage Seo Detail';
+        return __('filament-blog::posts.forms.tabs.edit_page.manage_seo_details');
     }
 
     public static function getNavigationLabel(): string
     {
-        return 'Manage Seo Detail';
+        return __('filament-blog::posts.forms.tabs.edit_page.manage_seo_details');
     }
 
     protected function canCreate(): bool
@@ -45,12 +45,15 @@ class ManaePostSeoDetail extends ManageRelatedRecords
         return $form
             ->schema([
                 TextInput::make('title')
+                    ->label(__('filament-blog::posts.forms.fields.title'))
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
                 TagsInput::make('keywords')
+                    ->label(__('filament-blog::posts.forms.fields.keywords'))
                     ->columnSpanFull(),
                 Textarea::make('description')
+                    ->label(__('filament-blog::posts.forms.fields.description'))
                     ->required()
                     ->maxLength(65535)
                     ->columnSpanFull(),
@@ -63,22 +66,29 @@ class ManaePostSeoDetail extends ManageRelatedRecords
             ->recordTitleAttribute('title')
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->label(__('filament-blog::posts.tables.columns.title'))
                     ->limit(20),
                 Tables\Columns\TextColumn::make('description')
+                    ->label(__('filament-blog::posts.tables.columns.description'))
                     ->limit(40),
-                Tables\Columns\TextColumn::make('keywords')->badge(),
+                Tables\Columns\TextColumn::make('keywords')
+                    ->label(__('filament-blog::posts.tables.columns.keywords'))
+                    ->badge(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label(__('filament-blog::general.created_at'))
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label(__('filament-blog::general.updated_at'))
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                    ->label(__('filament-blog::posts.forms.tabs.edit_page.add_seo_detail')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

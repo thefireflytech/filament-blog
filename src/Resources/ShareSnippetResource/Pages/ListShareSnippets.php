@@ -11,7 +11,7 @@ class ListShareSnippets extends ListRecords
 {
     protected static string $resource = ShareSnippetResource::class;
 
-    protected ?string $subheading = 'Please visit https://platform.sharethis.com to get the script code and html code for sharing snippets';
+    protected ?string $subheading = '';
 
     protected function getHeaderActions(): array
     {
@@ -23,5 +23,13 @@ class ListShareSnippets extends ListRecords
     protected function getTableDescription(): string|Htmlable|null
     {
         return 'Share Snippets';
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSubheading(): ?string
+    {
+        return __('filament-blog::share_snippets.subtitle');
     }
 }

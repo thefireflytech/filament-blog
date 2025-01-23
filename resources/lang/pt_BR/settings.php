@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'title' => 'Configuração',
+    'plural_title' => 'Configurações',
     'table' => [
         'columns' => [
             'title' => 'Título',

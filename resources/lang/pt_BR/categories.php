@@ -1,18 +1,19 @@
 <?php
 
 return [
-    'title' => 'Tag',
-    'plural_title' => 'Tags',
+    'title' => 'Categoria',
+    'plural_title' => 'Categorias',
     'forms' => [
         'fields' => [
-            'name' => 'Name',
+            'name' => 'Nome',
             'slug' => 'Slug',
         ],
     ],
     'tables' => [
         'columns' => [
-            'name' => 'Name',
+            'name' => 'Nome',
             'slug' => 'Slug',
+            'posts_count' => 'Quantidade de Publicações',
         ],
     ],
 ];

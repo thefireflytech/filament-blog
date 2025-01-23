@@ -5,13 +5,13 @@ return [
     'plural_title' => 'Tags',
     'forms' => [
         'fields' => [
-            'name' => 'Name',
+            'name' => 'Nome',
             'slug' => 'Slug',
         ],
     ],
     'tables' => [
         'columns' => [
-            'name' => 'Name',
+            'name' => 'Nome',
             'slug' => 'Slug',
         ],
     ],

@@ -10,12 +10,16 @@ class ListNewsletters extends ListRecords
 {
     protected static string $resource = NewsletterResource::class;
 
-    protected static ?string $title = 'Newsletters Subscriber';
+    protected static ?string $title = '';
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),
         ];
+    }
+
+    public function getTitle(): string {
+        return __('filament-blog::news_letters.list_title');
     }
 }

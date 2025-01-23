@@ -31,15 +31,18 @@ class CommentResource extends Resource
         return $table
             ->columns([
                 UserPhotoName::make('user')
-                    ->label('User'),
+                    ->label(__('filament-blog::comments.tables.columns.user')),
                 Tables\Columns\TextColumn::make('post.title')
+                    ->label(__('filament-blog::comments.tables.columns.post'))
                     ->numeric()
                     ->limit(20)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('comment')
+                    ->label(__('filament-blog::comments.tables.columns.comment'))
                     ->searchable()
                     ->limit(20),
                 Tables\Columns\ToggleColumn::make('approved')
+                    ->label(__('filament-blog::comments.tables.columns.approved'))
                     ->beforeStateUpdated(function ($record, $state) {
                         if ($state) {
                             $record->approved_at = now();
@@ -50,20 +53,23 @@ class CommentResource extends Resource
                         return $state;
                     }),
                 Tables\Columns\TextColumn::make('approved_at')
+                    ->label(__('filament-blog::comments.tables.columns.approved_at.label'))
                     ->sortable()
-                    ->placeholder('Not approved yet'),
+                    ->placeholder(__('filament-blog::comments.tables.columns.approved_at.placeholder')),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label(__('filament-blog::general.created_at'))
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label(__('filament-blog::general.updated_at'))
+                    ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('user')
+                Tables\Filters\SelectFilter::make(__('filament-blog::comments.tables.filters.user'))
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()
@@ -97,5 +103,15 @@ class CommentResource extends Resource
             'create' => \Firefly\FilamentBlog\Resources\CommentResource\Pages\CreateComment::route('/create'),
             'edit' => \Firefly\FilamentBlog\Resources\CommentResource\Pages\EditComment::route('/{record}/edit'),
         ];
+    }
+
+    public static function getLabel(): string
+    {
+        return __('filament-blog::comments.title');
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return __('filament-blog::comments.plural_title');
     }
 }
