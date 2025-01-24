@@ -28,23 +28,23 @@ class SeoDetailResource extends Resource
             ->striped()
             ->columns([
                 Tables\Columns\TextColumn::make('post.title')
-                    ->label(__('filament-blog::seo_details.tables.columns.post'))
+                    ->label(__('filament-blog::resources/seo_details.tables.columns.post'))
                     ->limit(20),
                 Tables\Columns\TextColumn::make('title')
-                    ->label(__('filament-blog::seo_details.tables.columns.title'))
+                    ->label(__('filament-blog::resources/seo_details.tables.columns.title'))
                     ->limit(20)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('keywords')
                     ->badge()
-                    ->label(__('filament-blog::seo_details.tables.columns.keywords'))
+                    ->label(__('filament-blog::resources/seo_details.tables.columns.keywords'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('filament-blog::general.created_at'))
+                    ->label(__('filament-blog::resources/general.created_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('filament-blog::general.updated_at'))
+                    ->label(__('filament-blog::resources/general.updated_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -81,12 +81,12 @@ class SeoDetailResource extends Resource
 
     public static function getLabel(): string
     {
-        return __('filament-blog::seo_details.title');
+        return __('filament-blog::resources/seo_details.title');
     }
 
     public static function getPluralLabel(): string
     {
-        return __('filament-blog::seo_details.plural_title');
+        return __('filament-blog::resources/seo_details.plural_title');
     }
 
     public static function getNavigationGroup(): ?string

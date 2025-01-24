@@ -33,7 +33,7 @@ class Tag extends Model
     {
         return [
             TextInput::make('name')
-                ->label(__('filament-blog::tags.forms.fields.name'))
+                ->label(__('filament-blog::resources/tags.forms.fields.name'))
                 ->live(true)->afterStateUpdated(fn(Set $set, ?string $state) => $set(
                     'slug',
                     Str::slug($state)
@@ -43,7 +43,7 @@ class Tag extends Model
                 ->maxLength(50),
 
             TextInput::make('slug')
-                ->label(__('filament-blog::tags.forms.fields.slug'))
+                ->label(__('filament-blog::resources/tags.forms.fields.slug'))
                 ->unique(config('filamentblog.tables.prefix').'tags', 'slug', null, 'id')
                 ->readOnly()
                 ->maxLength(155),

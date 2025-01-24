@@ -27,12 +27,12 @@ class ManaePostSeoDetail extends ManageRelatedRecords
 
         $recordTitle = $recordTitle instanceof Htmlable ? $recordTitle->toHtml() : $recordTitle;
 
-        return __('filament-blog::posts.forms.tabs.edit_page.manage_seo_details');
+        return __('filament-blog::resources/posts.forms.tabs.edit_page.manage_seo_details');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('filament-blog::posts.forms.tabs.edit_page.manage_seo_details');
+        return __('filament-blog::resources/posts.forms.tabs.edit_page.manage_seo_details');
     }
 
     protected function canCreate(): bool
@@ -45,15 +45,15 @@ class ManaePostSeoDetail extends ManageRelatedRecords
         return $form
             ->schema([
                 TextInput::make('title')
-                    ->label(__('filament-blog::posts.forms.fields.title'))
+                    ->label(__('filament-blog::resources/posts.forms.fields.title'))
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
                 TagsInput::make('keywords')
-                    ->label(__('filament-blog::posts.forms.fields.keywords'))
+                    ->label(__('filament-blog::resources/posts.forms.fields.keywords'))
                     ->columnSpanFull(),
                 Textarea::make('description')
-                    ->label(__('filament-blog::posts.forms.fields.description'))
+                    ->label(__('filament-blog::resources/posts.forms.fields.description'))
                     ->required()
                     ->maxLength(65535)
                     ->columnSpanFull(),
@@ -66,20 +66,20 @@ class ManaePostSeoDetail extends ManageRelatedRecords
             ->recordTitleAttribute('title')
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->label(__('filament-blog::posts.tables.columns.title'))
+                    ->label(__('filament-blog::resources/posts.tables.columns.title'))
                     ->limit(20),
                 Tables\Columns\TextColumn::make('description')
-                    ->label(__('filament-blog::posts.tables.columns.description'))
+                    ->label(__('filament-blog::resources/posts.tables.columns.description'))
                     ->limit(40),
                 Tables\Columns\TextColumn::make('keywords')
-                    ->label(__('filament-blog::posts.tables.columns.keywords'))
+                    ->label(__('filament-blog::resources/posts.tables.columns.keywords'))
                     ->badge(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('filament-blog::general.created_at'))
+                    ->label(__('filament-blog::resources/general.created_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('filament-blog::general.updated_at'))
+                    ->label(__('filament-blog::resources/general.updated_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -88,7 +88,7 @@ class ManaePostSeoDetail extends ManageRelatedRecords
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()
-                    ->label(__('filament-blog::posts.forms.tabs.edit_page.add_seo_detail')),
+                    ->label(__('filament-blog::resources/posts.forms.tabs.edit_page.add_seo_detail')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

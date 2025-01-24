@@ -24,9 +24,9 @@ enum PostStatus: string implements HasColor, HasIcon, HasLabel
     public function getLabel(): string
     {
         return match ($this) {
-            self::PENDING => __('filament-blog::posts.forms.fields.status.options.pending'),
-            self::SCHEDULED => __('filament-blog::posts.forms.fields.status.options.scheduled'),
-            self::PUBLISHED => __('filament-blog::posts.forms.fields.status.options.published'),
+            self::PENDING => __('filament-blog::resources/posts.forms.fields.status.options.pending'),
+            self::SCHEDULED => __('filament-blog::resources/posts.forms.fields.status.options.scheduled'),
+            self::PUBLISHED => __('filament-blog::resources/posts.forms.fields.status.options.published'),
         };
     }
 

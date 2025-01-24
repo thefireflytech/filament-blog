@@ -20,6 +20,6 @@ class ListNewsletters extends ListRecords
     }
 
     public function getTitle(): string {
-        return __('filament-blog::news_letters.list_title');
+        return __('filament-blog::resources/news_letters.list_title');
     }
 }

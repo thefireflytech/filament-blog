@@ -55,4 +55,6 @@ return [
     'date_format' => 'Y-m-d',
 
     'time_format' => 'H:i',
+
+    'formatted_published_date' => 'd M Y',
 ];

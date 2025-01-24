@@ -22,13 +22,13 @@ class NewsletterResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('email')
-                    ->label(__('filament-blog::news_letters.forms.fields.email'))
+                    ->label(__('filament-blog::resources/news_letters.forms.fields.email'))
                     ->email()
                     ->required()
                     ->unique(ignoreRecord: true)
                     ->maxLength(100),
                 Forms\Components\Toggle::make('subscribed')
-                    ->label(__('filament-blog::news_letters.forms.fields.subscribed'))
+                    ->label(__('filament-blog::resources/news_letters.forms.fields.subscribed'))
                     ->default(true)
                     ->required()->columnSpanFull(),
             ])->columns(2);
@@ -39,17 +39,17 @@ class NewsletterResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('email')
-                    ->label(__('filament-blog::news_letters.tables.columns.email'))
+                    ->label(__('filament-blog::resources/news_letters.tables.columns.email'))
                     ->searchable(),
                 Tables\Columns\ToggleColumn::make('subscribed')
-                    ->label(__('filament-blog::news_letters.tables.columns.subscribed')),
+                    ->label(__('filament-blog::resources/news_letters.tables.columns.subscribed')),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('filament-blog::general.created_at'))
+                    ->label(__('filament-blog::resources/general.created_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('filament-blog::general.updated_at'))
+                    ->label(__('filament-blog::resources/general.updated_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -84,11 +84,11 @@ class NewsletterResource extends Resource
     }
 
     public static function getLabel(): string {
-        return __('filament-blog::news_letters.title');
+        return __('filament-blog::resources/news_letters.title');
     }
 
     public static function getPluralLabel(): string {
-        return __('filament-blog::news_letters.plural_title');
+        return __('filament-blog::resources/news_letters.plural_title');
     }
 
     public static function getNavigationGroup(): ?string

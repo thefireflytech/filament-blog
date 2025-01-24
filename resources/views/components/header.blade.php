@@ -15,11 +15,11 @@
                     </a>
                     <div class="hidden gap-x-10 sm:flex">
                         <a href="{{ route('filamentblog.post.index') }}" class="font-semibold text-md hover:text-primary-600">
-                            <span>Blogs</span>
+                            <span>{{ config('filamentblog.group_navigation_title') }}</span>
                         </a>
                         <div class="relative group">
                             <button class="flex items-center justify-center font-semibold text-md hover:text-primary-600 gap-x-2">
-                                <span>Categories</span>
+                                <span>@lang('filament-blog::components/header.categories')</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19 9l-7 6l-7-6" />
                                 </svg>
@@ -40,7 +40,7 @@
                                         <path stroke-linecap="round" d="M18.5 18.5L22 22" />
                                     </g>
                                 </svg>
-                                <input placeholder="Search" type="text" name="query" value="{{ request()->get('query') }}" class="w-full px-6 py-3 pl-12 text-sm font-medium text-gray-800 placeholder-gray-400 border rounded-full outline-none bg-white/10 placeholder:text-slate-500 focus:ring-0" />
+                                <input placeholder="{{ __('filament-blog::components/header.search') }}" type="text" name="query" value="{{ request()->get('query') }}" class="w-full px-6 py-3 pl-12 text-sm font-medium text-gray-800 placeholder-gray-400 border rounded-full outline-none bg-white/10 placeholder:text-slate-500 focus:ring-0" />
                             </div>
                             @error('query')
                             <span class="text-xs text-red-500">{{ $message }}</span>

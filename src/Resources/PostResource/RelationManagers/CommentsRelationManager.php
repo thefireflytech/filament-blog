@@ -17,7 +17,7 @@ class CommentsRelationManager extends RelationManager
         return $form
             ->schema([
                 Forms\Components\TextInput::make('comment')
-                    ->label(__('filament-blog::comments.forms.fields.comment'))
+                    ->label(__('filament-blog::resources/comments.forms.fields.comment'))
                     ->required()
                     ->maxLength(255),
             ]);
@@ -36,13 +36,13 @@ class CommentsRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()
-                    ->modalHeading(__('filament-actions::delete.single.modal.heading', ['label' => __('filament-blog::comments.title')])),
+                    ->modalHeading(__('filament-actions::delete.single.modal.heading', ['label' => __('filament-blog::resources/comments.title')])),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                    ->modalHeading(__('filament-actions::edit.single.modal.heading', ['label' => __('filament-blog::comments.title')])),
+                    ->modalHeading(__('filament-actions::edit.single.modal.heading', ['label' => __('filament-blog::resources/comments.title')])),
                 Tables\Actions\DeleteAction::make()
-                    ->modalHeading(__('filament-actions::delete.single.modal.heading', ['label' => __('filament-blog::comments.title')])),
+                    ->modalHeading(__('filament-actions::delete.single.modal.heading', ['label' => __('filament-blog::resources/comments.title')])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -37,13 +37,13 @@ class ShareSnippet extends Model
     {
         return [
             Textarea::make('script_code')
-                ->label(__('filament-blog::share_snippets.forms.fields.js_script'))
+                ->label(__('filament-blog::resources/share_snippets.forms.fields.js_script'))
                 ->required(),
             Textarea::make('html_code')
-                ->label(__('filament-blog::share_snippets.forms.fields.html_code'))
+                ->label(__('filament-blog::resources/share_snippets.forms.fields.html_code'))
                 ->required(),
             Toggle::make('active')
-                ->label(__('filament-blog::share_snippets.forms.fields.active')),
+                ->label(__('filament-blog::resources/share_snippets.forms.fields.active')),
         ];
     }
 

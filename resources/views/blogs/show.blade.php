@@ -2,9 +2,9 @@
     <section class="pb-16">
         <div class="container mx-auto">
             <div class="mb-10 flex gap-x-2 text-sm font-semibold">
-                <a href="{{ route('filamentblog.post.index') }}" class="opacity-60">Home</a>
+                <a href="{{ route('filamentblog.post.index') }}" class="opacity-60">@lang('filament-blog::pages/show.home')</a>
                 <span class="opacity-30">/</span>
-                <a href="{{ route('filamentblog.post.all') }}" class="opacity-60">Blog</a>
+                <a href="{{ route('filamentblog.post.all') }}" class="opacity-60">{{  config('filamentblog.group_navigation_title', 'Blog') }}</a>
                 <span class="opacity-30">/</span>
                 <a title="{{ $post->slug }}" href="{{ route('filamentblog.post.show', ['post' => $post->slug]) }}" class="hover:text-primary-600 max-w-2xl truncate font-medium transition-all duration-300">
                     {{ $post->title }}
@@ -20,7 +20,7 @@
                                         <path fill="currentColor" d="M13 11H7a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2m4-4H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2m2-5H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h11.59l3.7 3.71A1 1 0 0 0 21 22a.84.84 0 0 0 .38-.08A1 1 0 0 0 22 21V5a3 3 0 0 0-3-3m1 16.59l-2.29-2.3A1 1 0 0 0 17 16H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1Z" />
                                     </svg>
                                 </div>
-                                <span class="text-xs font-semibold">COMMENTS</span>
+                                <span class="text-xs font-semibold uppercase">@lang('filament-blog::pages/show.comments')</span>
                             </button>
                             <div class="pt-5">
                                 {!! $shareButton?->html_code !!}
@@ -83,7 +83,7 @@
                         @if($post->comments->count())
                         <div class="border-t-2 py-10">
                             <div class="mb-4">
-                                <h3 class="mb-2 text-2xl font-semibold">Comments</h3>
+                                <h3 class="mb-2 text-2xl font-semibold">@lang('filament-blog::pages/show.comments')</h3>
                             </div>
                             <div class="flex flex-col gap-y-6 divide-y">
                                 @foreach($post->comments as $comment)
@@ -124,7 +124,7 @@
                 <div>
                     <div class="relative mb-6 flex items-center gap-x-8">
                         <h2 class="whitespace-nowrap text-xl font-semibold">
-                            <span class="text-primary font-bold">#</span> Related Posts
+                            <span class="text-primary font-bold">#</span> @lang('filament-blog::pages/show.related_posts')
                         </h2>
                         <div class="flex w-full items-center">
                             <span class="h-0.5 w-full rounded-full bg-slate-200"></span>
@@ -135,13 +135,13 @@
                         <x-blog-card :post="$post" />
                         @empty
                         <div class="col-span-3">
-                            <p class="text-center text-xl font-semibold text-gray-300">No related posts found.</p>
+                            <p class="text-center text-xl font-semibold text-gray-300">@lang('filament-blog::pages/show.no-related-posts').</p>
                         </div>
                         @endforelse
                     </div>
                     <div class="flex justify-center pt-20">
                         <a href="{{ route('filamentblog.post.all') }}" class="flex items-center justify-center md:gap-x-5 rounded-full bg-slate-100 px-20 py-4 text-sm font-semibold transition-all duration-300 hover:bg-slate-200">
-                            <span>Show all blogs</span>
+                            <span>@lang('filament-blog::pages/index.show-all')</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6m0 0H9m9 0v9" />
                             </svg>

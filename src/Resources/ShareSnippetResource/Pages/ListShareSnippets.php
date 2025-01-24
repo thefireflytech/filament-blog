@@ -30,6 +30,6 @@ class ListShareSnippets extends ListRecords
      */
     public function getSubheading(): ?string
     {
-        return __('filament-blog::share_snippets.subtitle');
+        return __('filament-blog::resources/share_snippets.subtitle');
     }
 }

@@ -27,19 +27,19 @@ class TagResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label(__('filament-blog::tags.tables.columns.name'))
+                    ->label(__('filament-blog::resources/tags.tables.columns.name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
-                    ->label(__('filament-blog::tags.tables.columns.slug')),
+                    ->label(__('filament-blog::resources/tags.tables.columns.slug')),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('filament-blog::general.created_at'))
+                    ->label(__('filament-blog::resources/general.created_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('filament-blog::general.updated_at'))
+                    ->label(__('filament-blog::resources/general.updated_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -76,12 +76,12 @@ class TagResource extends Resource
 
     public static function getLabel() : ?string
     {
-        return __('filament-blog::tags.title');
+        return __('filament-blog::resources/tags.title');
     }
 
     public static function getPluralLabel() : ?string
     {
-        return __('filament-blog::tags.plural_title');
+        return __('filament-blog::resources/tags.plural_title');
     }
 
     public static function getNavigationGroup(): ?string

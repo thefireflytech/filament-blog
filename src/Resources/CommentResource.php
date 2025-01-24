@@ -29,18 +29,18 @@ class CommentResource extends Resource
         return $table
             ->columns([
                 UserPhotoName::make('user')
-                    ->label(__('filament-blog::comments.tables.columns.user')),
+                    ->label(__('filament-blog::resources/comments.tables.columns.user')),
                 Tables\Columns\TextColumn::make('post.title')
-                    ->label(__('filament-blog::comments.tables.columns.post'))
+                    ->label(__('filament-blog::resources/comments.tables.columns.post'))
                     ->numeric()
                     ->limit(20)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('comment')
-                    ->label(__('filament-blog::comments.tables.columns.comment'))
+                    ->label(__('filament-blog::resources/comments.tables.columns.comment'))
                     ->searchable()
                     ->limit(20),
                 Tables\Columns\ToggleColumn::make('approved')
-                    ->label(__('filament-blog::comments.tables.columns.approved'))
+                    ->label(__('filament-blog::resources/comments.tables.columns.approved'))
                     ->beforeStateUpdated(function ($record, $state) {
                         if ($state) {
                             $record->approved_at = now();
@@ -51,23 +51,23 @@ class CommentResource extends Resource
                         return $state;
                     }),
                 Tables\Columns\TextColumn::make('approved_at')
-                    ->label(__('filament-blog::comments.tables.columns.approved_at.label'))
+                    ->label(__('filament-blog::resources/comments.tables.columns.approved_at.label'))
                     ->sortable()
-                    ->placeholder(__('filament-blog::comments.tables.columns.approved_at.placeholder')),
+                    ->placeholder(__('filament-blog::resources/comments.tables.columns.approved_at.placeholder')),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('filament-blog::general.created_at'))
+                    ->label(__('filament-blog::resources/general.created_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('filament-blog::general.updated_at'))
+                    ->label(__('filament-blog::resources/general.updated_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make(__('filament-blog::comments.tables.filters.user'))
+                Tables\Filters\SelectFilter::make(__('filament-blog::resources/comments.tables.filters.user'))
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()
@@ -105,12 +105,12 @@ class CommentResource extends Resource
 
     public static function getLabel(): string
     {
-        return __('filament-blog::comments.title');
+        return __('filament-blog::resources/comments.title');
     }
 
     public static function getPluralLabel(): string
     {
-        return __('filament-blog::comments.plural_title');
+        return __('filament-blog::resources/comments.plural_title');
     }
 
     public static function getNavigationGroup(): ?string

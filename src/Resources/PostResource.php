@@ -51,36 +51,36 @@ class PostResource extends Resource
             ->deferLoading()
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->label(__('filament-blog::posts.tables.columns.title'))
+                    ->label(__('filament-blog::resources/posts.tables.columns.title'))
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title, 40);
                     })
                     ->searchable()->limit(20),
                 Tables\Columns\TextColumn::make('status')
-                    ->label(__('filament-blog::posts.tables.columns.status'))
+                    ->label(__('filament-blog::resources/posts.tables.columns.status'))
                     ->badge()
                     ->color(function ($state) {
                         return $state->getColor();
                     }),
                 Tables\Columns\ImageColumn::make('cover_photo_path')
-                    ->label(__('filament-blog::posts.tables.columns.cover_photo')),
+                    ->label(__('filament-blog::resources/posts.tables.columns.cover_photo')),
 
                 UserPhotoName::make('user')
-                    ->label(__('filament-blog::posts.tables.columns.author')),
+                    ->label(__('filament-blog::resources/posts.tables.columns.author')),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('filament-blog::general.created_at'))
+                    ->label(__('filament-blog::resources/general.created_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('filament-blog::general.updated_at'))
+                    ->label(__('filament-blog::resources/general.updated_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])->defaultSort('id', 'desc')
             ->filters([
-                Tables\Filters\SelectFilter::make(__('filament-blog::posts.tables.filters.user'))
+                Tables\Filters\SelectFilter::make(__('filament-blog::resources/posts.tables.filters.user'))
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()
@@ -102,44 +102,44 @@ class PostResource extends Resource
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist->schema([
-            Section::make(__('filament-blog::posts.forms.sections.header_title'))
+            Section::make(__('filament-blog::resources/posts.forms.sections.header_title'))
                 ->schema([
-                    Fieldset::make(__('filament-blog::posts.forms.sections.general'))
+                    Fieldset::make(__('filament-blog::resources/posts.forms.sections.general'))
                         ->schema([
                             TextEntry::make('title')
-                                ->label(__('filament-blog::posts.forms.fields.title')),
+                                ->label(__('filament-blog::resources/posts.forms.fields.title')),
                             TextEntry::make('slug')
-                                ->label(__('filament-blog::posts.forms.fields.slug')),
+                                ->label(__('filament-blog::resources/posts.forms.fields.slug')),
                             TextEntry::make('sub_title')
-                                ->label(__('filament-blog::posts.forms.fields.sub_title')),
+                                ->label(__('filament-blog::resources/posts.forms.fields.sub_title')),
                         ]),
-                    Fieldset::make(__('filament-blog::posts.forms.sections.publish_information'))
+                    Fieldset::make(__('filament-blog::resources/posts.forms.sections.publish_information'))
                         ->schema([
                             TextEntry::make('status')
-                                ->label(__('filament-blog::posts.forms.fields.status.label'))
+                                ->label(__('filament-blog::resources/posts.forms.fields.status.label'))
                                 ->badge()
                                 ->color(function ($state) {
                                     return $state->getColor();
                                 }),
                             TextEntry::make('published_at')
-                                ->label(__('filament-blog::posts.forms.fields.published_at'))
+                                ->label(__('filament-blog::resources/posts.forms.fields.published_at'))
                                 ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                                 ->visible(function (Post $record) {
                                     return $record->status === PostStatus::PUBLISHED;
                                 }),
 
                             TextEntry::make('scheduled_for')
-                                ->label(__('filament-blog::posts.forms.fields.scheduled_for'))
+                                ->label(__('filament-blog::resources/posts.forms.fields.scheduled_for'))
                                 ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                                 ->visible(function (Post $record) {
                                     return $record->status === PostStatus::SCHEDULED;
                                 }),
                         ]),
                     Fieldset::make('Description')
-                        ->label(__('filament-blog::posts.forms.sections.description'))
+                        ->label(__('filament-blog::resources/posts.forms.sections.description'))
                         ->schema([
                             TextEntry::make('body')
-                                ->label(__('filament-blog::posts.forms.fields.body'))
+                                ->label(__('filament-blog::resources/posts.forms.fields.body'))
                                 ->html()
                                 ->columnSpanFull(),
                         ]),
@@ -186,12 +186,12 @@ class PostResource extends Resource
 
     public static function getLabel() : ?string
     {
-        return __('filament-blog::posts.title');
+        return __('filament-blog::resources/posts.title');
     }
 
     public static function getPluralLabel() : ?string
     {
-        return __('filament-blog::posts.plural_title');
+        return __('filament-blog::resources/posts.plural_title');
     }
 
     public static function getNavigationGroup(): ?string

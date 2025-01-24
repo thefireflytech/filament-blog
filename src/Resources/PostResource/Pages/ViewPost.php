@@ -24,7 +24,7 @@ class ViewPost extends ViewRecord
     {
         return [
             Action::make('sendNotification')
-                ->label(__('filament-blog::posts.forms.actions.send_notification'))
+                ->label(__('filament-blog::resources/posts.forms.actions.send_notification'))
                 ->requiresConfirmation()
                 ->icon('heroicon-o-bell')->action(function (Post $record) {
                     event(new BlogPublished($record));
@@ -33,7 +33,7 @@ class ViewPost extends ViewRecord
                     return $record->isNotPublished();
                 }),
             Action::make('preview')
-                ->label(__('filament-blog::posts.forms.actions.preview'))
+                ->label(__('filament-blog::resources/posts.forms.actions.preview'))
                 ->requiresConfirmation()
                 ->icon('heroicon-o-eye')->url(function (Post $record) {
                     return route('filamentblog.post.show', $record->slug);
@@ -46,7 +46,7 @@ class ViewPost extends ViewRecord
 
     public static function getNavigationLabel(): string
     {
-        return __('filament-blog::posts.forms.tabs.edit_page.view_post');
+        return __('filament-blog::resources/posts.forms.tabs.edit_page.view_post');
     }
 
 }

@@ -18,12 +18,12 @@ class SettingResource extends Resource
 
     public static function getLabel(): string
     {
-        return __('filament-blog::settings.title');
+        return __('filament-blog::resources/settings.title');
     }
 
     public static function getPluralLabel(): string
     {
-        return __('filament-blog::settings.plural_title');
+        return __('filament-blog::resources/settings.plural_title');
     }
 
     public static function form(Form $form): Form
@@ -42,28 +42,28 @@ class SettingResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->label(__('filament-blog::settings.table.columns.title'))
+                    ->label(__('filament-blog::resources/settings.table.columns.title'))
                     ->limit(25)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
-                    ->label(__('filament-blog::settings.table.columns.description'))
+                    ->label(__('filament-blog::resources/settings.table.columns.description'))
                     ->limit(30)
                     ->searchable(),
 
                 Tables\Columns\ImageColumn::make('logo')
-                    ->label(__('filament-blog::settings.table.columns.logo')),
+                    ->label(__('filament-blog::resources/settings.table.columns.logo')),
 
                 Tables\Columns\TextColumn::make('organization_name')
-                    ->label(__('filament-blog::settings.table.columns.organization_name')),
+                    ->label(__('filament-blog::resources/settings.table.columns.organization_name')),
 
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label(__('filament-blog::general.created_at'))
+                    ->label(__('filament-blog::resources/general.created_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label(__('filament-blog::general.updated_at'))
+                    ->label(__('filament-blog::resources/general.updated_at'))
                     ->dateTime(config('filamentblog.date_format') . ' ' . config('filamentblog.time_format'))
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

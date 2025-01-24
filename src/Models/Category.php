@@ -33,7 +33,7 @@ class Category extends Model
     {
         return [
             TextInput::make('name')
-                ->label(__('filament-blog::categories.forms.fields.name'))
+                ->label(__('filament-blog::resources/categories.forms.fields.name'))
                 ->live(true)
                 ->afterStateUpdated(function (Get $get, Set $set, ?string $operation, ?string $old, ?string $state) {
 
@@ -44,7 +44,7 @@ class Category extends Model
                 ->maxLength(155),
 
             TextInput::make('slug')
-                ->label(__('filament-blog::categories.forms.fields.slug'))
+                ->label(__('filament-blog::resources/categories.forms.fields.slug'))
                 ->unique(config('filamentblog.tables.prefix').'categories', 'slug', null, 'id')
                 ->readOnly()
                 ->maxLength(255),

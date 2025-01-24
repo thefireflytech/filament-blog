@@ -29,17 +29,17 @@ class ListPosts extends ListRecords
     public function getTabs(): array
     {
         return [
-            'all' => Tab::make(__('filament-blog::posts.forms.tabs.list_page.all')),
-            'published' => Tab::make(__('filament-blog::posts.forms.tabs.list_page.published'))
+            'all' => Tab::make(__('filament-blog::resources/posts.forms.tabs.list_page.all')),
+            'published' => Tab::make(__('filament-blog::resources/posts.forms.tabs.list_page.published'))
                 ->modifyQueryUsing(function ($query) {
                     $query->published();
                 })->icon('heroicon-o-check-badge'),
-            'pending' => Tab::make(__('filament-blog::posts.forms.tabs.list_page.pending'))
+            'pending' => Tab::make(__('filament-blog::resources/posts.forms.tabs.list_page.pending'))
                 ->modifyQueryUsing(function ($query) {
                     $query->pending();
                 })
                 ->icon('heroicon-o-clock'),
-            'scheduled' => Tab::make(__('filament-blog::posts.forms.tabs.list_page.scheduled'))
+            'scheduled' => Tab::make(__('filament-blog::resources/posts.forms.tabs.list_page.scheduled'))
                 ->modifyQueryUsing(function ($query) {
                     $query->scheduled();
                 })
