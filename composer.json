@@ -1,22 +1,13 @@
 {
-    "name": "firefly/filament-blog",
+    "name": "webtechnologyltda/filament-blog",
     "type": "library",
     "description": "An advance blog package for Filament Admin Panel",
     "keywords": [
         "filament",
         "laravel",
-        "blog",
-        "firefly"
+        "blog"
     ],
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Asmit Nepali",
-            "email": "asmit@thefireflytech.com",
-            "homepage": "https://github.com/asmit-firefly",
-            "role": "Developer"
-        }
-    ],
     "require": {
         "php": ">=8.0",
         "filament/support": "^3.2",

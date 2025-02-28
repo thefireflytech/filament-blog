@@ -82,13 +82,13 @@ class PostController extends Controller
                 Rule::unique(NewsLetter::class, 'email')
             ],
         ], [
-            'email.unique' => 'You have already subscribed',
+            'email.unique' => __('filament-blog::mails/blog-published.email-unique'),
         ]);
 
         NewsLetter::create([
             'email' => $request->email,
         ]);
 
-        return back()->with('success', 'You have successfully subscribed to our news letter');
+        return back()->with('success', __('filament-blog::mails/blog-published.success-message'));
     }
 }

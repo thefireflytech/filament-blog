@@ -108,7 +108,9 @@
                             </div>
                         </div>
                         @endif
-                        <x-blog-comment :post="$post" />
+                        @if ( config('filamentblog.features.comments.enabled') )
+                            <x-blog-comment :post="$post" />
+                        @endif
                     </div>
                     <div>
                         {{-- Ads Section            --}}

@@ -149,12 +149,20 @@ class PostResource extends Resource
 
     public static function getRecordSubNavigation(Page $page): array
     {
-        return $page->generateNavigationItems([
+        $navigationItems = [
             ViewPost::class,
-            ManaePostSeoDetail::class,
-            ManagePostComments::class,
-            EditPost::class,
-        ]);
+            EditPost::class
+        ];
+
+        if( config('filamentblog.features.seo_details.enabled') ) {
+            $navigationItems[] = ManaePostSeoDetail::class;
+        }
+
+        if( config('filamentblog.features.comments.enabled') ) {
+            $navigationItems[] = ManagePostComments::class;
+        }
+
+        return $page->generateNavigationItems($navigationItems);
     }
 
     public static function getRelations(): array
@@ -174,14 +182,22 @@ class PostResource extends Resource
 
     public static function getPages(): array
     {
-        return [
+        $pages = [
             'index' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ListPosts::route('/'),
             'create' => \Firefly\FilamentBlog\Resources\PostResource\Pages\CreatePost::route('/create'),
             'edit' => \Firefly\FilamentBlog\Resources\PostResource\Pages\EditPost::route('/{record}/edit'),
             'view' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost::route('/{record}'),
-            'comments' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ManagePostComments::route('/{record}/comments'),
-            'seoDetail' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ManaePostSeoDetail::route('/{record}/seo-details'),
         ];
+
+        if (config('filamentblog.features.comments.enabled')) {
+            $pages['comments'] = \Firefly\FilamentBlog\Resources\PostResource\Pages\ManagePostComments::route('/{record}/comments');
+        }
+
+        if (config('filamentblog.features.seo_details.enabled')) {
+            $pages['seoDetail'] = \Firefly\FilamentBlog\Resources\PostResource\Pages\ManaePostSeoDetail::route('/{record}/seo-details');
+        }
+
+        return $pages;
     }
 
     public static function getLabel() : ?string

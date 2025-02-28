@@ -39,6 +39,7 @@ return [
         ],
         'tabs' => [
             'edit_page' => [
+                'add_seo_detail' => 'Adicionar Detalhe de SEO',
                 'view_post' => 'Visualizar Publicação',
                 'manage_seo_details' => 'Gerenciar Detalhes de SEO',
                 'manage_comments' => 'Gerenciar Comentários',
@@ -60,7 +61,7 @@ return [
         ],
         'actions' => [
             'preview' => 'Pré-Visualizar',
-            'send_notification' => 'Enviar Notificação',
+            'send_notification' => 'Notificar Nova Publicação',
         ]
     ],
     'tables' => [

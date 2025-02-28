@@ -84,27 +84,7 @@ class Setting extends Model
                         ->nullable()->columnSpanFull()
                 ])->columns(2),
 
-            Section::make(__('filament-blog::resources/settings.form.sections.seo.title'))
-                ->description(__('filament-blog::resources/settings.form.sections.seo.subtitle'))
-                ->schema([
-                    Textarea::make('google_console_code')
-                        ->label(__('filament-blog::resources/settings.form.fields.seo.google_console_code'))
-                        ->startsWith('<meta')
-                        ->nullable()
-                        ->columnSpanFull(),
-                    Textarea::make('google_analytic_code')
-                        ->label(__('filament-blog::resources/settings.form.fields.seo.google_analytic_code'))
-                        ->startsWith('<script')
-                        ->endsWith('</script>')
-                        ->nullable()
-                        ->columnSpanFull(),
-                    Textarea::make('google_adsense_code')
-                        ->label(__('filament-blog::resources/settings.form.fields.seo.google_adsense_code'))
-                        ->startsWith('<script')
-                        ->endsWith('</script>')
-                        ->nullable()
-                        ->columnSpanFull(),
-                ])->columns(2),
+            ...self::addSeoSection(),
             Section::make(__('filament-blog::resources/settings.form.sections.quick_links.title'))
                 ->description(__('filament-blog::resources/settings.form.sections.quick_links.subtitle'))
                 ->schema([
@@ -130,5 +110,35 @@ class Setting extends Model
     public function getTable()
     {
         return config('filamentblog.tables.prefix') . 'settings';
+    }
+
+    public static function addSeoSection()
+    {
+        if (! config('filamentblog.features.seo_details.enabled')) {
+            return [];
+        }
+        return [
+            Section::make(__('filament-blog::resources/settings.form.sections.seo.title'))
+                ->description(__('filament-blog::resources/settings.form.sections.seo.subtitle'))
+                ->schema([
+                    Textarea::make('google_console_code')
+                        ->label(__('filament-blog::resources/settings.form.fields.seo.google_console_code'))
+                        ->startsWith('<meta')
+                        ->nullable()
+                        ->columnSpanFull(),
+                    Textarea::make('google_analytic_code')
+                        ->label(__('filament-blog::resources/settings.form.fields.seo.google_analytic_code'))
+                        ->startsWith('<script')
+                        ->endsWith('</script>')
+                        ->nullable()
+                        ->columnSpanFull(),
+                    Textarea::make('google_adsense_code')
+                        ->label(__('filament-blog::resources/settings.form.fields.seo.google_adsense_code'))
+                        ->startsWith('<script')
+                        ->endsWith('</script>')
+                        ->nullable()
+                        ->columnSpanFull(),
+                ])->columns(2),
+        ];
     }
 }

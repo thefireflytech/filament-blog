@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@lang('filament-blog::resources/mails.blog-published.title')</title>
+    <title>@lang('filament-blog::mails/blog-published.body-title')</title>
     <style>
         /* Reset styles for email compatibility */
         body, p, h1, h2, h3, h4, h5, h6 {
@@ -74,17 +74,17 @@
     <div class="project-name">
         {{ config('app.name') }}
     </div>
-    <h2 class="flash">@lang('filament-blog::resources/mails.blog-published.body-title')</h2>
+    <h2 class="flash">@lang('filament-blog::mails/blog-published.body-title')</h2>
     <div class="header">
         <img src="{{ $post->featurePhoto }}" alt="Feature Image">
     </div>
     <div class="content">
         <h2>{{ $post->title }}</h2>
         <p>{!! Str::limit($post->body, 500) !!} </p>
-        <a href="{{route('filamentblog.post.show', ['post' => $post->slug])}}" class="btn">@lang('filament-blog::resources/mails.blog-published.read-more')</a>
+        <a href="{{route('filamentblog.post.show', ['post' => $post->slug])}}" class="btn bg-primary-600">@lang('filament-blog::mails/blog-published.read-more')</a>
     </div>
     <div class="footer">
-        <p>@lang('filament-blog::resources/mails.blog-published.footer-thanks-message')</p>
+        <p>@lang('filament-blog::mails/blog-published.footer-thanks-message')</p>
     </div>
 </div>
 </body>

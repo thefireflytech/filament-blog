@@ -57,4 +57,19 @@ return [
     'time_format' => 'H:i',
 
     'formatted_published_date' => 'd M Y',
+
+    'features' => [
+        'comments' => [
+            'enabled' => false,
+        ],
+        'share_code' => [
+            'enabled' => false,
+        ],
+        'seo_details' => [
+            'enabled' => false,
+        ],
+        'newsletter' => [
+            'enabled' => false,
+        ],
+    ],
 ];

@@ -19,16 +19,27 @@ class Blog implements Plugin
 
     public function register(Panel $panel): void
     {
-        $panel->resources([
+        $enabledResources = [
             Resources\CategoryResource::class,
             Resources\PostResource::class,
             Resources\TagResource::class,
-            Resources\SeoDetailResource::class,
-            Resources\NewsletterResource::class,
-            Resources\CommentResource::class,
-            Resources\ShareSnippetResource::class,
             Resources\SettingResource::class,
-        ]);
+        ];
+
+        if (config('filamentblog.features.comment.enabled')) {
+            $enabledResources[] = Resources\CommentResource::class;
+        }
+        if (config('filamentblog.features.newsletter.enabled')) {
+            $enabledResources[] = Resources\NewsletterResource::class;
+        }
+        if (config('filamentblog.features.seo_details.enabled')) {
+            $enabledResources[] = Resources\SeoDetailResource::class;
+        }
+        if (config('filamentblog.features.share_code.enabled')) {
+            $enabledResources[] = Resources\ShareSnippetResource::class;
+        }
+
+        $panel->resources($enabledResources);
     }
 
     public function boot(Panel $panel): void

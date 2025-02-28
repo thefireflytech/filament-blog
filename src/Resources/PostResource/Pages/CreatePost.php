@@ -36,6 +36,6 @@ class CreatePost extends CreateRecord
 
     protected function getRedirectUrl(): string
     {
-        return SeoDetailResource::getUrl('create', ['post_id' => $this->record->id]);
+        return config('filamentblog.features.seo_details.enabled') ? SeoDetailResource::getUrl('create', ['post_id' => $this->record->id]) : parent::getRedirectUrl();
     }
 }
