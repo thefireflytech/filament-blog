@@ -19,8 +19,8 @@
     ],
     "require": {
         "php": ">=8.0",
-        "filament/support": "^3.2",
-        "awcodes/filament-tiptap-editor": "^3.2"
+        "filament/support": "^3.3",
+        "awcodes/filament-tiptap-editor": "^3.5"
     },
     "autoload": {
         "psr-4": {
@@ -41,9 +41,9 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "^9",
-        "pestphp/pest": "2.34.5",
-        "pestphp/pest-plugin-laravel": "^2.3"
+        "orchestra/testbench": "^10",
+        "pestphp/pest": "^3.8",
+        "pestphp/pest-plugin-laravel": "^3.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
