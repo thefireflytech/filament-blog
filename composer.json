@@ -41,9 +41,9 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "^9",
-        "pestphp/pest": "2.34.5",
-        "pestphp/pest-plugin-laravel": "^2.3"
+        "orchestra/testbench": "^10",
+        "pestphp/pest": "^3.8",
+        "pestphp/pest-plugin-laravel": "^3.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
