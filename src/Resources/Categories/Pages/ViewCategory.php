@@ -1,11 +1,10 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\CategoryResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Categories\Pages;
 
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
-use Firefly\FilamentBlog\Models\Category;
-use Firefly\FilamentBlog\Resources\CategoryResource;
+use Firefly\FilamentBlog\Resources\Categories\CategoryResource;
 
 class ViewCategory extends ViewRecord
 {
@@ -14,9 +13,7 @@ class ViewCategory extends ViewRecord
     public function getHeaderActions(): array
     {
         return [
-            EditAction::make()
-                ->slideOver()
-                ->schema(Category::getForm()),
+            EditAction::make(),
         ];
     }
 }

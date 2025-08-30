@@ -1,6 +1,6 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\CategoryResource\RelationManagers;
+namespace Firefly\FilamentBlog\Resources\Categories\RelationManagers;
 
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
@@ -10,7 +10,6 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Models\Post;
 use Illuminate\Support\Str;
@@ -53,7 +52,8 @@ class PostsRelationManager extends RelationManager
                 CreateAction::make(),
             ])
             ->recordActions([
-                EditAction::make()->slideOver(),
+                EditAction::make()
+                    ->slideOver(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([

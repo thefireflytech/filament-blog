@@ -2,7 +2,7 @@
 
 namespace Firefly\FilamentBlog;
 
-use Firefly\FilamentBlog\Resources\CategoryResource;
+use Firefly\FilamentBlog\Resources\Categories\CategoryResource;
 use Firefly\FilamentBlog\Resources\PostResource;
 use Firefly\FilamentBlog\Resources\TagResource;
 use Firefly\FilamentBlog\Resources\SeoDetailResource;

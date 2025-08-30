@@ -1,11 +1,10 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\CategoryResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Categories\Pages;
 
 use Filament\Actions\CreateAction;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Firefly\FilamentBlog\Resources\CategoryResource;
+use Firefly\FilamentBlog\Resources\Categories\CategoryResource;
 
 class ListCategories extends ListRecords
 {
