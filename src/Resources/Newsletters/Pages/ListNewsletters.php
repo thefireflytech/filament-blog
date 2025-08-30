@@ -1,11 +1,10 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\NewsletterResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Newsletters\Pages;
 
 use Filament\Actions\CreateAction;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Firefly\FilamentBlog\Resources\NewsletterResource;
+use Firefly\FilamentBlog\Resources\Newsletters\NewsletterResource;
 
 class ListNewsletters extends ListRecords
 {

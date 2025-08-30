@@ -1,9 +1,9 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\NewsletterResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Newsletters\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use Firefly\FilamentBlog\Resources\NewsletterResource;
+use Firefly\FilamentBlog\Resources\Newsletters\NewsletterResource;
 
 class CreateNewsletter extends CreateRecord
 {

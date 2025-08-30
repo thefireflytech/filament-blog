@@ -6,7 +6,7 @@ use Firefly\FilamentBlog\Resources\Categories\CategoryResource;
 use Firefly\FilamentBlog\Resources\Posts\PostResource;
 use Firefly\FilamentBlog\Resources\Tags\TagResource;
 use Firefly\FilamentBlog\Resources\SeoDetails\SeoDetailResource;
-use Firefly\FilamentBlog\Resources\NewsletterResource;
+use Firefly\FilamentBlog\Resources\Newsletters\NewsletterResource;
 use Firefly\FilamentBlog\Resources\Comments\CommentResource;
 use Firefly\FilamentBlog\Resources\ShareSnippetResource;
 use Firefly\FilamentBlog\Resources\SettingResource;
