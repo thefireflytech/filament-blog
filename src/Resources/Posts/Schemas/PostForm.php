@@ -95,10 +95,10 @@ class PostForm
 
                             DateTimePicker::make('scheduled_for')
                                 ->visible(function ($get) {
-                                    return $get('status') === PostStatus::SCHEDULED->value;
+                                    return $get('status') === PostStatus::SCHEDULED;
                                 })
                                 ->required(function ($get) {
-                                    return $get('status') === PostStatus::SCHEDULED->value;
+                                    return $get('status') === PostStatus::SCHEDULED;
                                 })
                                 ->minDate(now()->addMinutes(5))
                                 ->native(false),

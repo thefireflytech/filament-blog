@@ -1,11 +1,10 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\SeoDetailResource\Pages;
+namespace Firefly\FilamentBlog\Resources\SeoDetails\Pages;
 
 use Filament\Actions\CreateAction;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Firefly\FilamentBlog\Resources\SeoDetailResource;
+use Firefly\FilamentBlog\Resources\SeoDetails\SeoDetailResource;
 
 class ListSeoDetails extends ListRecords
 {

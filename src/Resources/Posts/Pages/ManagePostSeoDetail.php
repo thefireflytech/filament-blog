@@ -4,18 +4,11 @@ namespace Firefly\FilamentBlog\Resources\Posts\Pages;
 
 use BackedEnum;
 use Filament\Schemas\Schema;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Actions\CreateAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
-use Filament\Forms\Components\TagsInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\ManageRelatedRecords;
-use Filament\Tables;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Resources\Posts\PostResource;
-use Illuminate\Contracts\Support\Htmlable;
+use Firefly\FilamentBlog\Resources\SeoDetails\Schemas\SeoDetailForm;
+use Firefly\FilamentBlog\Resources\SeoDetails\Tables\SeoDetailsTable;
 
 class ManagePostSeoDetail extends ManageRelatedRecords
 {
@@ -25,18 +18,14 @@ class ManagePostSeoDetail extends ManageRelatedRecords
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-globe-alt';
 
-    public function getTitle(): string|Htmlable
+    public function getTitle(): string
     {
-        $recordTitle = $this->getRecordTitle();
-
-        $recordTitle = $recordTitle instanceof Htmlable ? $recordTitle->toHtml() : $recordTitle;
-
-        return 'Manage Seo Detail';
+        return 'Manage SEO Detail';
     }
 
     public static function getNavigationLabel(): string
     {
-        return 'Manage Seo Detail';
+        return 'Manage SEO Detail';
     }
 
     protected function canCreate(): bool
@@ -46,47 +35,11 @@ class ManagePostSeoDetail extends ManageRelatedRecords
 
     public function form(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                TextInput::make('title')
-                    ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
-                TagsInput::make('keywords')
-                    ->columnSpanFull(),
-                Textarea::make('description')
-                    ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-            ]);
+        return SeoDetailForm::configure($schema, $this->getRecord());
     }
 
     public function table(Table $table): Table
     {
-        return $table
-            ->recordTitleAttribute('title')
-            ->columns([
-                TextColumn::make('title')
-                    ->limit(20),
-                TextColumn::make('description')
-                    ->limit(40),
-                TextColumn::make('keywords')->badge(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->headerActions([
-                CreateAction::make(),
-            ])
-            ->recordActions([
-                EditAction::make(),
-                ViewAction::make(),
-            ])->paginated(false);
+        return SeoDetailsTable::configure($table, $this->getRecord());
     }
 }

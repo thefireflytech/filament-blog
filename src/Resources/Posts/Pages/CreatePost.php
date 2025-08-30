@@ -7,7 +7,7 @@ use Filament\Resources\Pages\CreateRecord;
 use Firefly\FilamentBlog\Events\BlogPublished;
 use Firefly\FilamentBlog\Jobs\PostScheduleJob;
 use Firefly\FilamentBlog\Resources\Posts\PostResource;
-use Firefly\FilamentBlog\Resources\SeoDetailResource;
+use Firefly\FilamentBlog\Resources\SeoDetails\SeoDetailResource;
 
 class CreatePost extends CreateRecord
 {
