@@ -1,11 +1,11 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\SettingResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Settings\Pages;
 
 use Filament\Actions\CreateAction;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Firefly\FilamentBlog\Resources\SettingResource;
+use Firefly\FilamentBlog\Resources\Settings\SettingResource;
+use Firefly\FilamentBlog\Models\Setting;
 
 class ListSettings extends ListRecords
 {
@@ -14,7 +14,8 @@ class ListSettings extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()
+                ->visible(fn () => Setting::count() === 0),
         ];
     }
 }

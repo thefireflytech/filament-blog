@@ -9,7 +9,7 @@ use Firefly\FilamentBlog\Resources\SeoDetails\SeoDetailResource;
 use Firefly\FilamentBlog\Resources\Newsletters\NewsletterResource;
 use Firefly\FilamentBlog\Resources\Comments\CommentResource;
 use Firefly\FilamentBlog\Resources\ShareSnippets\ShareSnippetResource;
-use Firefly\FilamentBlog\Resources\SettingResource;
+use Firefly\FilamentBlog\Resources\Settings\SettingResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 

@@ -1,11 +1,10 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\SettingResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Settings\Pages;
 
 use Filament\Actions\DeleteAction;
-use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Firefly\FilamentBlog\Resources\SettingResource;
+use Firefly\FilamentBlog\Resources\Settings\SettingResource;
 
 class EditSetting extends EditRecord
 {
