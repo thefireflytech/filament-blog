@@ -2,7 +2,16 @@
 
 namespace Firefly\FilamentBlog\Resources;
 
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Firefly\FilamentBlog\Resources\SettingResource\Pages\ListSettings;
+use Firefly\FilamentBlog\Resources\SettingResource\Pages\CreateSetting;
+use Firefly\FilamentBlog\Resources\SettingResource\Pages\EditSetting;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -12,16 +21,16 @@ class SettingResource extends Resource
 {
     protected static ?string $model = Setting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 8;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema(Setting::getForm());
+        return $schema
+            ->components(Setting::getForm());
     }
 
     public static function canCreate(): bool
@@ -33,22 +42,22 @@ class SettingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->limit(25)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('description')
+                TextColumn::make('description')
                     ->limit(30)
                     ->searchable(),
 
-                Tables\Columns\ImageColumn::make('logo'),
+                ImageColumn::make('logo'),
 
-                Tables\Columns\TextColumn::make('organization_name'),
+                TextColumn::make('organization_name'),
 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -56,13 +65,13 @@ class SettingResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                ViewAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -77,9 +86,9 @@ class SettingResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \Firefly\FilamentBlog\Resources\SettingResource\Pages\ListSettings::route('/'),
-            'create' => \Firefly\FilamentBlog\Resources\SettingResource\Pages\CreateSetting::route('/create'),
-            'edit' => \Firefly\FilamentBlog\Resources\SettingResource\Pages\EditSetting::route('/{record}/edit'),
+            'index' => ListSettings::route('/'),
+            'create' => CreateSetting::route('/create'),
+            'edit' => EditSetting::route('/{record}/edit'),
         ];
     }
 }

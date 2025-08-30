@@ -2,8 +2,18 @@
 
 namespace Firefly\FilamentBlog\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Firefly\FilamentBlog\Resources\NewsletterResource\Pages\ListNewsletters;
+use Firefly\FilamentBlog\Resources\NewsletterResource\Pages\CreateNewsletter;
+use Firefly\FilamentBlog\Resources\NewsletterResource\Pages\EditNewsletter;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -13,22 +23,22 @@ class NewsletterResource extends Resource
 {
     protected static ?string $model = NewsLetter::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 6;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('email')
+        return $schema
+            ->components([
+                TextInput::make('email')
                     ->email()
                     ->required()
                     ->unique(ignoreRecord: true)
                     ->maxLength(100),
-                Forms\Components\Toggle::make('subscribed')
+                Toggle::make('subscribed')
                     ->default(true)
                     ->required()->columnSpanFull(),
             ])->columns(2);
@@ -38,15 +48,15 @@ class NewsletterResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('email')
+                TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\ToggleColumn::make('subscribed')
+                ToggleColumn::make('subscribed')
                     ->label('Subscribed'),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -54,12 +64,12 @@ class NewsletterResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -74,9 +84,9 @@ class NewsletterResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \Firefly\FilamentBlog\Resources\NewsletterResource\Pages\ListNewsletters::route('/'),
-            'create' => \Firefly\FilamentBlog\Resources\NewsletterResource\Pages\CreateNewsletter::route('/create'),
-            'edit' => \Firefly\FilamentBlog\Resources\NewsletterResource\Pages\EditNewsletter::route('/{record}/edit'),
+            'index' => ListNewsletters::route('/'),
+            'create' => CreateNewsletter::route('/create'),
+            'edit' => EditNewsletter::route('/{record}/edit'),
         ];
     }
 }

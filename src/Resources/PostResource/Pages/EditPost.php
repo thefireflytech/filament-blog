@@ -2,6 +2,7 @@
 
 namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Firefly\FilamentBlog\Enums\PostStatus;
@@ -14,7 +15,7 @@ class EditPost extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 

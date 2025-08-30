@@ -2,6 +2,7 @@
 
 namespace Firefly\FilamentBlog\Resources\ShareSnippetResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Firefly\FilamentBlog\Resources\ShareSnippetResource;
@@ -13,7 +14,7 @@ class EditShareSnippet extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

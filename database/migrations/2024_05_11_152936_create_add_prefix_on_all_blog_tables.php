@@ -1,5 +1,8 @@
 <?php
 
+use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Models\Category;
+use Firefly\FilamentBlog\Models\Tag;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -27,18 +30,18 @@ return new class() extends Migration
         });
 
         Schema::table(config('filamentblog.tables.prefix').'category_'.config('filamentblog.tables.prefix').'post', function (Blueprint $table) {
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+            $table->foreignIdFor(Post::class)
                 ->change()
                 ->constrained(config('filamentblog.tables.prefix').'posts')
                 ->cascadeOnDelete();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Category::class)
+            $table->foreignIdFor(Category::class)
                 ->change()
                 ->constrained(config('filamentblog.tables.prefix').'categories')
                 ->cascadeOnDelete();
         });
 
         Schema::table(config('filamentblog.tables.prefix').'seo_details', function (Blueprint $table) {
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+            $table->foreignIdFor(Post::class)
                 ->change()
                 ->constrained(config('filamentblog.tables.prefix').'posts')
                 ->cascadeOnDelete();
@@ -49,18 +52,18 @@ return new class() extends Migration
                 ->change()
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+            $table->foreignIdFor(Post::class)
                 ->change()
                 ->constrained(config('filamentblog.tables.prefix').'posts')
                 ->cascadeOnDelete();
         });
 
         Schema::table(config('filamentblog.tables.prefix').'post_'.config('filamentblog.tables.prefix').'tag', function (Blueprint $table) {
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Post::class)
+            $table->foreignIdFor(Post::class)
                 ->change()
                 ->constrained(config('filamentblog.tables.prefix').'posts')
                 ->cascadeOnDelete();
-            $table->foreignIdFor(Firefly\FilamentBlog\Models\Tag::class)
+            $table->foreignIdFor(Tag::class)
                 ->change()
                 ->constrained(config('filamentblog.tables.prefix').'tags')
                 ->cascadeOnDelete();

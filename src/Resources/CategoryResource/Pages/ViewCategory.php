@@ -16,7 +16,7 @@ class ViewCategory extends ViewRecord
         return [
             EditAction::make()
                 ->slideOver()
-                ->form(Category::getForm()),
+                ->schema(Category::getForm()),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Firefly\FilamentBlog;
 
+use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Components\Card;
 use Firefly\FilamentBlog\Components\Comment;
 use Firefly\FilamentBlog\Components\FeatureCard;
@@ -59,7 +60,7 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
     public function register()
     {
         Route::bind('post', function ($value) {
-            return \Firefly\FilamentBlog\Models\Post::where('slug', $value)->published()->firstOrFail();
+            return Post::where('slug', $value)->published()->firstOrFail();
         });
 
         $this->app->register(EventServiceProvider::class);

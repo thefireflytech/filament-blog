@@ -2,10 +2,14 @@
 
 namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
 
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Pages\ManageRelatedRecords;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -18,7 +22,7 @@ class ManaePostSeoDetail extends ManageRelatedRecords
 
     protected static string $relationship = 'seoDetail';
 
-    protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-globe-alt';
 
     public function getTitle(): string|Htmlable
     {
@@ -40,10 +44,10 @@ class ManaePostSeoDetail extends ManageRelatedRecords
         return ! $this->getRelationship()->count();
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('title')
                     ->required()
                     ->maxLength(255)
@@ -62,15 +66,15 @@ class ManaePostSeoDetail extends ManageRelatedRecords
         return $table
             ->recordTitleAttribute('title')
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->limit(20),
-                Tables\Columns\TextColumn::make('description')
+                TextColumn::make('description')
                     ->limit(40),
-                Tables\Columns\TextColumn::make('keywords')->badge(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('keywords')->badge(),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -78,11 +82,11 @@ class ManaePostSeoDetail extends ManageRelatedRecords
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                CreateAction::make(),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                ViewAction::make(),
             ])->paginated(false);
     }
 }

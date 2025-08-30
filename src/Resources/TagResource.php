@@ -2,7 +2,15 @@
 
 namespace Firefly\FilamentBlog\Resources;
 
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Firefly\FilamentBlog\Resources\TagResource\Pages\ListTags;
+use Firefly\FilamentBlog\Resources\TagResource\Pages\EditTag;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -12,32 +20,32 @@ class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-tag';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 2;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema(Tag::getForm());
+        return $schema
+            ->components(Tag::getForm());
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug'),
+                TextColumn::make('slug'),
 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -45,14 +53,14 @@ class TagResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make(),
+                ViewAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -67,8 +75,8 @@ class TagResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \Firefly\FilamentBlog\Resources\TagResource\Pages\ListTags::route('/'),
-            'edit' => \Firefly\FilamentBlog\Resources\TagResource\Pages\EditTag::route('/{record}/edit'),
+            'index' => ListTags::route('/'),
+            'edit' => EditTag::route('/{record}/edit'),
         ];
     }
 }

@@ -2,17 +2,17 @@
 
 namespace Firefly\FilamentBlog\Models;
 
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Get;
-use Filament\Forms\Set;
-use FilamentTiptapEditor\TiptapEditor;
 use Firefly\FilamentBlog\Database\Factories\PostFactory;
 use Firefly\FilamentBlog\Enums\PostStatus;
 use Illuminate\Database\Eloquent\Builder;
@@ -139,6 +139,7 @@ class Post extends Model
     {
         return [
             Section::make('Blog Details')
+                ->columnSpanFull()
                 ->schema([
                     Fieldset::make('Titles')
                         ->schema([
@@ -175,9 +176,7 @@ class Post extends Model
                                 ->relationship('tags', 'name')
                                 ->columnSpanFull(),
                         ]),
-                    TiptapEditor::make('body')
-                        ->profile('default')
-                        ->disableFloatingMenus()
+                    RichEditor::make('body')
                         ->extraInputAttributes(['style' => 'max-height: 30rem; min-height: 24rem'])
                         ->required()
                         ->columnSpanFull(),

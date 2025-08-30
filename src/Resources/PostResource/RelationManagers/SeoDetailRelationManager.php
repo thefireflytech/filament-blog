@@ -2,7 +2,13 @@
 
 namespace Firefly\FilamentBlog\Resources\PostResource\RelationManagers;
 
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -12,10 +18,10 @@ class SeoDetailRelationManager extends RelationManager
 {
     protected static string $relationship = 'seoDetail';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema(SeoDetail::getForm());
+        return $schema
+            ->components(SeoDetail::getForm());
     }
 
     public function table(Table $table): Table
@@ -23,23 +29,23 @@ class SeoDetailRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('title')
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('keywords')->badge(),
+                TextColumn::make('title'),
+                TextColumn::make('description'),
+                TextColumn::make('keywords')->badge(),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                CreateAction::make(),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make()->slideOver(),
-                Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                EditAction::make()->slideOver(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

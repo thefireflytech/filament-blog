@@ -1,5 +1,6 @@
 <?php
 
+use function Pest\Laravel\withoutExceptionHandling;
 use Firefly\FilamentBlog\Models\Category;
 use Firefly\FilamentBlog\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -10,7 +11,7 @@ beforeEach(function () {
     setSettingData();
 });
 it('show success response for category post page', function () {
-    \Pest\Laravel\withoutExceptionHandling();
+    withoutExceptionHandling();
     $category = Category::factory()
         ->hasAttached(Post::factory()->published()->count(3)->state(new Sequence(
             ['title' => 'First Post', 'slug' => 'first-post'],

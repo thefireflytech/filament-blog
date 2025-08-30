@@ -2,12 +2,21 @@
 
 namespace Firefly\FilamentBlog\Resources;
 
-use Filament\Forms\Form;
-use Filament\Infolists\Components\Fieldset;
-use Filament\Infolists\Components\Section;
+use Filament\Pages\Enums\SubNavigationPosition;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Fieldset;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\ListPosts;
+use Firefly\FilamentBlog\Resources\PostResource\Pages\CreatePost;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Infolist;
-use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -26,25 +35,25 @@ class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-minus';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document-minus';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
 
     protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?int $navigationSort = 3;
 
-    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+    protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function getNavigationBadge(): ?string
     {
         return strval(Post::count());
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema(Post::getForm());
+        return $schema
+            ->components(Post::getForm());
     }
 
     public static function table(Table $table): Table
@@ -52,53 +61,53 @@ class PostResource extends Resource
         return $table
             ->deferLoading()
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title, 40);
                     })
                     ->searchable()->limit(20),
-                Tables\Columns\TextColumn::make('status')
+                TextColumn::make('status')
                     ->badge()
                     ->color(function ($state) {
                         return $state->getColor();
                     }),
-                Tables\Columns\ImageColumn::make('cover_photo_path')->label('Cover Photo'),
+                ImageColumn::make('cover_photo_path')->label('Cover Photo'),
 
                 UserPhotoName::make('user')
                     ->label('Author'),
 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])->defaultSort('id', 'desc')
             ->filters([
-                Tables\Filters\SelectFilter::make('user')
+                SelectFilter::make('user')
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()
                     ->multiple(),
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                ActionGroup::make([
+                    EditAction::make(),
+                    ViewAction::make(),
                 ]),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
+    public static function infolist(Schema $schema): Schema
     {
-        return $infolist->schema([
+        return $schema->components([
             Section::make('Post')
                 ->schema([
                     Fieldset::make('General')
@@ -159,12 +168,12 @@ class PostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ListPosts::route('/'),
-            'create' => \Firefly\FilamentBlog\Resources\PostResource\Pages\CreatePost::route('/create'),
-            'edit' => \Firefly\FilamentBlog\Resources\PostResource\Pages\EditPost::route('/{record}/edit'),
-            'view' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ViewPost::route('/{record}'),
-            'comments' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ManagePostComments::route('/{record}/comments'),
-            'seoDetail' => \Firefly\FilamentBlog\Resources\PostResource\Pages\ManaePostSeoDetail::route('/{record}/seo-details'),
+            'index' => ListPosts::route('/'),
+            'create' => CreatePost::route('/create'),
+            'edit' => EditPost::route('/{record}/edit'),
+            'view' => ViewPost::route('/{record}'),
+            'comments' => ManagePostComments::route('/{record}/comments'),
+            'seoDetail' => ManaePostSeoDetail::route('/{record}/seo-details'),
         ];
     }
 }

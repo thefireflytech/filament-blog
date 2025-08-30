@@ -2,7 +2,14 @@
 
 namespace Firefly\FilamentBlog\Resources;
 
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\ListSeoDetails;
+use Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\CreateSeoDetail;
+use Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\EditSeoDetail;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -12,16 +19,16 @@ class SeoDetailResource extends Resource
 {
     protected static ?string $model = SeoDetail::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-magnifying-glass';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document-magnifying-glass';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
 
     protected static ?int $navigationSort = 4;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema(SeoDetail::getForm());
+        return $schema
+            ->components(SeoDetail::getForm());
     }
 
     public static function table(Table $table): Table
@@ -29,18 +36,18 @@ class SeoDetailResource extends Resource
         return $table
             ->striped()
             ->columns([
-                Tables\Columns\TextColumn::make('post.title')
+                TextColumn::make('post.title')
                     ->limit(20),
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->limit(20)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('keywords')->badge()
+                TextColumn::make('keywords')->badge()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -49,12 +56,12 @@ class SeoDetailResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -69,9 +76,9 @@ class SeoDetailResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\ListSeoDetails::route('/'),
-            'create' => \Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\CreateSeoDetail::route('/create'),
-            'edit' => \Firefly\FilamentBlog\Resources\SeoDetailResource\Pages\EditSeoDetail::route('/{record}/edit'),
+            'index' => ListSeoDetails::route('/'),
+            'create' => CreateSeoDetail::route('/create'),
+            'edit' => EditSeoDetail::route('/{record}/edit'),
         ];
     }
 }

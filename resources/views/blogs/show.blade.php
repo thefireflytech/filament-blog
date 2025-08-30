@@ -61,8 +61,7 @@
                                 </div>
                                 <div>
                                     <article class="m-auto leading-6">
-
-                                        {!! tiptap_converter()->asHTML($post->body, toc: true, maxDepth: 3) !!}
+                                        {!! $post->body !!}
                                     </article>
 
                                     @if($post->tags->count())

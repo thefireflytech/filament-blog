@@ -2,13 +2,22 @@
 
 namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
 
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Actions\CreateAction;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
-use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ManageRelatedRecords;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -22,7 +31,7 @@ class ManagePostComments extends ManageRelatedRecords
 
     protected static string $relationship = 'comments';
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
 
     public function getTitle(): string|Htmlable
     {
@@ -43,10 +52,10 @@ class ManagePostComments extends ManageRelatedRecords
         return 'Manage Comments';
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Select::make('user_id')
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->required(),
@@ -63,11 +72,11 @@ class ManagePostComments extends ManageRelatedRecords
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('comment')
+                TextColumn::make('comment')
                     ->searchable(),
                 UserPhotoName::make('user')
                     ->label('Commented By'),
-                Tables\Columns\ToggleColumn::make('approved')
+                ToggleColumn::make('approved')
                     ->beforeStateUpdated(function ($record, $state) {
                         if ($state) {
                             $record->approved_at = now();
@@ -77,46 +86,46 @@ class ManagePostComments extends ManageRelatedRecords
 
                         return $state;
                     }),
-                Tables\Columns\TextColumn::make('approved_at')
+                TextColumn::make('approved_at')
                     ->placeholder('Not approved')
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('user')
+                SelectFilter::make('user')
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()
                     ->multiple(),
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                CreateAction::make(),
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\ViewAction::make(),
-                    Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                ActionGroup::make([
+                    EditAction::make(),
+                    ViewAction::make(),
+                    DeleteAction::make(),
                 ]),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
 
-    public function infolist(Infolist $infolist): Infolist
+    public function infolist(Schema $schema): Schema
     {
-        return $infolist->schema([
+        return $schema->components([
             Section::make('Comment')
                 ->schema([
                     TextEntry::make('user.name')

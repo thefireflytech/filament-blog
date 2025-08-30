@@ -2,7 +2,13 @@
 
 namespace Firefly\FilamentBlog\Resources\CategoryResource\RelationManagers;
 
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -18,10 +24,10 @@ class PostsRelationManager extends RelationManager
         return false;
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema(Post::getForm());
+        return $schema
+            ->components(Post::getForm());
     }
 
     public function table(Table $table): Table
@@ -29,12 +35,12 @@ class PostsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('title')
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->limit(40)
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title);
                     }),
-                Tables\Columns\TextColumn::make('status')
+                TextColumn::make('status')
                     ->badge()
                     ->color(function ($state) {
                         return $state->getColor();
@@ -44,15 +50,15 @@ class PostsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                CreateAction::make(),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make()->slideOver(),
-                Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                EditAction::make()->slideOver(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
