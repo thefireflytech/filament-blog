@@ -1,50 +1,30 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources;
+namespace Firefly\FilamentBlog\Resources\Comments\Tables;
 
-use Filament\Schemas\Schema;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Actions\ActionGroup;
-use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\ViewAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Firefly\FilamentBlog\Resources\CommentResource\Pages\ListComments;
-use Firefly\FilamentBlog\Resources\CommentResource\Pages\CreateComment;
-use Firefly\FilamentBlog\Resources\CommentResource\Pages\EditComment;
-use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
-use Firefly\FilamentBlog\Models\Comment;
 use Firefly\FilamentBlog\Tables\Columns\UserPhotoName;
+use Firefly\FilamentBlog\Models\Post;
 
-class CommentResource extends Resource
+class CommentsTable
 {
-    protected static ?string $model = Comment::class;
-
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
-
-    protected static string | \UnitEnum | null $navigationGroup = 'Blog';
-
-    protected static ?int $navigationSort = 5;
-
-    public static function form(Schema $schema): Schema
-    {
-        return $schema
-            ->components(Comment::getForm());
-    }
-
-    public static function table(Table $table): Table
+    public static function configure(Table $table, ?Post $post = null): Table
     {
         return $table
             ->columns([
                 UserPhotoName::make('user')
                     ->label('User'),
                 TextColumn::make('post.title')
-                    ->numeric()
+                    ->hidden(fn() => $post?->exists())
                     ->limit(20)
                     ->sortable(),
                 TextColumn::make('comment')
@@ -79,12 +59,19 @@ class CommentResource extends Resource
                     ->searchable()
                     ->preload()
                     ->multiple(),
+                    
+                SelectFilter::make('post')
+                    ->relationship('post', 'title')
+                    ->searchable()
+                    ->preload()
+                    ->hidden(fn() => $post?->exists())
+                    ->multiple(),
             ])
             ->recordActions([
                 ActionGroup::make([
+                    ViewAction::make(),
                     EditAction::make(),
                     DeleteAction::make(),
-                    ViewAction::make(),
                 ]),
             ])
             ->toolbarActions([
@@ -92,21 +79,5 @@ class CommentResource extends Resource
                     DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => ListComments::route('/'),
-            'create' => CreateComment::route('/create'),
-            'edit' => EditComment::route('/{record}/edit'),
-        ];
     }
 }
