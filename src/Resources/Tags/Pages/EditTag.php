@@ -1,11 +1,10 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\TagResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Tags\Pages;
 
 use Filament\Actions\DeleteAction;
-use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Firefly\FilamentBlog\Resources\TagResource;
+use Firefly\FilamentBlog\Resources\Tags\TagResource;
 
 class EditTag extends EditRecord
 {
