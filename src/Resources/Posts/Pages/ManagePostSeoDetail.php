@@ -1,7 +1,8 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Posts\Pages;
 
+use BackedEnum;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Actions\CreateAction;
@@ -13,20 +14,19 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\ManageRelatedRecords;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Firefly\FilamentBlog\Resources\PostResource;
+use Firefly\FilamentBlog\Resources\Posts\PostResource;
 use Illuminate\Contracts\Support\Htmlable;
 
-class ManaePostSeoDetail extends ManageRelatedRecords
+class ManagePostSeoDetail extends ManageRelatedRecords
 {
     protected static string $resource = PostResource::class;
 
     protected static string $relationship = 'seoDetail';
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-globe-alt';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-globe-alt';
 
     public function getTitle(): string|Htmlable
     {
-
         $recordTitle = $this->getRecordTitle();
 
         $recordTitle = $recordTitle instanceof Htmlable ? $recordTitle->toHtml() : $recordTitle;

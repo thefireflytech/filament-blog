@@ -1,12 +1,12 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Posts\Pages;
 
 use Filament\Actions\DeleteAction;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Firefly\FilamentBlog\Enums\PostStatus;
-use Firefly\FilamentBlog\Resources\PostResource;
+use Firefly\FilamentBlog\Resources\Posts\PostResource;
 
 class EditPost extends EditRecord
 {

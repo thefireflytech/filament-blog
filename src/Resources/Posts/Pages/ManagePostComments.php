@@ -1,7 +1,8 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Posts\Pages;
 
+use BackedEnum;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -21,7 +22,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Pages\ManageRelatedRecords;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Firefly\FilamentBlog\Resources\PostResource;
+use Firefly\FilamentBlog\Resources\Posts\PostResource;
 use Firefly\FilamentBlog\Tables\Columns\UserPhotoName;
 use Illuminate\Contracts\Support\Htmlable;
 
@@ -31,7 +32,7 @@ class ManagePostComments extends ManageRelatedRecords
 
     protected static string $relationship = 'comments';
 
-    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
 
     public function getTitle(): string|Htmlable
     {

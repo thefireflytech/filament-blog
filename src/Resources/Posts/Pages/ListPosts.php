@@ -1,13 +1,13 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\PostResource\Pages;
+namespace Firefly\FilamentBlog\Resources\Posts\Pages;
 
 use Filament\Actions\CreateAction;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Firefly\FilamentBlog\Resources\PostResource;
-use Firefly\FilamentBlog\Resources\PostResource\Widgets\BlogPostPublishedChart;
+use Firefly\FilamentBlog\Resources\Posts\PostResource;
+use Firefly\FilamentBlog\Resources\Posts\Widgets\BlogPostPublishedChart;
 
 class ListPosts extends ListRecords
 {

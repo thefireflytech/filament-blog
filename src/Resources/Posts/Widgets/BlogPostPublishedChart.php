@@ -1,6 +1,6 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\PostResource\Widgets;
+namespace Firefly\FilamentBlog\Resources\Posts\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Firefly\FilamentBlog\Models\Post;
