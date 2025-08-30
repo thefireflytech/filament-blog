@@ -1,11 +1,10 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\ShareSnippetResource\Pages;
+namespace Firefly\FilamentBlog\Resources\ShareSnippets\Pages;
 
 use Filament\Actions\DeleteAction;
-use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Firefly\FilamentBlog\Resources\ShareSnippetResource;
+use Firefly\FilamentBlog\Resources\ShareSnippets\ShareSnippetResource;
 
 class EditShareSnippet extends EditRecord
 {

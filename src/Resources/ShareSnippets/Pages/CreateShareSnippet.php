@@ -1,9 +1,9 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\ShareSnippetResource\Pages;
+namespace Firefly\FilamentBlog\Resources\ShareSnippets\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use Firefly\FilamentBlog\Resources\ShareSnippetResource;
+use Firefly\FilamentBlog\Resources\ShareSnippets\ShareSnippetResource;
 
 class CreateShareSnippet extends CreateRecord
 {

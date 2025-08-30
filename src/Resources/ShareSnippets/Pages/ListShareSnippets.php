@@ -1,11 +1,10 @@
 <?php
 
-namespace Firefly\FilamentBlog\Resources\ShareSnippetResource\Pages;
+namespace Firefly\FilamentBlog\Resources\ShareSnippets\Pages;
 
 use Filament\Actions\CreateAction;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Firefly\FilamentBlog\Resources\ShareSnippetResource;
+use Firefly\FilamentBlog\Resources\ShareSnippets\ShareSnippetResource;
 use Illuminate\Contracts\Support\Htmlable;
 
 class ListShareSnippets extends ListRecords
