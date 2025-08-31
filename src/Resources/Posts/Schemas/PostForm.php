@@ -77,6 +77,8 @@ class PostForm
                     Fieldset::make('Feature Image')
                         ->schema([
                             FileUpload::make('cover_photo_path')
+                                ->visibility(config('filamentblog.filesystem.visibility', 'public'))
+                                ->disk(config('filamentblog.filesystem.disk', 'public'))
                                 ->label('Cover Photo')
                                 ->directory('/blog-feature-images')
                                 ->hint('This cover image is used in your blog post as a feature image. Recommended image size 1200 X 628')
