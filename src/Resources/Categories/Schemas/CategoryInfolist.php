@@ -13,6 +13,7 @@ class CategoryInfolist
         return $schema
             ->components([
                 Section::make('Category')
+                    ->columnSpanFull()
                     ->schema([
                         TextEntry::make('name'),
                         TextEntry::make('slug'),

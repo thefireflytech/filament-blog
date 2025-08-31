@@ -35,8 +35,8 @@ class CategoriesTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
                 ViewAction::make(),
+                EditAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([
