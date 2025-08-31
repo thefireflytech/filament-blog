@@ -35,6 +35,7 @@ class ViewPost extends ViewRecord
             Action::make('preview')
                 ->label('Preview')
                 ->requiresConfirmation()
+                ->color('success')
                 ->icon('heroicon-o-eye')->url(function (Post $record) {
                     return route('filamentblog.post.show', $record->slug);
                 }, true)

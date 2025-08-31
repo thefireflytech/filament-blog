@@ -14,14 +14,16 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Firefly\FilamentBlog\Enums\PostStatus;
+use Firefly\FilamentBlog\Models\Category;
 use Firefly\FilamentBlog\Resources\Categories\Schemas\CategoryForm;
 use Firefly\FilamentBlog\Resources\Tags\Schemas\TagForm;
+use Firefly\FilamentBlog\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostForm
 {
-    public static function configure(Schema $schema): Schema
+    public static function configure(Schema $schema, ?Category $category = null, ?Tag $tag = null): Schema
     {
         return $schema->components([
             Section::make('Blog Details')
@@ -30,6 +32,7 @@ class PostForm
                     Fieldset::make('Titles')
                         ->schema([
                             Select::make('category_id')
+                                ->hidden(fn() => $category?->exists())
                                 ->multiple()
                                 ->preload()
                                 ->createOptionForm(fn(Schema $schema) => CategoryForm::configure($schema))
@@ -57,6 +60,7 @@ class PostForm
                                 ->columnSpanFull(),
 
                             Select::make('tag_id')
+                                ->hidden(fn() => $tag?->exists())
                                 ->multiple()
                                 ->preload()
                                 ->createOptionForm(fn(Schema $schema) => TagForm::configure($schema))
