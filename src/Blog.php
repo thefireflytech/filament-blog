@@ -2,6 +2,14 @@
 
 namespace Firefly\FilamentBlog;
 
+use Firefly\FilamentBlog\Resources\Categories\CategoryResource;
+use Firefly\FilamentBlog\Resources\Posts\PostResource;
+use Firefly\FilamentBlog\Resources\Tags\TagResource;
+use Firefly\FilamentBlog\Resources\SeoDetails\SeoDetailResource;
+use Firefly\FilamentBlog\Resources\Newsletters\NewsletterResource;
+use Firefly\FilamentBlog\Resources\Comments\CommentResource;
+use Firefly\FilamentBlog\Resources\ShareSnippets\ShareSnippetResource;
+use Firefly\FilamentBlog\Resources\Settings\SettingResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
@@ -20,14 +28,14 @@ class Blog implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            Resources\CategoryResource::class,
-            Resources\PostResource::class,
-            Resources\TagResource::class,
-            Resources\SeoDetailResource::class,
-            Resources\NewsletterResource::class,
-            Resources\CommentResource::class,
-            Resources\ShareSnippetResource::class,
-            Resources\SettingResource::class,
+            CategoryResource::class,
+            PostResource::class,
+            TagResource::class,
+            SeoDetailResource::class,
+            NewsletterResource::class,
+            CommentResource::class,
+            ShareSnippetResource::class,
+            SettingResource::class,
         ]);
     }
 

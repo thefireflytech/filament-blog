@@ -1,5 +1,6 @@
 <?php
 
+use function Pest\Laravel\withoutExceptionHandling;
 use Firefly\FilamentBlog\Models\Category;
 use Firefly\FilamentBlog\Models\Post;
 
@@ -9,7 +10,7 @@ beforeEach(function () {
     setSettingData();
 });
 it('show published post cards', function () {
-    \Pest\Laravel\withoutExceptionHandling();
+    withoutExceptionHandling();
     // Arrange
     $firstPost = Post::factory()
         ->hasAttached(Category::factory()->count(1))

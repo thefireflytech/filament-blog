@@ -1,13 +1,15 @@
 <?php
 
+use Firefly\FilamentBlog\Models\Setting;
+use function Pest\Laravel\withoutExceptionHandling;
 use function Pest\Laravel\get;
 
 beforeEach(function () {
-    $setting = \Firefly\FilamentBlog\Models\Setting::factory()->create();
+    $setting = Setting::factory()->create();
 //    dd($setting);
 });
 it('return success for all post page', function () {
-    \Pest\Laravel\withoutExceptionHandling();
+    withoutExceptionHandling();
     get(route('filamentblog.post.all'))
         ->assertOk();
 });

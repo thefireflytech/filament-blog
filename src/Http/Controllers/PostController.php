@@ -2,18 +2,20 @@
 
 namespace Firefly\FilamentBlog\Http\Controllers;
 
+use App\Models\User;
 use Firefly\FilamentBlog\Facades\SEOMeta;
 use Firefly\FilamentBlog\Models\NewsLetter;
 use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Models\ShareSnippet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
     public function index(Request $request)
     {
-        SEOMeta::setTitle('Blog | '.config('app.name')) ;
+        SEOMeta::setTitle('Blog | ' . config('app.name'));
 
         $posts = Post::query()->with(['categories', 'user', 'tags'])
             ->published()
@@ -26,7 +28,7 @@ class PostController extends Controller
 
     public function allPosts()
     {
-        SEOMeta::setTitle('All posts | '.config('app.name')) ;
+        SEOMeta::setTitle('All posts | ' . config('app.name'));
 
         $posts = Post::query()->with(['categories', 'user'])
             ->published()
@@ -39,7 +41,7 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        SEOMeta::setTitle('Search result for '.$request->get('query'));
+        SEOMeta::setTitle('Search result for ' . $request->get('query'));
 
         $request->validate([
             'query' => 'required',
@@ -47,12 +49,12 @@ class PostController extends Controller
         $searchedPosts = Post::query()
             ->with(['categories', 'user'])
             ->published()
-            ->whereAny(['title', 'sub_title'], 'like', '%'.$request->get('query').'%')
+            ->whereAny(['title', 'sub_title'], 'like', '%' . $request->get('query') . '%')
             ->paginate(10)->withQueryString();
 
         return view('filament-blog::blogs.search', [
             'posts' => $searchedPosts,
-            'searchMessage' => 'Search result for '.$request->get('query'),
+            'searchMessage' => 'Search result for ' . $request->get('query'),
         ]);
     }
 
@@ -65,11 +67,15 @@ class PostController extends Controller
         SEOMeta::setKeywords($post->seoDetail->keywords ?? []);
 
         $shareButton = ShareSnippet::query()->active()->first();
-        $post->load(['user', 'categories', 'tags', 'comments' => fn ($query) => $query->approved(), 'comments.user']);
+        $post->load(['user', 'categories', 'tags', 'comments' => fn($query) => $query->approved(), 'comments.user']);
+
+        $user = Auth::user();
+        $canComment = $user && method_exists($user, 'canComment') ? $user->canComment() : false;
 
         return view('filament-blog::blogs.show', [
             'post' => $post,
             'shareButton' => $shareButton,
+            'canComment' => $canComment,
         ]);
     }
 
