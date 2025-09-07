@@ -2,3 +2,5 @@
 /database/migrations/*.php
 !/database/migrations/2024_05_11_152936_create_add_prefix_on_all_blog_tables.php
 .github
+.idea
+.vscode

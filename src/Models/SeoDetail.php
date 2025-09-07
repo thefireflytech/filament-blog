@@ -2,10 +2,6 @@
 
 namespace Firefly\FilamentBlog\Models;
 
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TagsInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 use Firefly\FilamentBlog\Database\Factories\SeoDetailFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -64,32 +60,6 @@ class SeoDetail extends Model
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class)->orderByDesc('id');
-    }
-
-    public static function getForm()
-    {
-        return [
-            Select::make('post_id')
-                ->createOptionForm(Post::getForm())
-                ->editOptionForm(Post::getForm())
-                ->relationship('post', 'title')
-                ->unique(config('filamentblog.tables.prefix').'seo_details', 'post_id', null, 'id')
-                ->required()
-                ->preload()
-                ->searchable()
-                ->default(request('post_id') ?? '')
-                ->columnSpanFull(),
-            TextInput::make('title')
-                ->required()
-                ->maxLength(255)
-                ->columnSpanFull(),
-            TagsInput::make('keywords')
-                ->columnSpanFull(),
-            Textarea::make('description')
-                ->required()
-                ->maxLength(65535)
-                ->columnSpanFull(),
-        ];
     }
 
     protected static function newFactory()
