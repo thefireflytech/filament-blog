@@ -5,7 +5,7 @@ namespace Firefly\FilamentBlog\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ShareSnippet>
+ * @extends Factory<\App\Models\ShareSnippet>
  */
 class ShareSnippetFactory extends Factory
 {

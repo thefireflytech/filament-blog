@@ -1,10 +1,9 @@
-<div>
-    @php
+@php
     $record = $getState();
-    @endphp
+@endphp
 
-    <div class="flex gap-2 items-center">
-        <img src="{{ $record->avatar }}" alt="{{ $record->{config('filamentblog.user.columns.name')} }}" class="w-7 h-7 rounded-full">
-        <p class="text-xs font-semibold text-green-500">{{ $record->name }}</p>
-    </div>
+<div style="display: flex; gap: 8px; align-items: center; justify-content: center;"
+    title="{{ $record->{config('filamentblog.user.columns.name')} }}">
+    <img src="{{ $record->avatar }}" alt="{{ $record->{config('filamentblog.user.columns.name')} }}"
+        style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
 </div>

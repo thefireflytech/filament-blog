@@ -2,8 +2,6 @@
 
 namespace Firefly\FilamentBlog\Models;
 
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Toggle;
 use Firefly\FilamentBlog\Database\Factories\ShareSnippetFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,18 +29,6 @@ class ShareSnippet extends Model
     public function scopeActive(Builder $query)
     {
         return $query->where('active', true);
-    }
-
-    public static function getForm(): array
-    {
-        return [
-            Textarea::make('script_code')
-                ->label('JS Script')
-                ->required(),
-            Textarea::make('html_code')
-                ->required(),
-            Toggle::make('active'),
-        ];
     }
 
     protected static function newFactory()

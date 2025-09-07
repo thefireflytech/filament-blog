@@ -34,7 +34,7 @@ The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogg
 ```php  
 'tables' => [
     'prefix' => 'fblog_', // prefix for all blog tables
-    ],
+],
 ```
 > - After set the prefix please run the migration by running the following command: 
 ``php artisan filament-blog:upgrade-tables``
@@ -70,33 +70,61 @@ This command will publish `filamentblog.php` config file and `create_blog_tables
  * | The user configuration is for setting up the user model and columns.
  * | The seo configuration is for setting up the default meta tags for the blog.
  * | The recaptcha configuration is for setting up the recaptcha for the blog.
+ * | The filesystem configuration is for setting up the filesystem for the blog.
  */
 
 use Firefly\FilamentBlog\Models\User;
 
 return [
+    /**
+     * ------------------------------------------------------------
+     * Tables
+     * This is the prefix for all blog tables.
+     * ------------------------------------------------------------
+     */
     'tables' => [
-        'prefix' => 'fblog_', // prefix for all blog tables
+        'prefix' => 'fblog_',
     ],
+
+    /**
+     * ------------------------------------------------------------
+     * Route
+     * This is the route configuration for the blog.
+     * ------------------------------------------------------------
+     */
     'route' => [
         'prefix' => 'blogs',
         'middleware' => ['web'],
-        //        'home' => [
-        //            'name' => 'filamentblog.home',
-        //            'url' => env('APP_URL'),
-        //        ],
+        'home' => [
+            'name' => 'filamentblog.home',
+            'url' => env('APP_URL'),
+        ],
         'login' => [
             'name' => 'filamentblog.post.login',
         ],
     ],
+
+    /**
+     * ------------------------------------------------------------
+     * User
+     * This is the user configuration for the blog.
+     * ------------------------------------------------------------
+     */
     'user' => [
         'model' => User::class,
         'foreign_key' => 'user_id',
         'columns' => [
             'name' => 'name',
-            'avatar' => 'profile_photo_path', // column name for avatar
+            'avatar' => 'profile_photo_path',
         ],
     ],
+
+    /**
+     * ------------------------------------------------------------
+     * SEO
+     * This is the SEO configuration for the blog.
+     * ------------------------------------------------------------
+     */
     'seo' => [
         'meta' => [
             'title' => 'Filament Blog',
@@ -105,10 +133,27 @@ return [
         ],
     ],
 
+    /**
+     * ------------------------------------------------------------
+     * Recaptcha
+     * This is the recaptcha configuration for the blog.
+     * ------------------------------------------------------------
+     */
     'recaptcha' => [
-        'enabled' => false, // true or false
+        'enabled' => false,
         'site_key' => env('RECAPTCHA_SITE_KEY'),
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),
+    ],
+
+    /**
+     * ------------------------------------------------------------
+     * Filesystem
+     * This is the filesystem configuration for the blog.
+     * ------------------------------------------------------------
+     */
+    'filesystem' => [
+        'visibility' => 'public',
+        'disk' => 'public',
     ],
 ];
 ````
@@ -217,7 +262,6 @@ RECAPTCHA_SECRET_KEY
 
 - [Firefly][link-author]
 - [Asmit Nepali][link-asmit]
-- [Awcodes](https://github.com/awcodes/filament-tiptap-editor)
 - [All Contributors][link-contributors]
 
 ### Security

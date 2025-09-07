@@ -6,7 +6,7 @@ use Firefly\FilamentBlog\Models\Setting;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Setting>
+ * @extends Factory<\App\Models\Setting>
  */
 class SettingFactory extends Factory
 {

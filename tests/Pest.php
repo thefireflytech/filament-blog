@@ -10,7 +10,7 @@
 | need to change it using the "uses()" function to bind a different classes or traits.
 |
 */
-
+use Firefly\FilamentBlog\Models\Setting;
 use Firefly\FilamentBlog\Tests\TestCase;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 
@@ -44,7 +44,7 @@ expect()->extend('toBeOne', function () {
 
 function setSettingData()
 {
-    \Firefly\FilamentBlog\Models\Setting::factory()->create();
+    Setting::factory()->create();
 }
 
 
