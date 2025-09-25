@@ -70,7 +70,7 @@ class PostForm
                         ]),
 
                     RichEditor::make('body')
-                        ->extraInputAttributes(['style' => 'max-height: 30rem; min-height: 24rem'])
+                        ->extraInputAttributes(['style' => 'min-height: 24rem'])
                         ->required()
                         ->columnSpanFull(),
 
