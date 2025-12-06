@@ -16,14 +16,18 @@ class NewslettersTable
         return $table
             ->columns([
                 TextColumn::make('email')
+                    ->label(__('filament-blog.common.email'))
                     ->searchable(),
                 ToggleColumn::make('subscribed')
+                    ->label(__('filament-blog.news_letter.subscribed'))
                     ->label('Subscribed'),
                 TextColumn::make('created_at')
+                    ->label(__('filament-blog.common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-blog.common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
