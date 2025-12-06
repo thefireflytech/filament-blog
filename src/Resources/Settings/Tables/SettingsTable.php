@@ -17,21 +17,27 @@ class SettingsTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->label(__('filament-blog.common.title'))
                     ->limit(25)
                     ->searchable(),
                 TextColumn::make('description')
+                    ->label(__('filament-blog.common.description'))
                     ->limit(30)
                     ->searchable(),
 
-                ImageColumn::make('logo'),
+                ImageColumn::make('logo')
+                    ->label(__('filament-blog.setting.logo')),
 
-                TextColumn::make('organization_name'),
+                TextColumn::make('organization_name')
+                    ->label(__('filament-blog.setting.organization_name')),
 
                 TextColumn::make('created_at')
+                    ->label(__('filament-blog.common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-blog.common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

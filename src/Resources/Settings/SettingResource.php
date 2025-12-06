@@ -2,27 +2,39 @@
 
 namespace Firefly\FilamentBlog\Resources\Settings;
 
-use Filament\Schemas\Schema;
-use Firefly\FilamentBlog\Resources\Settings\Pages\ListSettings;
-use Firefly\FilamentBlog\Resources\Settings\Pages\CreateSetting;
-use Firefly\FilamentBlog\Resources\Settings\Pages\EditSetting;
-use Firefly\FilamentBlog\Resources\Settings\Schemas\SettingForm;
-use Firefly\FilamentBlog\Resources\Settings\Tables\SettingsTable;
+use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Models\Setting;
-use BackedEnum;
-use UnitEnum;
+use Firefly\FilamentBlog\Resources\Settings\Pages\CreateSetting;
+use Firefly\FilamentBlog\Resources\Settings\Pages\EditSetting;
+use Firefly\FilamentBlog\Resources\Settings\Pages\ListSettings;
+use Firefly\FilamentBlog\Resources\Settings\Schemas\SettingForm;
+use Firefly\FilamentBlog\Resources\Settings\Tables\SettingsTable;
 
 class SettingResource extends Resource
 {
     protected static ?string $model = Setting::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-cog-6-tooth';
-
-    protected static string | UnitEnum | null $navigationGroup = 'Blog';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected static ?int $navigationSort = 8;
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-blog.setting.setting');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-blog.setting.settings');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-blog.blog');
+    }
 
     public static function form(Schema $schema): Schema
     {
