@@ -37,7 +37,15 @@ return [
         'pending_post' => 'پست‌های در انتظار بررسی',
         'feature_image' => 'تصویر شاخص',
         'cover_photo_hint' => 'این تصویر به عنوان تصویر شاخص پست استفاده می‌شود. اندازه پیشنهادی: 1200×628',
+        'preview' => 'پیش ‌نمایش',
+        'send_notification' => 'ارسال اعلان',
         'photo_alt_text' => 'متن جایگزین تصویر',
+        'manage_comments' => 'مدیریت نظرات',
+        'manage_comments_breadcrumb' => 'نظرات',
+        'manage_seo_detail' => 'مدیریت جزئیات سئو',
+        'manage_seo_detail_breadcrumb' => 'جزئیات سئو',
+        'view_post' => 'مشاهده پست',
+        'edit_post' => 'ویرایش پست',
     ],
 
     'seo' => [

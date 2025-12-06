@@ -38,7 +38,16 @@ return [
         'pending_post' => 'Pending Post',
         'feature_image' => 'Feature Image',
         'cover_photo_hint' => 'This cover image is used in your blog post as a feature image. Recommended image size 1200 X 628',
+        'preview' => 'Preview',
+        'send_notification' => 'Send Notification',
         'photo_alt_text' => 'Photo alt text',
+        'manage_comments' => 'Manage comments',
+        'manage_comments_breadcrumb' => 'comments',
+        'manage_seo_detail' => 'Manage SEO detail',
+        'manage_seo_detail_breadcrumb' => 'seo-detail',
+        'view_post' => 'View Post',
+        'edit_post' => 'Edit Post',
+
     ],
 
     'seo' => [
