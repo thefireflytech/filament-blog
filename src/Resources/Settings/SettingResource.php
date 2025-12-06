@@ -23,17 +23,17 @@ class SettingResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('filament-blog.setting.setting');
+        return __('filament-blog::resources.setting.setting');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament-blog.setting.settings');
+        return __('filament-blog::resources.setting.settings');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('filament-blog.blog');
+        return __('filament-blog::resources.blog');
     }
 
     public static function form(Schema $schema): Schema

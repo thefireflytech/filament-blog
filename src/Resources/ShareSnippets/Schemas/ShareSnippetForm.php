@@ -12,11 +12,13 @@ class ShareSnippetForm
     {
         return $schema->components([
             Textarea::make('script_code')
-                ->label('JS Script')
+                ->label(__('filament-blog::resources.share_snippet.js_script'))
                 ->required(),
             Textarea::make('html_code')
+                ->label(__('filament-blog::resources.share_snippet.html_code'))
                 ->required(),
-            Toggle::make('active'),
+            Toggle::make('active')
+                ->label(__('filament-blog::resources.share_snippet.active')),
         ]);
     }
 }

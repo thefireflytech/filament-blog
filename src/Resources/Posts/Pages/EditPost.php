@@ -14,7 +14,7 @@ class EditPost extends EditRecord
 
     public static function getNavigationLabel(): string
     {
-        return __('filament-blog.post.edit_post');
+        return __('filament-blog::resources.post.edit_post');
     }
 
     protected function getHeaderActions(): array

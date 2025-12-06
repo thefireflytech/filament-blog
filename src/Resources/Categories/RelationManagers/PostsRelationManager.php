@@ -8,10 +8,26 @@ use Filament\Tables\Table;
 use Firefly\FilamentBlog\Resources\Posts\Schemas\PostForm;
 use Firefly\FilamentBlog\Resources\Posts\Schemas\PostInfolist;
 use Firefly\FilamentBlog\Resources\Posts\Tables\PostsTable;
+use Illuminate\Database\Eloquent\Model;
 
 class PostsRelationManager extends RelationManager
 {
     protected static string $relationship = 'posts';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-blog::resources.post.post');
+    }
+
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('filament-blog::resources.post.posts');
+    }
+
+    protected static function getPluralRecordLabel(): ?string
+    {
+        return __('filament-blog::resources.post.posts');
+    }
 
     public function isReadOnly(): bool
     {

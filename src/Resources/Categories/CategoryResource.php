@@ -3,28 +3,40 @@
 namespace Firefly\FilamentBlog\Resources\Categories;
 
 use BackedEnum;
-use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Models\Category;
 use Firefly\FilamentBlog\Resources\Categories\Pages\EditCategory;
 use Firefly\FilamentBlog\Resources\Categories\Pages\ListCategories;
 use Firefly\FilamentBlog\Resources\Categories\Pages\ViewCategory;
+use Firefly\FilamentBlog\Resources\Categories\RelationManagers\PostsRelationManager;
 use Firefly\FilamentBlog\Resources\Categories\Schemas\CategoryForm;
 use Firefly\FilamentBlog\Resources\Categories\Schemas\CategoryInfolist;
 use Firefly\FilamentBlog\Resources\Categories\Tables\CategoriesTable;
-use Firefly\FilamentBlog\Resources\Categories\RelationManagers\PostsRelationManager;
-use UnitEnum;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-squares-plus';
-
-    protected static string | UnitEnum | null $navigationGroup = 'Blog';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-squares-plus';
 
     protected static ?int $navigationSort = 1;
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-blog::resources.category.category');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-blog::resources.category.categories');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-blog::resources.blog');
+    }
 
     public static function form(Schema $schema): Schema
     {

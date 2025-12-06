@@ -30,17 +30,17 @@ class ListPosts extends ListRecords
     public function getTabs(): array
     {
         return [
-            'all' => Tab::make(__('filament-blog.post.all')),
-            'published' => Tab::make(__('filament-blog.post.post_status_enum.PUBLISHED'))
+            'all' => Tab::make(__('filament-blog::resources.post.all')),
+            'published' => Tab::make(__('filament-blog::resources.post.post_status_enum.PUBLISHED'))
                 ->modifyQueryUsing(function ($query) {
                     $query->published();
                 })->icon('heroicon-o-check-badge'),
-            'pending' => Tab::make(__('filament-blog.post.post_status_enum.PENDING'))
+            'pending' => Tab::make(__('filament-blog::resources.post.post_status_enum.PENDING'))
                 ->modifyQueryUsing(function ($query) {
                     $query->pending();
                 })
                 ->icon('heroicon-o-clock'),
-            'scheduled' => Tab::make(__('filament-blog.post.post_status_enum.SCHEDULED'))
+            'scheduled' => Tab::make(__('filament-blog::resources.post.post_status_enum.SCHEDULED'))
                 ->modifyQueryUsing(function ($query) {
                     $query->scheduled();
                 })

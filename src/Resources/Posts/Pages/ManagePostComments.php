@@ -22,17 +22,17 @@ class ManagePostComments extends ManageRelatedRecords
 
     public function getTitle(): string|Htmlable
     {
-        return __('filament-blog.post.manage_comments');
+        return __('filament-blog::resources.post.manage_comments');
     }
 
     public function getBreadcrumb(): string
     {
-        return __('filament-blog.post.manage_comments_breadcrumb');
+        return __('filament-blog::resources.post.manage_comments_breadcrumb');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('filament-blog.post.manage_comments');
+        return __('filament-blog::resources.post.manage_comments');
     }
 
     public function form(Schema $schema): Schema

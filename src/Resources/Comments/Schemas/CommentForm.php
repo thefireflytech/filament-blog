@@ -14,21 +14,21 @@ class CommentForm
     {
         return $schema->components([
             Select::make('user_id')
-                ->label(__('filament-blog.common.user'))
+                ->label(__('filament-blog::resources.common.user'))
                 ->relationship('user', config('filamentblog.user.columns.name'))
                 ->required(),
             Select::make('post_id')
-                ->label(__('filament-blog.post.post'))
+                ->label(__('filament-blog::resources.post.post'))
                 ->relationship('post', 'title')
                 ->hidden(fn() => $post?->exists())
                 ->required(),
             Textarea::make('comment')
-                ->label(__('filament-blog.comment.comment'))
+                ->label(__('filament-blog::resources.comment.comment'))
                 ->required()
                 ->maxLength(65535)
                 ->columnSpanFull(),
             Toggle::make('approved')
-                ->label(__('filament-blog.comment.approved')),
+                ->label(__('filament-blog::resources.comment.approved')),
         ]);
     }
 }

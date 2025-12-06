@@ -41,6 +41,6 @@ enum PostStatus: string implements HasColor, HasIcon, HasLabel
 
     public function translation(): ?string
     {
-        return __('filament-blog.post.post_status_enum.' . $this->name);
+        return __('filament-blog::resources::resources.post.post_status_enum.' . $this->name);
     }
 }

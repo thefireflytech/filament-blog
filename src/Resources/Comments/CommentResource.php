@@ -23,17 +23,17 @@ class CommentResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('filament-blog.comment.comment');
+        return __('filament-blog::resources.comment.comment');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament-blog.comment.comments');
+        return __('filament-blog::resources.comment.comments');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('filament-blog.blog');
+        return __('filament-blog::resources.blog');
     }
 
     public static function form(Schema $schema): Schema

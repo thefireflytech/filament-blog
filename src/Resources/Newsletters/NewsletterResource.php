@@ -23,17 +23,17 @@ class NewsletterResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('filament-blog.news_letter.news_letter');
+        return __('filament-blog::resources.news_letter.news_letter');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament-blog.news_letter.news_letters');
+        return __('filament-blog::resources.news_letter.news_letters');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('filament-blog.blog');
+        return __('filament-blog::resources.blog');
     }
 
     public static function form(Schema $schema): Schema

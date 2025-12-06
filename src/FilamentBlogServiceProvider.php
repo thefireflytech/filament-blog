@@ -78,4 +78,9 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
     }
+
+    public function boot()
+    {
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'filament-blog');
+    }
 }

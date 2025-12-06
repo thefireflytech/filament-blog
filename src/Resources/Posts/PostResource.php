@@ -34,17 +34,17 @@ class PostResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('filament-blog.post.post');
+        return __('filament-blog::resources.post.post');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament-blog.post.posts');
+        return __('filament-blog::resources.post.posts');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('filament-blog.blog');
+        return __('filament-blog::resources.blog');
     }
 
     public static function getNavigationBadge(): ?string

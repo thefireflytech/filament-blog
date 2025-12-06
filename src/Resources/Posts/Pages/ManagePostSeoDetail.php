@@ -20,12 +20,12 @@ class ManagePostSeoDetail extends ManageRelatedRecords
 
     public function getTitle(): string
     {
-        return __('filament-blog.post.manage_seo_detail_breadcrumb');
+        return __('filament-blog::resources.post.manage_seo_detail_breadcrumb');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('filament-blog.post.manage_seo_detail_breadcrumb');
+        return __('filament-blog::resources.post.manage_seo_detail_breadcrumb');
     }
 
     protected function canCreate(): bool

@@ -21,17 +21,17 @@ class SeoDetailResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('filament-blog.seo.seo_detail');
+        return __('filament-blog::resources.seo.seo_detail');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament-blog.seo.seo_details');
+        return __('filament-blog::resources.seo.seo_details');
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return __('filament-blog.blog');
+        return __('filament-blog::resources.blog');
     }
     protected static ?int $navigationSort = 4;
 

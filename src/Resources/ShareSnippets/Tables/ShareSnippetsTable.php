@@ -16,12 +16,15 @@ class ShareSnippetsTable
         return $table
             ->columns([
                 TextColumn::make('script_code')
+                    ->label(__('filament-blog::resources.share_snippet.script_code'))
                     ->limit(50)
                     ->searchable(),
                 TextColumn::make('html_code')
+                    ->label(__('filament-blog::resources.share_snippet.html_code'))
                     ->limit(50)
                     ->searchable(),
-                ToggleColumn::make('active'),
+                ToggleColumn::make('active')
+                    ->label(__('filament-blog::resources.share_snippet.active')),
             ])
             ->recordActions([
                 EditAction::make(),

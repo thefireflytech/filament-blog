@@ -17,16 +17,21 @@ class CategoriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('filament-blog::resources.common.name'))
                     ->searchable(),
-                TextColumn::make('slug'),
+                TextColumn::make('slug')
+                    ->label(__('filament-blog::resources.common.slug')),
                 TextColumn::make('posts_count')
+                    ->label(__('filament-blog::resources.category.posts_count'))
                     ->badge()
                     ->counts('posts'),
                 TextColumn::make('created_at')
+                    ->label(__('filament-blog::resources.common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-blog::resources.common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
