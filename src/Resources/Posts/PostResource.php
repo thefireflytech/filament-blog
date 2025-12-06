@@ -4,17 +4,16 @@ namespace Firefly\FilamentBlog\Resources\Posts;
 
 use BackedEnum;
 use Filament\Pages\Enums\SubNavigationPosition;
-use UnitEnum;
-use Filament\Schemas\Schema;
-use Firefly\FilamentBlog\Resources\Posts\Pages\ListPosts;
-use Firefly\FilamentBlog\Resources\Posts\Pages\CreatePost;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Resources\Posts\Pages\CreatePost;
 use Firefly\FilamentBlog\Resources\Posts\Pages\EditPost;
-use Firefly\FilamentBlog\Resources\Posts\Pages\ManagePostSeoDetail;
+use Firefly\FilamentBlog\Resources\Posts\Pages\ListPosts;
 use Firefly\FilamentBlog\Resources\Posts\Pages\ManagePostComments;
+use Firefly\FilamentBlog\Resources\Posts\Pages\ManagePostSeoDetail;
 use Firefly\FilamentBlog\Resources\Posts\Pages\ViewPost;
 use Firefly\FilamentBlog\Resources\Posts\Schemas\PostForm;
 use Firefly\FilamentBlog\Resources\Posts\Schemas\PostInfolist;
@@ -25,15 +24,28 @@ class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-document-minus';
-
-    protected static string | UnitEnum | null $navigationGroup = 'Blog';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-minus';
 
     protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?int $navigationSort = 3;
 
     protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-blog.post.post');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-blog.post.posts');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-blog.blog');
+    }
 
     public static function getNavigationBadge(): ?string
     {

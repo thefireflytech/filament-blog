@@ -3,8 +3,8 @@
 namespace Firefly\FilamentBlog\Resources\Posts\Pages;
 
 use BackedEnum;
-use Filament\Schemas\Schema;
 use Filament\Resources\Pages\ManageRelatedRecords;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Resources\Comments\Schemas\CommentForm;
 use Firefly\FilamentBlog\Resources\Comments\Schemas\CommentInfolist;
@@ -18,25 +18,21 @@ class ManagePostComments extends ManageRelatedRecords
 
     protected static string $relationship = 'comments';
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
 
     public function getTitle(): string|Htmlable
     {
-        $recordTitle = $this->getRecordTitle();
-
-        $recordTitle = $recordTitle instanceof Htmlable ? $recordTitle->toHtml() : $recordTitle;
-
-        return 'Manage Comments';
+        return __('filament-blog.post.manage_comments');
     }
 
     public function getBreadcrumb(): string
     {
-        return 'Comments';
+        return __('filament-blog.post.manage_comments_breadcrumb');
     }
 
     public static function getNavigationLabel(): string
     {
-        return 'Manage Comments';
+        return __('filament-blog.post.manage_comments');
     }
 
     public function form(Schema $schema): Schema

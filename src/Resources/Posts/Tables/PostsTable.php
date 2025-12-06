@@ -23,6 +23,7 @@ class PostsTable
             ->deferLoading()
             ->columns([
                 TextColumn::make('title')
+                    ->label(__('filament-blog.common.title'))
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title, 40);
                     })
@@ -30,28 +31,32 @@ class PostsTable
                     ->limit(20),
 
                 TextColumn::make('status')
+                    ->label(__('filament-blog.post.status'))
                     ->badge()
                     ->color(function ($state) {
                         return $state->getColor();
                     }),
 
-                ImageColumn::make('cover_photo_path')->label('Cover Photo'),
+                ImageColumn::make('cover_photo_path')->label(__('filament-blog.post.cover_photo')),
 
                 UserPhotoName::make('user')
-                    ->label('Author'),
+                    ->label(__('filament-blog.post.author')),
 
                 TextColumn::make('created_at')
+                    ->label(__('filament-blog.common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('updated_at')
+                    ->label(__('filament-blog.common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('user')
+                    ->label(__('filament-blog.common.user'))
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()
