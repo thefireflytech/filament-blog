@@ -16,10 +16,11 @@ class SeoDetailForm
     {
         return $schema->components([
             Select::make('post_id')
+                ->label(__('filament-blog.post.post'))
                 ->createOptionForm(fn(Schema $schema) => PostForm::configure($schema))
                 ->editOptionForm(fn(Schema $schema) => PostForm::configure($schema))
                 ->relationship('post', 'title')
-                ->unique(config('filamentblog.tables.prefix').'seo_details', 'post_id', null, true)
+                ->unique(config('filamentblog.tables.prefix') . 'seo_details', 'post_id', null, true)
                 ->required()
                 ->preload()
                 ->searchable()
@@ -28,14 +29,17 @@ class SeoDetailForm
                 ->columnSpanFull(),
 
             TextInput::make('title')
+                ->label(__('filament-blog.common.title'))
                 ->required()
                 ->maxLength(255)
                 ->columnSpanFull(),
-                
+
             TagsInput::make('keywords')
+                ->label(__('filament-blog.seo.keywords'))
                 ->columnSpanFull(),
-                
+
             Textarea::make('description')
+                ->label(__('filament-blog.common.description'))
                 ->required()
                 ->maxLength(65535)
                 ->columnSpanFull(),
