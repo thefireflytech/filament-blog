@@ -99,6 +99,7 @@ return [
         'general' => 'عمومی',
         'description' => 'توضیحات',
         'title' => 'عنوان',
+        'titles' => 'عناوین',
         'user' => 'کاربر',
         'email' => 'ایمیل',
     ],

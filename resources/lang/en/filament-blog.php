@@ -100,6 +100,7 @@ return [
         'general' => 'General',
         'description' => 'Description',
         'title' => 'Title',
+        'titles' => 'Titles',
         'user' => 'User',
         'email' => 'Email',
     ],
