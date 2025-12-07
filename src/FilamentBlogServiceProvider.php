@@ -26,6 +26,7 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
             ->hasMigrations('create_blog_tables')
             ->hasCommands(RenameTablesCommand::class)
             ->runsMigrations()
+            ->hasTranslations()
             ->hasViewComponents(
                 'blog',
                 Layout::class,
@@ -79,8 +80,4 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
         }
     }
 
-    public function boot()
-    {
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'filament-blog');
-    }
 }
