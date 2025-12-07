@@ -106,7 +106,11 @@ class PostForm
                                 ->live()
                                 ->label(__('filament-blog::resources.post.status'))
                                 ->inline()
-                                ->options(PostStatus::class)
+                                ->options([
+                                    PostStatus::SCHEDULED->value => PostStatus::SCHEDULED->translation(),
+                                    PostStatus::PUBLISHED->value => PostStatus::PUBLISHED->translation(),
+                                    PostStatus::PENDING->value => PostStatus::PENDING->translation(),
+                                ])
                                 ->required(),
 
                             DateTimePicker::make('scheduled_for')

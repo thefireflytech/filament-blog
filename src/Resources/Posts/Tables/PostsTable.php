@@ -7,13 +7,14 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Firefly\FilamentBlog\Enums\PostStatus;
 use Firefly\FilamentBlog\Models\Post;
-use Illuminate\Support\Str;
 use Firefly\FilamentBlog\Tables\Columns\UserPhotoName;
+use Illuminate\Support\Str;
 
 class PostsTable
 {
@@ -33,6 +34,9 @@ class PostsTable
                 TextColumn::make('status')
                     ->label(__('filament-blog::resources.post.status'))
                     ->badge()
+                    ->formatStateUsing(function ($state) {
+                        return PostStatus::from($state->value)->translation();
+                    })
                     ->color(function ($state) {
                         return $state->getColor();
                     }),
