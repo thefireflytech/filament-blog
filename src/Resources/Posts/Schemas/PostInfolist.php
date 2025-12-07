@@ -54,6 +54,9 @@ class PostInfolist
                         ->schema([
                             TextEntry::make('status')
                                 ->label(__('filament-blog::resources.post.status'))
+                                ->formatStateUsing(function ($state) {
+                                    return PostStatus::from($state->value)->translation();
+                                })
                                 ->badge()->color(function ($state) {
                                     return $state->getColor();
                                 }),
