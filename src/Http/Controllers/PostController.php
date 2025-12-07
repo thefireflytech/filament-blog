@@ -15,7 +15,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        SEOMeta::setTitle('Blog | ' . config('app.name'));
+        SEOMeta::setTitle(__('filament-blog::blog-views.blogs.seo.blog') . config('app.name'));
 
         $posts = Post::query()->with(['categories', 'user', 'tags'])
             ->published()
@@ -28,7 +28,7 @@ class PostController extends Controller
 
     public function allPosts()
     {
-        SEOMeta::setTitle('All posts | ' . config('app.name'));
+        SEOMeta::setTitle(__('filament-blog::blog-views.blogs.seo.all_posts') . config('app.name'));
 
         $posts = Post::query()->with(['categories', 'user'])
             ->published()
@@ -41,7 +41,7 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        SEOMeta::setTitle('Search result for ' . $request->get('query'));
+        SEOMeta::setTitle(__('filament-blog::blog-views.blogs.seo.search_result') . $request->get('query'));
 
         $request->validate([
             'query' => 'required',
@@ -54,7 +54,7 @@ class PostController extends Controller
 
         return view('filament-blog::blogs.search', [
             'posts' => $searchedPosts,
-            'searchMessage' => 'Search result for ' . $request->get('query'),
+            'searchMessage' => __('filament-blog::blog-views.messages.search_result_for', ['query' => $request->get('query')]),
         ]);
     }
 
@@ -88,13 +88,13 @@ class PostController extends Controller
                 Rule::unique(NewsLetter::class, 'email')
             ],
         ], [
-            'email.unique' => 'You have already subscribed',
+            'email.unique' => __('filament-blog::blog-views.messages.already_subscribed'),
         ]);
 
         NewsLetter::create([
             'email' => $request->email,
         ]);
 
-        return back()->with('success', 'You have successfully subscribed to our news letter');
+        return back()->with('success', __('filament-blog::blog-views.messages.subscribed_successfully'));
     }
 }

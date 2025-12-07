@@ -2,7 +2,7 @@
     <section>
         <header class="container mx-auto mb-4 max-w-[800px] px-6 pb-4 mt-10 text-center">
             <h3 class="inherits-color text-balance leading-tighter relative z-10 text-5xl font-semibold tracking-tight">
-                Search Results
+                {{__('filament-blog::blog-views.blogs.search.title')}}
             </h3>
         </header>
     </section>
@@ -13,7 +13,7 @@
                    <x-blog-card :post="$post"/>
                     @empty
                         <div class="flex col-span-3 justify-center w-full">
-                            <h2 class="text-2xl text-gray-300 font-semibold">No posts found</h2>
+                            <h2 class="text-2xl text-gray-300 font-semibold">{{__('filament-blog::blog-views.blogs.search.no_posts')}}</h2>
                         </div>
                 @endforelse
             </div>

@@ -74,17 +74,17 @@
     <div class="project-name">
         {{ config('app.name') }}
     </div>
-    <h2 class="flash">New Blog Post Published!</h2>
+    <h2 class="flash">{{__('filament-blog::blog-views.mail.blog_published.subject')}}</h2>
     <div class="header">
         <img src="{{ $post->featurePhoto }}" alt="Feature Image">
     </div>
     <div class="content">
         <h2>{{ $post->title }}</h2>
         <p>{!! Str::limit($post->body, 500) !!} </p>
-        <a href="{{route('filamentblog.post.show', ['post' => $post->slug])}}" class="btn">Read More</a>
+        <a href="{{route('filamentblog.post.show', ['post' => $post->slug])}}" class="btn">{{__('filament-blog::blog-views.mail.blog_published.read_more')}}</a>
     </div>
     <div class="footer">
-        <p>Thank you for subscribing to our blog updates!</p>
+        <p>{{__('filament-blog::blog-views.mail.blog_published.thanks')}}</p>
     </div>
 </div>
 </body>
