@@ -17,18 +17,23 @@ class SeoDetailsTable
             ->striped()
             ->columns([
                 TextColumn::make('post.title')
+                    ->label(__('filament-blog::resources.post.post'))
                     ->hidden(fn() => $post?->exists())
                     ->limit(20),
                 TextColumn::make('title')
+                    ->label(__('filament-blog::resources.common.title'))
                     ->limit(20)
                     ->searchable(),
                 TextColumn::make('keywords')->badge()
+                    ->label(__('filament-blog::resources.seo.keywords'))
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label(__('filament-blog::resources.common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-blog::resources.common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

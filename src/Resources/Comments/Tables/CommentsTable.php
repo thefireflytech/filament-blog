@@ -22,15 +22,18 @@ class CommentsTable
         return $table
             ->columns([
                 UserPhotoName::make('user')
-                    ->label('User'),
+                    ->label(__('filament-blog::resources.common.user')),
                 TextColumn::make('post.title')
+                    ->label(__('filament-blog::resources.post.post'))
                     ->hidden(fn() => $post?->exists())
                     ->limit(20)
                     ->sortable(),
                 TextColumn::make('comment')
+                    ->label(__('filament-blog::resources.comment.comment'))
                     ->searchable()
                     ->limit(20),
                 ToggleColumn::make('approved')
+                    ->label(__('filament-blog::resources.comment.approved'))
                     ->beforeStateUpdated(function ($record, $state) {
                         if ($state) {
                             $record->approved_at = now();
@@ -41,26 +44,31 @@ class CommentsTable
                         return $state;
                     }),
                 TextColumn::make('approved_at')
+                    ->label(__('filament-blog::resources.comment.approved_at'))
                     ->sortable()
                     ->placeholder('Not approved yet'),
 
                 TextColumn::make('created_at')
+                    ->label(__('filament-blog::resources.common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label(__('filament-blog::resources.common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('user')
+                    ->label(__('filament-blog::resources.common.user'))
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()
                     ->multiple(),
                     
                 SelectFilter::make('post')
+                    ->label(__('filament-blog::resources.post.post'))
                     ->relationship('post', 'title')
                     ->searchable()
                     ->preload()

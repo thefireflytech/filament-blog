@@ -19,9 +19,22 @@ class ShareSnippetResource extends Resource
 
     protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-share';
 
-    protected static string | UnitEnum | null $navigationGroup = 'Blog';
-
     protected static ?int $navigationSort = 7;
+
+    public static function getModelLabel(): string
+    {
+        return __('filament-blog::resources.share_snippet.share_snippet');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament-blog::resources.share_snippet.share_snippets');
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('filament-blog::resources.blog');
+    }
 
     public static function canCreate(): bool
     {

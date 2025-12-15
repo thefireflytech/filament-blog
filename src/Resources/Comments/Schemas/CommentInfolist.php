@@ -12,17 +12,22 @@ class CommentInfolist
     public static function configure(Schema $schema, ?Post $post = null): Schema
     {
         return $schema->components([
-            Section::make('Comment')
+            Section::make(__('filament-blog::resources.comment.comment'))
                 ->columnSpanFull()
                 ->schema([
                     TextEntry::make('user.name')
+                        ->label(__('filament-blog::resources.common.user'))
                         ->label('Commented by'),
                     TextEntry::make('post.title')
+                        ->label(__('filament-blog::resources.post.post'))
                         ->label('Post')
                         ->hidden(fn() => $post?->exists()),
-                    TextEntry::make('comment'),
-                    TextEntry::make('created_at'),
+                    TextEntry::make('comment')
+                        ->label(__('filament-blog::resources.comment.comment')),
+                    TextEntry::make('created_at')
+                        ->label(__('filament-blog::resources.common.created_at')),
                     TextEntry::make('approved_at')
+                        ->label(__('filament-blog::resources.comment.approved_at'))
                         ->label('Approved At')
                         ->placeholder('Not Approved'),
                 ])

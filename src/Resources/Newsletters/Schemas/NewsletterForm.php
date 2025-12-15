@@ -12,11 +12,13 @@ class NewsletterForm
     {
         return $schema->components([
             TextInput::make('email')
+                ->label(__('filament-blog::resources.common.email'))
                 ->email()
                 ->required()
                 ->unique(ignoreRecord: true)
                 ->maxLength(100),
             Toggle::make('subscribed')
+                ->label(__('filament-blog::resources.news_letter.subscribed'))
                 ->default(true)
                 ->required()->columnSpanFull(),
         ])->columns(2);

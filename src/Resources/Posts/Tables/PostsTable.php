@@ -7,13 +7,14 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Firefly\FilamentBlog\Enums\PostStatus;
 use Firefly\FilamentBlog\Models\Post;
-use Illuminate\Support\Str;
 use Firefly\FilamentBlog\Tables\Columns\UserPhotoName;
+use Illuminate\Support\Str;
 
 class PostsTable
 {
@@ -23,6 +24,7 @@ class PostsTable
             ->deferLoading()
             ->columns([
                 TextColumn::make('title')
+                    ->label(__('filament-blog::resources.common.title'))
                     ->description(function (Post $record) {
                         return Str::limit($record->sub_title, 40);
                     })
@@ -30,28 +32,35 @@ class PostsTable
                     ->limit(20),
 
                 TextColumn::make('status')
+                    ->label(__('filament-blog::resources.post.status'))
                     ->badge()
+                    ->formatStateUsing(function ($state) {
+                        return PostStatus::from($state->value)->translation();
+                    })
                     ->color(function ($state) {
                         return $state->getColor();
                     }),
 
-                ImageColumn::make('cover_photo_path')->label('Cover Photo'),
+                ImageColumn::make('cover_photo_path')->label(__('filament-blog::resources.post.cover_photo')),
 
                 UserPhotoName::make('user')
-                    ->label('Author'),
+                    ->label(__('filament-blog::resources.post.author')),
 
                 TextColumn::make('created_at')
+                    ->label(__('filament-blog::resources.common.created_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('updated_at')
+                    ->label(__('filament-blog::resources.common.updated_at'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('user')
+                    ->label(__('filament-blog::resources.common.user'))
                     ->relationship('user', config('filamentblog.user.columns.name'))
                     ->searchable()
                     ->preload()

@@ -3,8 +3,8 @@
 namespace Firefly\FilamentBlog\Resources\Posts\Pages;
 
 use BackedEnum;
-use Filament\Schemas\Schema;
 use Filament\Resources\Pages\ManageRelatedRecords;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Firefly\FilamentBlog\Resources\Posts\PostResource;
 use Firefly\FilamentBlog\Resources\SeoDetails\Schemas\SeoDetailForm;
@@ -16,21 +16,21 @@ class ManagePostSeoDetail extends ManageRelatedRecords
 
     protected static string $relationship = 'seoDetail';
 
-    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-globe-alt';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-globe-alt';
 
     public function getTitle(): string
     {
-        return 'Manage SEO Detail';
+        return __('filament-blog::resources.post.manage_seo_detail_breadcrumb');
     }
 
     public static function getNavigationLabel(): string
     {
-        return 'Manage SEO Detail';
+        return __('filament-blog::resources.post.manage_seo_detail_breadcrumb');
     }
 
     protected function canCreate(): bool
     {
-        return ! $this->getRelationship()->count();
+        return !$this->getRelationship()->count();
     }
 
     public function form(Schema $schema): Schema

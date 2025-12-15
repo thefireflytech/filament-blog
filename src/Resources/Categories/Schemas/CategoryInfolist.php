@@ -12,11 +12,13 @@ class CategoryInfolist
     {
         return $schema
             ->components([
-                Section::make('Category')
+                Section::make(__('filament-blog::resources.category.category'))
                     ->columnSpanFull()
                     ->schema([
-                        TextEntry::make('name'),
-                        TextEntry::make('slug'),
+                        TextEntry::make('name')
+                            ->label(__('filament-blog::resources.common.name')),
+                        TextEntry::make('slug')
+                            ->label(__('filament-blog::resources.common.name')),
                     ])
                     ->columns(2)
                     ->icon('heroicon-o-square-3-stack-3d'),

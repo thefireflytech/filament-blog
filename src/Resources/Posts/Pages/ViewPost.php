@@ -13,6 +13,11 @@ class ViewPost extends ViewRecord
 {
     protected static string $resource = PostResource::class;
 
+    public static function getNavigationLabel(): string
+    {
+        return __('filament-blog::resources.post.view_post');
+    }
+
     public function getTitle(): string|Htmlable
     {
         $record = $this->getRecord();
@@ -24,7 +29,7 @@ class ViewPost extends ViewRecord
     {
         return [
             Action::make('sendNotification')
-                ->label('Send Notification')
+                ->label(__('filament-blog::resources.post.send_notification'))
                 ->requiresConfirmation()
                 ->icon('heroicon-o-bell')->action(function (Post $record) {
                     event(new BlogPublished($record));
@@ -33,7 +38,7 @@ class ViewPost extends ViewRecord
                     return $record->isNotPublished();
                 }),
             Action::make('preview')
-                ->label('Preview')
+                ->label(__('filament-blog::resources.post.preview'))
                 ->requiresConfirmation()
                 ->color('success')
                 ->icon('heroicon-o-eye')->url(function (Post $record) {

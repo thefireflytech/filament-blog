@@ -38,4 +38,9 @@ enum PostStatus: string implements HasColor, HasIcon, HasLabel
             self::PUBLISHED => 'heroicon-o-check-badge',
         };
     }
+
+    public function translation(): ?string
+    {
+        return __('filament-blog::resources.post.post_status_enum.' . $this->name);
+    }
 }

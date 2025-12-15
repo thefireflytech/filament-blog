@@ -21,6 +21,6 @@ class CommentController extends Controller
 
         return redirect()
             ->route('filamentblog.post.show', $post)
-            ->with('success', 'Comment submitted for approval.');
+            ->with('success', __('filament-blog::blog-views.messages.comment_submitted'));
     }
 }

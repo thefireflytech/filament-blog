@@ -26,6 +26,7 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
             ->hasMigrations('create_blog_tables')
             ->hasCommands(RenameTablesCommand::class)
             ->runsMigrations()
+            ->hasTranslations()
             ->hasViewComponents(
                 'blog',
                 Layout::class,
@@ -78,4 +79,5 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
             $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         }
     }
+
 }

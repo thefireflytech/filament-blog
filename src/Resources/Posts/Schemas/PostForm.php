@@ -26,12 +26,13 @@ class PostForm
     public static function configure(Schema $schema, ?Category $category = null, ?Tag $tag = null): Schema
     {
         return $schema->components([
-            Section::make('Blog Details')
+            Section::make(__('filament-blog::resources.post.blog_details'))
                 ->columnSpanFull()
                 ->schema([
-                    Fieldset::make('Titles')
+                    Fieldset::make(__('filament-blog::resources.common.titles'))
                         ->schema([
                             Select::make('category_id')
+                                ->label(__('filament-blog::resources.category.categories'))
                                 ->hidden(fn() => $category?->exists())
                                 ->multiple()
                                 ->preload()
@@ -41,6 +42,7 @@ class PostForm
                                 ->columnSpanFull(),
 
                             TextInput::make('title')
+                                ->label(__('filament-blog::resources.common.title'))
                                 ->live(true)
                                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set(
                                     'slug',
@@ -51,15 +53,18 @@ class PostForm
                                 ->maxLength(255),
 
                             TextInput::make('slug')
+                                ->label(__('filament-blog::resources.common.slug'))
                                 ->required()
                                 ->unique(config('filamentblog.tables.prefix') . 'posts', 'slug', null, true)
                                 ->maxLength(255),
 
                             Textarea::make('sub_title')
+                                ->label(__('filament-blog::resources.post.sub_title'))
                                 ->maxLength(255)
                                 ->columnSpanFull(),
 
                             Select::make('tag_id')
+                                ->label(__('filament-blog::resources.tag.tags'))
                                 ->hidden(fn() => $tag?->exists())
                                 ->multiple()
                                 ->preload()
@@ -70,36 +75,45 @@ class PostForm
                         ]),
 
                     RichEditor::make('body')
+                        ->label(__('filament-blog::resources.post.body'))
                         ->extraInputAttributes(['style' => 'min-height: 24rem'])
                         ->required()
                         ->columnSpanFull(),
 
-                    Fieldset::make('Feature Image')
+                    Fieldset::make(__('filament-blog::resources.post.feature_image'))
                         ->schema([
                             FileUpload::make('cover_photo_path')
+                                ->label(__('filament-blog::resources.post.cover_photo'))
                                 ->visibility(config('filamentblog.filesystem.visibility', 'public'))
                                 ->disk(config('filamentblog.filesystem.disk', 'public'))
-                                ->label('Cover Photo')
                                 ->directory('/blog-feature-images')
-                                ->hint('This cover image is used in your blog post as a feature image. Recommended image size 1200 X 628')
+                                ->hint(__('filament-blog::resources.post.cover_photo_hint'))
                                 ->image()
                                 ->preserveFilenames()
                                 ->imageEditor()
                                 ->maxSize(1024 * 5)
                                 ->rules('dimensions:max_width=1920,max_height=1004')
                                 ->required(),
-                            TextInput::make('photo_alt_text')->required(),
+                            TextInput::make('photo_alt_text')
+                                ->label(__('filament-blog::resources.post.photo_alt_text'))
+                                ->required(),
                         ])->columns(1),
 
-                    Fieldset::make('Status')
+                    Fieldset::make(__('filament-blog::resources.post.status'))
                         ->schema([
                             ToggleButtons::make('status')
                                 ->live()
+                                ->label(__('filament-blog::resources.post.status'))
                                 ->inline()
-                                ->options(PostStatus::class)
+                                ->options([
+                                    PostStatus::SCHEDULED->value => PostStatus::SCHEDULED->translation(),
+                                    PostStatus::PUBLISHED->value => PostStatus::PUBLISHED->translation(),
+                                    PostStatus::PENDING->value => PostStatus::PENDING->translation(),
+                                ])
                                 ->required(),
 
                             DateTimePicker::make('scheduled_for')
+                                ->label(__('filament-blog::resources.post.scheduled_for'))
                                 ->visible(function ($get) {
                                     return $get('status') === PostStatus::SCHEDULED;
                                 })
@@ -110,6 +124,7 @@ class PostForm
                                 ->native(false),
                         ]),
                     Select::make(config('filamentblog.user.foreign_key'))
+                        ->label(__('filament-blog::resources.post.author'))
                         ->relationship('user', config('filamentblog.user.columns.name'))
                         ->nullable(false)
                         ->default(Auth::id()),
