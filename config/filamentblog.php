@@ -86,6 +86,16 @@ return [
 
     /**
      * ------------------------------------------------------------
+     * Features
+     * Enable or disable optional UI features for the blog package.
+     * ------------------------------------------------------------
+     */
+    'features' => [
+        'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', true),
+    ],
+
+    /**
+     * ------------------------------------------------------------
      * Filesystem
      * This is the filesystem configuration for the blog.
      * ------------------------------------------------------------

@@ -22,6 +22,7 @@ The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogg
 - **Newsletter Subscription:** Integrate newsletter subscription forms to grow your email list.
 - **New Post Published Notification:** Notify subscribers when a new blog post is published.
 - **Category Search:** Categorize your blog posts for easy navigation and search.
+ - **Author Block:** Shows author photo, name, and a short description on the post show page (configurable).
 - **Support**: [Laravel 11](https://laravel.com) and [Filament 3.x](https://filamentphp.com)
 
 ## Demo Video
@@ -269,6 +270,31 @@ RECAPTCHA_SECRET_KEY
 If you discover a security vulnerability within this package, please send an e-mail to dev@thefireflytech.com, All security vulnerabilities will be promptly addressed.
 
 ### 🤝 Contributing
+
+## Author block (new)
+
+The package shows a small author block on the post show page. It includes:
+
+- Author avatar (pulled from the user model column configured in `filamentblog.php`).
+- Author name.
+- Small description (pulled from a `bio()` method or `bio` attribute on the user model). If neither exists a short fallback text `Author` is used.
+
+This feature is enabled by default. To disable it, set the config option in `config/filamentblog.php` or your `.env`:
+
+```php
+'features' => [
+    'show_author' => false, // disable author block
+],
+```
+
+Or set in `.env`:
+
+```
+FILAMENT_BLOG_SHOW_AUTHOR=false
+```
+
+If you need the author block to link to an author archive page or show extra metadata, you can publish and override the package view `blogs/author.blade.php`.
+
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
