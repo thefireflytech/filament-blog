@@ -35,7 +35,7 @@
                     <div class="space-y-10">
                         <div>
                             <div class="flex flex-col justify-end">
-                                <div class="mb-6 h-full w-full overflow-hidden rounded bg-slate-200">
+                                <div class="mb-8 h-full w-full flex justify-center items-center overflow-hidden rounded">
                                     <img class="flex h-full min-h-[400px] items-center justify-center object-cover object-top text-sm text-xl font-semibold text-slate-400"
                                         src="{{ $post->featurePhoto }}" alt="{{ $post->photo_alt_text }}">
                                 </div>
