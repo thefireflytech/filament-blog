@@ -35,7 +35,6 @@ return [
             'blog' => 'Blog',
             'comments_title' => 'COMMENTS',
             'author_default_description' => 'Author',
-            'more_from_author' => 'More from :author',
             'tags' => 'Tags',
             'comments' => 'Comments',
             'related_posts' => 'Related Posts',

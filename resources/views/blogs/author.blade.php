@@ -4,21 +4,17 @@
         <div>
             <h3 class="text-base font-semibold">{{ $post->user->name() }}</h3>
             @php
-                $bio = null;
-                if (method_exists($post->user, 'bio') && $post->user->bio()) {
-                    $bio = $post->user->bio();
-                } elseif (isset($post->user->bio) && $post->user->bio) {
-                    $bio = $post->user->bio;
-                }
+                $bio = $post->user->bio();
+                $designation = $post->user->designation();
+                $more_from_author = $post->user->moreFromAuthor();
             @endphp
             <p class="text-sm text-slate-600">
+                <span class="font-medium">{{ $designation }}</span>
                 {{ $bio ?? __('filament-blog::blog-views.blogs.show.author_default_description', ['app' => config('app.name')]) }}
+                @if ($more_from_author)
+                    <span>{{ $more_from_author }}</span>
+                @endif
             </p>
-        </div>
-        <div class="ml-auto">
-            @if (Route::has('filamentblog.author.posts'))
-                <a href="{{ route('filamentblog.author.posts', ['author' => $post->user->{config('filamentblog.user.columns.name')}]) }}" class="rounded-full border px-3 py-2 text-sm font-medium hover:bg-slate-100">{{ __('filament-blog::blog-views.blogs.show.more_from_author', ['author' => $post->user->name()]) }}</a>
-            @endif
         </div>
     </div>
 </div>

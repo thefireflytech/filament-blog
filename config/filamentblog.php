@@ -55,6 +55,9 @@ return [
         'columns' => [
             'name' => 'name',
             'avatar' => 'profile_photo_path',
+            'designation' => 'designation',
+            'bio' => 'bio',
+            'more_from_author' => 'more_from_author',
         ],
     ],
 

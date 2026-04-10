@@ -18,6 +18,21 @@ trait HasBlog
             ? asset('storage/'.$this->{config('filamentblog.user.columns.avatar')}) : 'https://ui-avatars.com/api/?&background=random&name='.$this->{config('filamentblog.user.columns.name')};
     }
 
+    public function designation()
+    {
+        return $this->{config('filamentblog.user.columns.designation')} ?? '';
+    }
+
+    public function bio()
+    {
+        return $this->{config('filamentblog.user.columns.bio')} ?? '';
+    }
+
+    public function moreFromAuthor()
+    {
+        return $this->{config('filamentblog.user.columns.more_from_author')} ?? '';
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class, config('filamentblog.user.foreign_key'));
