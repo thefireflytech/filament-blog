@@ -1,4 +1,48 @@
 <x-blog-layout>
+    @php
+        $toc = [];
+        $tocEnabled = config('filamentblog.features.table_content.enabled', false);
+        $includeTitle = data_get(config('filamentblog.features.table_content', []), 'title', true);
+
+        if ($tocEnabled) {
+            $html = new DOMDocument();
+            @$html->loadHTML($post->body);
+
+            if ($includeTitle) {
+                $toc[] = [
+                    'tag' => 'h1',
+                    'text' => $post->title,
+                    'id' => \Illuminate\Support\Str::slug($post->title) . '-post-title',
+                ];
+            }
+
+            $headingTags = ['h1', 'h2'];
+            foreach ($headingTags as $tag) {
+                $headings = $html->getElementsByTagName($tag);
+                foreach ($headings as $heading) {
+                    $text = trim($heading->textContent);
+                    if ($text === '') {
+                        continue;
+                    }
+                    $id = \Illuminate\Support\Str::slug($text);
+                    $uniqueId = $id;
+                    $counter = 1;
+                    while (collect($toc)->pluck('id')->contains($uniqueId)) {
+                        $uniqueId = $id . '-' . $counter++;
+                    }
+                    $toc[] = [
+                        'tag' => $tag,
+                        'text' => $text,
+                        'id' => $uniqueId,
+                    ];
+                    $heading->setAttribute('id', $uniqueId);
+                }
+            }
+            
+            $post->body = $html->saveHTML();
+        }
+    @endphp
+
     <section class="pb-16">
         <div class="container mx-auto">
             <div class="mb-10 flex gap-x-2 text-sm font-semibold">
@@ -16,7 +60,7 @@
                     <div class="py-5">
                         <div class="sticky top-24 flex flex-col items-center gap-y-5 divide-y-2">
                             <button x-data=""
-                                x-on:click="document.getElementById('comments').scrollIntoView({ behavior: 'smooth'})"
+                                x-on:click="document.getElementById('comments')?.scrollIntoView({ behavior: 'smooth'})"
                                 class="group/btn flex flex-col items-center justify-center gap-y-2">
                                 <div
                                     class="flex items-center justify-center rounded-full bg-slate-100 px-4 py-4 group-hover/btn:bg-slate-200">
@@ -36,18 +80,21 @@
                         <div>
                             <div class="flex flex-col justify-end">
                                 <div class="mb-6 h-full w-full overflow-hidden rounded bg-slate-200">
-                                    <img class="flex h-full min-h-[400px] items-center justify-center object-cover object-top text-sm text-xl font-semibold text-slate-400"
+                                    <img class="flex h-full min-h-[400px] items-center justify-center object-cover object-top"
                                         src="{{ $post->featurePhoto }}" alt="{{ $post->photo_alt_text }}">
                                 </div>
                                 <div class="mb-6">
-                                    <h1 class="mb-6 text-4xl font-semibold">
-                                        {{ $post->title }}
-                                    </h1>
+                                    @if($tocEnabled && $includeTitle)
+                                        <h1 id="{{ \Illuminate\Support\Str::slug($post->title).'-post-title' }}" class="mb-6 text-4xl font-semibold">
+                                            {{ $post->title }}
+                                        </h1>
+                                    @else
+                                        <h1 class="mb-6 text-4xl font-semibold">{{ $post->title }}</h1>
+                                    @endif
                                     <p>{{ $post->sub_title }}</p>
                                     <div class="mt-2">
                                         @foreach ($post->categories as $category)
-                                            <a
-                                                href="{{ route('filamentblog.category.post', ['category' => $category->slug]) }}">
+                                            <a href="{{ route('filamentblog.category.post', ['category' => $category->slug]) }}">
                                                 <span
                                                     class="bg-primary-200 text-primary-800 mr-2 inline-flex rounded-full px-2 py-1 text-xs font-semibold">{{ $category->name }}
                                                 </span>
@@ -60,17 +107,33 @@
                                         <div class="flex items-center gap-4">
                                             <img class="h-14 w-14 overflow-hidden rounded-full border-4 border-white bg-zinc-300 object-cover text-[0] ring-1 ring-slate-300"
                                                 src="{{ $post->user->avatar }}" alt="{{ $post->user->name() }}">
-                                            <div>
+                                                <div>
                                                 <span title="{{ $post->user->name() }}"
                                                     class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap font-semibold">{{ $post->user->name() }}</span>
                                                 <span
-                                                    class="block whitespace-nowrap text-sm font-medium font-semibold text-zinc-600">
+                                                    class="block whitespace-nowrap text-sm font-semibold text-zinc-600">
                                                     {{ $post->formattedPublishedDate() }}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
+                                    @if($tocEnabled && count($toc))
+                                        <div class="toc mb-7 border border-gray-400 rounded-md p-4">
+                                            <div class="text-2xl font-semibold mb-4">Table of Contents</div>
+                                            <ul class="space-y-2 list-disc px-8">
+                                                @foreach ($toc as $item)
+                                                    <li class="{{ $item['tag'] }} text-base">
+                                                        <a href="#{{ $item['id'] }}"
+                                                           class="text-blue-600 hover:text-blue-700 hover:underline">
+                                                            {{ $item['text'] }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
                                     <article class="m-auto leading-6">
                                         {{ \Filament\Forms\Components\RichEditor\RichContentRenderer::make($post->body) }}
                                     </article>
@@ -81,7 +144,7 @@
                                             <div class="space-x-2 space-y-1">
                                                 @foreach ($post->tags as $tag)
                                                     <a href="{{ route('filamentblog.tag.post', ['tag' => $tag->slug]) }}"
-                                                        class="rounded-full border border-slate-300 px-3 py-1 text-sm font-medium font-medium text-black text-slate-600 hover:bg-slate-100">
+                                                    class="rounded-full border border-slate-300 px-3 py-1 text-sm font-medium text-slate-600 hover:bg-slate-100">
                                                         {{ $tag->name }}
                                                     </a>
                                                 @endforeach
@@ -92,7 +155,7 @@
                             </div>
                         </div>
                         @if ($post->comments->count())
-                            <div class="border-t-2 py-10">
+                            <div id="comments" class="border-t-2 py-10">
                                 <div class="mb-4">
                                     <h3 class="mb-2 text-2xl font-semibold">{{__('filament-blog::blog-views.blogs.show.comments')}}</h3>
                                 </div>
@@ -161,4 +224,28 @@
         </div>
     </section>
     {!! $shareButton?->script_code !!}
+
+    @if($tocEnabled)
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const navbarHeight = document.querySelector('.header')?.offsetHeight || 0;
+
+                document.querySelectorAll('.toc a').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        const targetElement = document.querySelector(this.getAttribute('href'));
+                        if (targetElement) {
+                            const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 12;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    @endif
 </x-blog-layout>

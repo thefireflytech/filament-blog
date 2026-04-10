@@ -74,6 +74,21 @@ return [
 
     /**
      * ------------------------------------------------------------
+     * Features
+     * Enable or configure optional features such as table of contents
+     * ------------------------------------------------------------
+     */
+    'features' => [
+        'table_content' => [
+            // Enable/disable table of contents feature
+            'enabled' => true,
+            // Whether to include the manual post title as first TOC entry
+            'title' => true,
+        ],
+    ],
+
+    /**
+     * ------------------------------------------------------------
      * Recaptcha
      * This is the recaptcha configuration for the blog.
      * ------------------------------------------------------------
