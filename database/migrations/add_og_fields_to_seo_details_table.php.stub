@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::table(config('filamentblog.tables.prefix') . 'seo_details', function (Blueprint $table) {
+            $table->string('og_title')->nullable();
+            $table->string('og_description')->nullable();
+            $table->string('og_image')->nullable();
+            $table->string('twitter_title')->nullable();
+            $table->string('twitter_description')->nullable();
+            $table->string('twitter_image')->nullable();
+        });
+    }
+
+    public function down()
+    {
+        Schema::table(config('filamentblog.tables.prefix') . 'seo_details', function (Blueprint $table) {
+            $table->dropColumn([
+                'og_title', 'og_description', 'og_image',
+                'twitter_title', 'twitter_description', 'twitter_image'
+            ]);
+        });
+    }
+};
