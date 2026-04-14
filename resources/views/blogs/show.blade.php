@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <article class="m-auto leading-6">
+                                   <article class="[&_ul]:list-[revert] [&_ol]:list-[revert] [&_ul]:pl-[revert] [&_ol]:pl-[revert] [&_li]:mb-2">
                                         {{ \Filament\Forms\Components\RichEditor\RichContentRenderer::make($post->body) }}
                                     </article>
 
