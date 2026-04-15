@@ -84,6 +84,7 @@
         article h1 {
             line-height: 1.2;
             font-size: 2rem;
+            margin-top: 1.5em;
             color: #424242;
             font-weight: 900;
             padding-bottom: 20px;
@@ -92,6 +93,7 @@
         article h2 {
             line-height: 1.2;
             font-size: 1.5rem;
+            margin-top: 1.25em;
             color: #424242;
             font-weight: 800;
             padding-bottom: 10px;
@@ -100,6 +102,7 @@
         article h3 {
             line-height: 1.2;
             font-size: 1.25rem;
+            margin-top: 1em;
             color: #424242;
             font-weight: 700;
             padding-bottom: 10px;
@@ -108,11 +111,46 @@
         article h4 {
             line-height: 1.2;
             font-size: 1.2rem;
+            margin-top: 1em;
             color: #424242;
             font-weight: 600;
             padding-bottom: 10px;
         }
+        article h5 {
+            margin-top: 0.75em;
+            margin-bottom: 0.5em;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        article h6 {
+            margin-top: 0.5em;
+            margin-bottom: 0.25em;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #555;
+        }
 
+        article blockquote {
+            margin: 1.5em 0;
+            padding-left: 1em;
+            border-left: 4px solid #ccc;
+            font-style: italic;
+            color: #555;
+        }
+
+        article pre {
+            background: #f4f4f4;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+        article code {
+            background: #f4f4f4;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: monospace;
+        }
         article p {
             line-height: 1.75;
             letter-spacing: .2px;
@@ -120,6 +158,14 @@
             color: #424242;
             font-weight: 400;
             margin-bottom: 1rem;
+        }
+
+        article ul, article ol {
+            margin-left: 1.8em;
+            list-style: revert;
+        }
+        article li {
+            margin-bottom: 0.25em;
         }
 
         article ul {

@@ -93,6 +93,7 @@ return [
             'title' => false, // Whether to include the manual post title as first TOC entry
 
         ],
+        'preserve_space_in_content' => false, // This feature will preserve the space in the content by replacing empty paragraphs with non-breaking spaces.
     ],
 
     /**

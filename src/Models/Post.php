@@ -45,6 +45,15 @@ class Post extends Model
         'user_id' => 'integer',
     ];
 
+    public function getBodyAttribute($value)
+    {
+        if (! config('filamentblog.post_rendering.preserve_space_in_content')) {
+            return $value;
+        }
+        
+        return preg_replace('/<p>\s*<\/p>/', '<p>&nbsp;</p>', $value ?? '');
+    }
+
     protected static function newFactory()
     {
         return new PostFactory();
