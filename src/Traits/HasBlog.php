@@ -2,6 +2,7 @@
 
 namespace Firefly\FilamentBlog\Traits;
 
+use Attribute;
 use Firefly\FilamentBlog\Models\Comment;
 use Firefly\FilamentBlog\Models\Post;
 
@@ -14,8 +15,18 @@ trait HasBlog
 
     public function getAvatarAttribute()
     {
-        return $this->{config('filamentblog.user.columns.avatar')}
-            ? asset('storage/'.$this->{config('filamentblog.user.columns.avatar')}) : 'https://ui-avatars.com/api/?&background=random&name='.$this->{config('filamentblog.user.columns.name')};
+        $avatarColumn = config('filamentblog.user.columns.avatar', 'profile_photo_path');
+        
+        $attributes = $this->getAttributes();
+        $avatarValue = $attributes[$avatarColumn] ?? null;
+        
+        if ($avatarValue) {
+            return asset('storage/' . $avatarValue);
+        }
+        
+        $nameColumn = config('filamentblog.user.columns.name', 'name');
+        $nameValue = $attributes[$nameColumn] ?? 'User';
+        return 'https://ui-avatars.com/api/?&background=random&name=' . urlencode($nameValue);
     }
 
     public function posts()

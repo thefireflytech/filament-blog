@@ -37,5 +37,5 @@ it('only allow authenticated user to comment on post', function () {
         ->assertRedirectToRoute('filamentblog.post.show', $this->post);
 
     // Assert
-    $this->assertDatabaseHas('comments', $this->comment);
+    $this->assertDatabaseHas(config('filamentblog.tables.prefix').'comments', $this->comment);
 });
