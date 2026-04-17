@@ -57,7 +57,6 @@ return [
             'avatar' => 'profile_photo_path',
             'designation' => 'designation',
             'bio' => 'bio',
-            'more_from_author' => 'more_from_author',
         ],
     ],
 
@@ -88,12 +87,11 @@ return [
     ],
 
     /**
-     * ------------------------------------------------------------
-     * Features
-     * Enable or disable optional UI features for the blog package.
-     * ------------------------------------------------------------
+     * Post Rendering Options
+     *
+     * Control how the post body HTML is processed and transformed.
      */
-    'features' => [
+    'post_rendering' => [
         'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', true),
     ],
 

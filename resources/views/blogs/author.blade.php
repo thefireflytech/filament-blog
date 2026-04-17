@@ -6,14 +6,10 @@
             @php
                 $bio = $post->user->bio();
                 $designation = $post->user->designation();
-                $more_from_author = $post->user->moreFromAuthor();
             @endphp
             <p class="text-sm text-slate-600">
                 <span class="font-medium">{{ $designation }}</span>
                 {{ $bio ?? __('filament-blog::blog-views.blogs.show.author_default_description', ['app' => config('app.name')]) }}
-                @if ($more_from_author)
-                    <span>{{ $more_from_author }}</span>
-                @endif
             </p>
         </div>
     </div>

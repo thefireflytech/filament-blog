@@ -41,12 +41,6 @@ trait HasBlog
         return $this->getAttributes()[$column] ?? null;
     }
 
-    public function moreFromAuthor()
-    {
-        $column = config('filamentblog.user.columns.more_from_author', 'more_from_author');
-        return $this->getAttributes()[$column] ?? null;
-    }
-
     public function posts()
     {
         return $this->hasMany(Post::class, config('filamentblog.user.foreign_key'));

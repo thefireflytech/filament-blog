@@ -20,7 +20,7 @@ it('renders author block when enabled', function () {
 
 it('does not render author block when disabled', function () {
     // Arrange
-    config(['filamentblog.features.show_author' => false]);
+    config(['filamentblog.post_rendering.show_author' => false]);
     $post = Post::factory()->published()->create();
 
     // Act & Assert

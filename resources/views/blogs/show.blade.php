@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                     @endif
-                                    @if (config('filamentblog.features.show_author', true))
+                                    @if (config('filamentblog.post_rendering.show_author', true))
                                         <div class="mt-6">@include('filament-blog::blogs.author', ['post' => $post])</div>
                                     @endif
                                 </div>
