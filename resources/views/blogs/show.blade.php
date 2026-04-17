@@ -35,9 +35,8 @@
                     <div class="space-y-10">
                         <div>
                             <div class="flex flex-col justify-end">
-                                <div class="mb-8 h-full w-full flex justify-center items-center overflow-hidden rounded">
-                                    <img class="flex h-full min-h-[400px] items-center justify-center object-cover object-top text-sm text-xl font-semibold text-slate-400"
-                                        src="{{ $post->featurePhoto }}" alt="{{ $post->photo_alt_text }}">
+                                <div class="mb-8 w-full overflow-hidden rounded bg-gray-100" style="aspect-ratio: 1.91 / 1;">
+                                    <img class="w-full h-full object-cover" src="{{ $post->featurePhoto }}" alt="{{ $post->photo_alt_text }}">
                                 </div>
                                 <div class="mb-6">
                                     <h1 class="mb-6 text-4xl font-semibold">
