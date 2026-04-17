@@ -66,7 +66,7 @@ class SeoDetailForm
                                 ->label('OG Image')
                                 ->visibility(config('filamentblog.filesystem.visibility', 'public'))
                                 ->disk(config('filamentblog.filesystem.disk', 'public'))
-                                ->directory('blog-og-images')
+                                ->directory('social/og')
                                 ->image()
                                 ->preserveFilenames()
                                 ->hint('Leave blank to use the default cover photo.'),
@@ -86,7 +86,7 @@ class SeoDetailForm
                                 ->label('Twitter Image')
                                 ->visibility(config('filamentblog.filesystem.visibility', 'public'))
                                 ->disk(config('filamentblog.filesystem.disk', 'public'))
-                                ->directory('blog-twitter-images')
+                                ->directory('social/twitter')
                                 ->image()
                                 ->preserveFilenames()
                                 ->hint('Leave blank to use the default cover photo.'),
