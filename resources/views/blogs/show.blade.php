@@ -1,8 +1,8 @@
 <x-blog-layout>
     @php
         $toc = [];
-        $tocEnabled = config('filamentblog.features.table_content.enabled', false);
-        $includeTitle = data_get(config('filamentblog.features.table_content', []), 'title', true);
+        $tocEnabled = config('filamentblog.post_rendering.table_of_content.enabled', false);
+        $includeTitle = data_get(config('filamentblog.post_rendering.table_of_content', []), 'title', true);
 
         if ($tocEnabled) {
             $html = new DOMDocument();
@@ -13,6 +13,7 @@
                     'tag' => 'h1',
                     'text' => $post->title,
                     'id' => \Illuminate\Support\Str::slug($post->title) . '-post-title',
+                    'depth' => 0,
                 ];
             }
 
@@ -34,6 +35,7 @@
                         'tag' => $tag,
                         'text' => $text,
                         'id' => $uniqueId,
+                        'depth' => ($tag === 'h1') ? 0 : 1,
                     ];
                     $heading->setAttribute('id', $uniqueId);
                 }
@@ -123,9 +125,8 @@
                                             <div class="text-2xl font-semibold mb-4">Table of Contents</div>
                                             <ul class="space-y-2 list-disc px-8">
                                                 @foreach ($toc as $item)
-                                                    <li class="{{ $item['tag'] }} text-base">
-                                                        <a href="#{{ $item['id'] }}"
-                                                           class="text-blue-600 hover:text-blue-700 hover:underline">
+                                                    <li class="text-base {{ $item['depth'] ? 'ml-6' : '' }}">
+                                                        <a href="#{{ $item['id'] }}" class="text-blue-600 hover:text-blue-700 hover:underline">
                                                             {{ $item['text'] }}
                                                         </a>
                                                     </li>

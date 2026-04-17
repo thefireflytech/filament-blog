@@ -73,17 +73,14 @@ return [
     ],
 
     /**
-     * ------------------------------------------------------------
-     * Features
-     * Enable or configure optional features such as table of contents
-     * ------------------------------------------------------------
+     * Post Rendering Options
+     * Configure how the blog post body is processed and displayed.
      */
-    'features' => [
-        'table_content' => [
-            // Enable/disable table of contents feature
+    'post_rendering' => [
+        'table_of_content' => [
             'enabled' => true,
-            // Whether to include the manual post title as first TOC entry
-            'title' => true,
+            'title' => true, // Whether to include the manual post title as first TOC entry
+
         ],
     ],
 

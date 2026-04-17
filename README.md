@@ -158,11 +158,17 @@ return [
         'disk' => 'public',
     ],
 
-    'features' => [
-        'table_content' => [
+    /**
+     * Post Rendering Options
+     * Configure how the blog post body is processed and displayed.
+     */
+    'post_rendering' => [
+        'table_of_content' => [
             'enabled' => true,
-            'title' => true, // Whether to include the manual post title as the first TOC entry
+            'title' => true, // Whether to include the manual post title as first TOC entry
+
         ],
+    ],
 ];
 ````
 If you have a different url for the home page, you can set it in the `home` key in the `route` configuration.
