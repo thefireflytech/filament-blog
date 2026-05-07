@@ -64,8 +64,8 @@ return [
      */
     'blog_image' => [
         'directory' => '/blog-feature-images',
-        'cover_aspect_ratio' => env('BLOG_COVER_ASPECT_RATIO', '1.91:1'),
-        'auto_open_editor' => env('BLOG_AUTO_OPEN_EDITOR', true),
+        'cover_aspect_ratio' => env('FILAMENT_BLOG_COVER_ASPECT_RATIO', '1.91:1'),
+        'auto_open_editor' => env('FILAMENT_BLOG_AUTO_OPEN_EDITOR', true),
         'max_size' => 1024 * 5, // 5MB
     ],
 
