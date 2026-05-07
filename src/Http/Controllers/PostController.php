@@ -114,8 +114,8 @@ class PostController extends Controller
 
         SEOMeta::setKeywords($post->seoDetail->keywords ?? []);
 
-        $tocEnabled = config('filamentblog.filament_blog.table_of_content.enabled', false);
-        $includeTitle = data_get(config('filamentblog.filament_blog.table_of_content', []), 'title', true);
+        $tocEnabled = config('filamentblog.post_rendering.table_of_content.enabled', false);
+        $includeTitle = data_get(config('filamentblog.post_rendering.table_of_content', []), 'title', true);
         $toc = $this->generateTableOfContents($post, $tocEnabled, $includeTitle);
 
         $shareButton = ShareSnippet::query()->active()->first();

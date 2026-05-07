@@ -162,7 +162,7 @@ return [
      * Blog Post Options
      * Configure how the blog post body is processed and displayed.
      */
-    'filament_blog' => [
+    'post_rendering' => [
         'table_of_content' => [
             'enabled' => true,
             'title' => true, // Whether to include the manual post title as first TOC entry
