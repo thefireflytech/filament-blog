@@ -95,6 +95,7 @@ return [
             'title' => false, // Whether to include the manual post title as first TOC entry
 
         ],
+        'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', true),
     ],
 
     /**
@@ -107,15 +108,6 @@ return [
         'enabled' => false,
         'site_key' => env('RECAPTCHA_SITE_KEY'),
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),
-    ],
-
-    /**
-     * Post Rendering Options
-     *
-     * Control how the post body HTML is processed and transformed.
-     */
-    'post_rendering' => [
-        'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', true),
     ],
 
     /**

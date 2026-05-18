@@ -149,15 +149,6 @@ return [
     ],
 
     /**
-     * Post Rendering Options
-     *
-     * Control how the post body HTML is processed and transformed.
-     */
-    'post_rendering' => [
-        'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', false),
-    ],
-
-    /**
      * ------------------------------------------------------------
      * Filesystem
      * This is the filesystem configuration for the blog.
@@ -178,6 +169,7 @@ return [
             'title' => true, // Whether to include the manual post title as first TOC entry
 
         ],
+        'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', false),
     ],
 ];
 ````
