@@ -84,6 +84,18 @@ return [
     ],
 
     /**
+     * Post Rendering Options
+     * Configure how the blog post body is processed and displayed.
+     */
+    'post_rendering' => [
+        'table_of_content' => [
+            'enabled' => false,
+            'title' => false, // Whether to include the manual post title as first TOC entry
+
+        ],
+    ],
+
+    /**
      * ------------------------------------------------------------
      * Recaptcha
      * This is the recaptcha configuration for the blog.
