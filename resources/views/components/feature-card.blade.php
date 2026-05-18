@@ -1,7 +1,7 @@
 @props(['post'])
 <div class="grid sm:grid-cols-2 gap-y-5 gap-x-10">
-    <div class="md:h-[400px] w-full overflow-hidden rounded-xl bg-zinc-300">
-        <img class="flex h-full w-full items-center justify-center md:object-cover object-contain object-top" src="{{ asset($post->featurePhoto) }}" alt="{{ $post->photo_alt_text }}">
+    <div class="w-full overflow-hidden rounded-xl bg-gray-100" style="aspect-ratio: 1.91 / 1; max-height: 400px;">
+        <img class="w-full h-full object-cover" src="{{ asset($post->featurePhoto) }}" alt="{{ $post->photo_alt_text }}">
     </div>
     <div class="flex flex-col justify-center space-y-10 py-4 sm:pl-10">
         <div>

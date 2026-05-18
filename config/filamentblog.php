@@ -62,6 +62,17 @@ return [
 
     /**
      * ------------------------------------------------------------
+     * Blog Feature Image
+     */
+    'blog_image' => [
+        'directory' => '/blog-feature-images',
+        'cover_aspect_ratio' => env('FILAMENT_BLOG_COVER_ASPECT_RATIO', '1.91:1'),
+        'auto_open_editor' => env('FILAMENT_BLOG_AUTO_OPEN_EDITOR', true),
+        'max_size' => 1024 * 5, // 5MB
+    ],
+
+    /**
+     * ------------------------------------------------------------
      * SEO
      * This is the SEO configuration for the blog.
      * ------------------------------------------------------------
@@ -71,6 +82,18 @@ return [
             'title' => 'Filament Blog',
             'description' => 'This is filament blog seo meta description',
             'keywords' => [],
+        ],
+    ],
+
+    /**
+     * Post Rendering Options
+     * Configure how the blog post body is processed and displayed.
+     */
+    'post_rendering' => [
+        'table_of_content' => [
+            'enabled' => false,
+            'title' => false, // Whether to include the manual post title as first TOC entry
+
         ],
     ],
 
