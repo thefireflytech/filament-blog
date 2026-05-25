@@ -28,6 +28,7 @@ return [
             'home' => 'خانه',
             'blog' => 'وبلاگ',
             'comments_title' => 'نظرات',
+            'author_default_description' => 'نویسنده',
             'tags' => 'برچسب‌ها',
             'comments' => 'دیدگاه‌ها',
             'related_posts' => 'مطالب مرتبط',

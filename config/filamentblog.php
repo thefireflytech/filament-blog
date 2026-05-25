@@ -55,6 +55,8 @@ return [
         'columns' => [
             'name' => 'name',
             'avatar' => 'profile_photo_path',
+            'designation' => 'designation',
+            'bio' => 'bio',
         ],
     ],
 
@@ -93,6 +95,7 @@ return [
             'title' => false, // Whether to include the manual post title as first TOC entry
 
         ],
+        'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', true),
     ],
 
     /**
