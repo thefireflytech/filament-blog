@@ -10,7 +10,8 @@ trait HasBlog
 {
     public function name()
     {
-        return $this->{config('filamentblog.user.columns.name')};
+        $nameColumn = config('filamentblog.user.columns.name', 'name');
+        return $this->getAttributes()[$nameColumn] ?? 'User';
     }
 
     public function getAvatarAttribute()
@@ -27,6 +28,18 @@ trait HasBlog
         $nameColumn = config('filamentblog.user.columns.name', 'name');
         $nameValue = $attributes[$nameColumn] ?? 'User';
         return 'https://ui-avatars.com/api/?&background=random&name=' . urlencode($nameValue);
+    }
+
+    public function designation()
+    {
+        $column = config('filamentblog.user.columns.designation', 'designation');
+        return $this->getAttributes()[$column] ?? null;
+    }
+
+    public function bio()
+    {
+        $column = config('filamentblog.user.columns.bio', 'bio');
+        return $this->getAttributes()[$column] ?? null;
     }
 
     public function posts()

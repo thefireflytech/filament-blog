@@ -22,7 +22,10 @@ The Filament Blog Plugin is a feature-rich plugin designed to enhance your blogg
 - **Newsletter Subscription:** Integrate newsletter subscription forms to grow your email list.
 - **New Post Published Notification:** Notify subscribers when a new blog post is published.
 - **Category Search:** Categorize your blog posts for easy navigation and search.
+ - **Author Block:** Shows author photo, name, and a short description on the post show page (configurable).
 - **Support**: [Laravel 11](https://laravel.com) and [Filament 3.x](https://filamentphp.com)
+
+- **Table of Contents (TOC)**: Automatically generate a table of contents from headings inside a post body. This is configurable via the package config (see below).
 
 ## Demo Video
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/8UkcAicQZUc/0.jpg)](https://www.youtube.com/watch?v=8UkcAicQZUc)
@@ -155,10 +158,24 @@ return [
         'visibility' => 'public',
         'disk' => 'public',
     ],
+
+    /**
+     * Blog Post Options
+     * Configure how the blog post body is processed and displayed.
+     */
+    'post_rendering' => [
+        'table_of_content' => [
+            'enabled' => true,
+            'title' => true, // Whether to include the manual post title as first TOC entry
+
+        ],
+        'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', false),
+    ],
 ];
 ````
 If you have a different url for the home page, you can set it in the `home` key in the `route` configuration.
 Before running the migration, you can modify the `filamentblog.php` config file to suit your needs.
+
 
  If you want to publish config, views, components, and migrations individually you can run the following command:
 ```bash

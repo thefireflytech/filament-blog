@@ -3,6 +3,7 @@
 namespace Firefly\FilamentBlog\Http\Controllers;
 
 use App\Models\User;
+use DOMDocument;
 use Firefly\FilamentBlog\Facades\SEOMeta;
 use Firefly\FilamentBlog\Models\NewsLetter;
 use Firefly\FilamentBlog\Models\Post;
@@ -10,6 +11,7 @@ use Firefly\FilamentBlog\Models\ShareSnippet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -58,6 +60,52 @@ class PostController extends Controller
         ]);
     }
 
+    private function generateTableOfContents(Post $post, bool $tocEnabled, bool $includeTitle): array
+    {
+        $toc = [];
+        if (!$tocEnabled) {
+            return $toc;
+        }
+        $html = new DOMDocument();
+        @$html->loadHTML(mb_convert_encoding($post->body, 'HTML-ENTITIES', 'UTF-8'));
+
+        if ($includeTitle) {
+            $toc[] = [
+                'tag'   => 'h1',
+                'text'  => $post->title,
+                'id'    => Str::slug($post->title) . '-post-title',
+                'depth' => 0,
+            ];
+        }
+
+        $headingTags = ['h1', 'h2'];
+        foreach ($headingTags as $tag) {
+            $headings = $html->getElementsByTagName($tag);
+            foreach ($headings as $heading) {
+                $text = trim($heading->textContent);
+                if ($text === '') {
+                    continue;
+                }
+                $id = Str::slug($text);
+                $uniqueId = $id;
+                $counter = 1;
+                while (collect($toc)->pluck('id')->contains($uniqueId)) {
+                    $uniqueId = $id . '-' . $counter++;
+                }
+                $toc[] = [
+                    'tag'   => $tag,
+                    'text'  => $text,
+                    'id'    => $uniqueId,
+                    'depth' => ($tag === 'h1') ? 0 : 1,
+                ];
+                $heading->setAttribute('id', $uniqueId);
+            }
+        }
+
+        $post->body = $html->saveHTML();
+        return $toc;
+    }
+
     public function show(Post $post)
     {
         SEOMeta::setTitle($post->seoDetail?->title);
@@ -65,6 +113,10 @@ class PostController extends Controller
         SEOMeta::setDescription($post->seoDetail?->description);
 
         SEOMeta::setKeywords($post->seoDetail->keywords ?? []);
+
+        $tocEnabled = config('filamentblog.post_rendering.table_of_content.enabled', false);
+        $includeTitle = data_get(config('filamentblog.post_rendering.table_of_content', []), 'title', true);
+        $toc = $this->generateTableOfContents($post, $tocEnabled, $includeTitle);
 
         $shareButton = ShareSnippet::query()->active()->first();
         $post->load(['user', 'categories', 'tags', 'comments' => fn($query) => $query->approved(), 'comments.user']);
@@ -76,6 +128,9 @@ class PostController extends Controller
             'post' => $post,
             'shareButton' => $shareButton,
             'canComment' => $canComment,
+            'toc' => $toc,             
+            'tocEnabled' => $tocEnabled, 
+            'includeTitle' => $includeTitle,
         ]);
     }
 
