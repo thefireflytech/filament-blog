@@ -2,6 +2,8 @@
 
 use Firefly\FilamentBlog\Models\Category;
 use Firefly\FilamentBlog\Models\Post;
+use Firefly\FilamentBlog\Tests\Models\TestUser;
+use Illuminate\Foundation\Auth\User;
 
 use function Pest\Laravel\get;
 beforeEach(function () {
@@ -27,6 +29,8 @@ it('does not found scheduled post', function () {
 
 it('show published post details', function () {
     $this->withoutExceptionHandling();
+    $user = TestUser::factory()->create();
+    $this->actingAs($user);
 
     // Arrange
     $post = Post::factory()

@@ -2,6 +2,7 @@
 
 namespace Firefly\FilamentBlog\Traits;
 
+use Attribute;
 use Firefly\FilamentBlog\Models\Comment;
 use Firefly\FilamentBlog\Models\Post;
 

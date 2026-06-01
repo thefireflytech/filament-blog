@@ -7,5 +7,5 @@ it('allow user to subscribe news letter with email', function () {
         'email' => 'johndeo@example.com',
     ];
     post(route('filamentblog.post.subscribe'), $data)
-        ->assertRedirect()->assertSessionHas('success', 'You have successfully subscribed to our news letter');
+        ->assertRedirect()->assertSessionHas('success', 'You have successfully subscribed.');
 });
