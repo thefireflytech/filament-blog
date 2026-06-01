@@ -55,6 +55,8 @@ return [
         'columns' => [
             'name' => 'name',
             'avatar' => 'profile_photo_path',
+            'designation' => 'designation',
+            'bio' => 'bio',
         ],
     ],
 
@@ -94,6 +96,7 @@ return [
 
         ],
         'preserve_space_in_content' => false, // This feature will preserve the space in the content by replacing empty paragraphs with non-breaking spaces.
+        'show_author' => env('FILAMENT_BLOG_SHOW_AUTHOR', true),
     ],
 
     /**
