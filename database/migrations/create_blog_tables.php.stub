@@ -61,6 +61,12 @@ return new class () extends Migration {
             $table->string('title');
             $table->json('keywords')->nullable();
             $table->text('description');
+            $table->string('og_title')->nullable();
+            $table->string('og_description')->nullable();
+            $table->string('og_image')->nullable();
+            $table->string('twitter_title')->nullable();
+            $table->string('twitter_description')->nullable();
+            $table->string('twitter_image')->nullable();
             $table->timestamps();
         });
 

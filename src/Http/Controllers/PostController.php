@@ -113,6 +113,24 @@ class PostController extends Controller
         SEOMeta::setDescription($post->seoDetail?->description);
 
         SEOMeta::setKeywords($post->seoDetail->keywords ?? []);
+        
+        // Open Graph
+        SEOMeta::setOgTitle($post->seoDetail?->og_title ?? $post->seoDetail?->title ?? $post->title);
+        SEOMeta::setOgDescription($post->seoDetail?->og_description ?? $post->seoDetail?->description ?? $post->sub_title);
+        if ($post->seoDetail?->og_image) {
+            SEOMeta::setOgImage(asset('storage/' . $post->seoDetail->og_image));
+        } else {
+            SEOMeta::setOgImage($post->feature_photo);
+        }
+
+        // Twitter Card
+        SEOMeta::setTwitterTitle($post->seoDetail?->twitter_title ?? $post->seoDetail?->title ?? $post->title);
+        SEOMeta::setTwitterDescription($post->seoDetail?->twitter_description ?? $post->seoDetail?->description ?? $post->sub_title);
+        if ($post->seoDetail?->twitter_image) {
+            SEOMeta::setTwitterImage(asset('storage/' . $post->seoDetail->twitter_image));
+        } else {
+            SEOMeta::setTwitterImage($post->feature_photo);
+        }
 
         $tocEnabled = config('filamentblog.post_rendering.table_of_content.enabled', false);
         $includeTitle = data_get(config('filamentblog.post_rendering.table_of_content', []), 'title', true);

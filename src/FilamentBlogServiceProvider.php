@@ -23,7 +23,10 @@ class FilamentBlogServiceProvider extends PackageServiceProvider
     {
         $package->name('filament-blog')
             ->hasConfigFile(['filamentblog'])
-            ->hasMigrations('create_blog_tables')
+            ->hasMigrations([
+                'create_blog_tables',
+                'add_og_fields_to_seo_details_table',
+            ])
             ->hasCommands(RenameTablesCommand::class)
             ->runsMigrations()
             ->hasTranslations()
